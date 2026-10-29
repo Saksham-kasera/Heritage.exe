@@ -19,3 +19,4 @@ This directory contains the complete client-side application for **Safar Saarthi
 ## How to Run
 1. **Direct Browser Execution:** Double-click `index.html` directly in any web browser.
 2. **Via Local Server:** Run `node ../backend/server.js` or `npm start` from root / backend.
+
