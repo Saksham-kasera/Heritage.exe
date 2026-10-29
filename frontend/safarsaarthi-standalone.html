@@ -1605,8 +1605,8 @@ body.desktop-mode #view-feedback form > div:last-child {
   <!-- ========================================================================
        SAFAR AI MULTI-DAY TOUR PLANNER MODAL (BOTTOM SHEET)
        ======================================================================== -->
-  <div id="planner-modal" class="fixed inset-0 z-50 bg-ink-band/40 backdrop-blur-sm hidden items-end justify-center p-0 transition-opacity">
-    <div class="w-full max-w-lg bg-surface rounded-t-2xl p-space-lg flex flex-col gap-space-md shadow-2xl max-h-[85vh] overflow-y-auto border-t border-hairline">
+  <div id="planner-modal" class="fixed inset-0 z-[100] bg-ink-band/60 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity">
+    <div class="w-full max-w-lg bg-surface rounded-t-2xl sm:rounded-2xl p-space-lg pb-10 sm:pb-space-lg flex flex-col gap-space-md shadow-2xl max-h-[88vh] sm:max-h-[90vh] overflow-y-auto border-t sm:border border-hairline">
       <div class="flex items-center justify-between">
         <div class="flex flex-col">
           <span class="font-eyebrow text-eyebrow text-tertiary uppercase">Safar AI Concierge</span>
@@ -5545,22 +5545,35 @@ if (typeof module !== 'undefined' && module.exports) {
     plannerResults.innerHTML = html;
   }
 
-  if (openPlannerBtn && plannerModal && closeModalBtn) {
-    openPlannerBtn.addEventListener('click', () => {
-      plannerModal.classList.remove('hidden');
-      plannerModal.classList.add('flex');
-      generateItinerary(state.plannerDays, state.plannerPace);
-    });
+  function openPlannerModal() {
+    if (!plannerModal) return;
+    plannerModal.classList.remove('hidden');
+    plannerModal.classList.add('flex');
+    document.body.classList.add('overflow-hidden');
+    generateItinerary(state.plannerDays, state.plannerPace);
+  }
 
-    closeModalBtn.addEventListener('click', () => {
-      plannerModal.classList.add('hidden');
-      plannerModal.classList.remove('flex');
-    });
+  function closePlannerModal() {
+    if (!plannerModal) return;
+    plannerModal.classList.add('hidden');
+    plannerModal.classList.remove('flex');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  if (openPlannerBtn && plannerModal && closeModalBtn) {
+    openPlannerBtn.addEventListener('click', openPlannerModal);
+
+    closeModalBtn.addEventListener('click', closePlannerModal);
 
     plannerModal.addEventListener('click', (e) => {
       if (e.target === plannerModal) {
-        plannerModal.classList.add('hidden');
-        plannerModal.classList.remove('flex');
+        closePlannerModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !plannerModal.classList.contains('hidden')) {
+        closePlannerModal();
       }
     });
   }
@@ -5597,8 +5610,7 @@ if (typeof module !== 'undefined' && module.exports) {
       setTimeout(() => {
         confirmPlanBtn.innerHTML = '<span>Itinerary Ready · Open in Dossier</span>';
         setTimeout(() => {
-          plannerModal.classList.add('hidden');
-          plannerModal.classList.remove('flex');
+          closePlannerModal();
           confirmPlanBtn.innerHTML = '<span>Generate Archival Itinerary</span><span class="material-symbols-outlined text-[18px]">auto_awesome</span>';
         }, 800);
       }, 900);

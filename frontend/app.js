@@ -1336,22 +1336,35 @@
     plannerResults.innerHTML = html;
   }
 
-  if (openPlannerBtn && plannerModal && closeModalBtn) {
-    openPlannerBtn.addEventListener('click', () => {
-      plannerModal.classList.remove('hidden');
-      plannerModal.classList.add('flex');
-      generateItinerary(state.plannerDays, state.plannerPace);
-    });
+  function openPlannerModal() {
+    if (!plannerModal) return;
+    plannerModal.classList.remove('hidden');
+    plannerModal.classList.add('flex');
+    document.body.classList.add('overflow-hidden');
+    generateItinerary(state.plannerDays, state.plannerPace);
+  }
 
-    closeModalBtn.addEventListener('click', () => {
-      plannerModal.classList.add('hidden');
-      plannerModal.classList.remove('flex');
-    });
+  function closePlannerModal() {
+    if (!plannerModal) return;
+    plannerModal.classList.add('hidden');
+    plannerModal.classList.remove('flex');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  if (openPlannerBtn && plannerModal && closeModalBtn) {
+    openPlannerBtn.addEventListener('click', openPlannerModal);
+
+    closeModalBtn.addEventListener('click', closePlannerModal);
 
     plannerModal.addEventListener('click', (e) => {
       if (e.target === plannerModal) {
-        plannerModal.classList.add('hidden');
-        plannerModal.classList.remove('flex');
+        closePlannerModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !plannerModal.classList.contains('hidden')) {
+        closePlannerModal();
       }
     });
   }
@@ -1388,8 +1401,7 @@
       setTimeout(() => {
         confirmPlanBtn.innerHTML = '<span>Itinerary Ready · Open in Dossier</span>';
         setTimeout(() => {
-          plannerModal.classList.add('hidden');
-          plannerModal.classList.remove('flex');
+          closePlannerModal();
           confirmPlanBtn.innerHTML = '<span>Generate Archival Itinerary</span><span class="material-symbols-outlined text-[18px]">auto_awesome</span>';
         }, 800);
       }, 900);
