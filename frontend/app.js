@@ -892,15 +892,26 @@
 
   function fetchWeatherstack(coords, cacheKey, monument, radarUpdatedTag) {
     const wsKey = encodeURIComponent(WEATHER_CONFIG.apiKey);
-    const wsUrlHttps = `https://api.weatherstack.com/current?access_key=${wsKey}&query=${coords.lat},${coords.lon}`;
-    const wsUrlHttp = `http://api.weatherstack.com/current?access_key=${wsKey}&query=${coords.lat},${coords.lon}`;
+    const cityName = (monument.city && monument.city.en) ? monument.city.en.split(',')[0].trim() : 'Agra';
+    // Weatherstack free tier only supports City names (e.g. "Agra, India").
+    // Passing Lat/Lon coordinates on free tier triggers automatic fallback to caller ISP IP address.
+    const queryTarget = encodeURIComponent(`${cityName}, India`);
+    const wsUrlHttps = `https://api.weatherstack.com/current?access_key=${wsKey}&query=${queryTarget}`;
+    const wsUrlHttp = `http://api.weatherstack.com/current?access_key=${wsKey}&query=${queryTarget}`;
 
     const handlePayload = (data) => {
       if (data && data.success === false && data.error) {
         throw new Error(data.error.info || `Weatherstack error ${data.error.code}`);
       }
+      // If Weatherstack reverted to caller IP (e.g. Faridabad), reject it and use exact GPS Open-Meteo satellite feed
+      if (data && data.request && data.request.type === 'IP') {
+        console.warn(`Weatherstack reverted to caller IP (${data.location?.name || 'Local'}). Using exact GPS Open-Meteo satellite feed for ${cityName}.`);
+        fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
+        return true;
+      }
       if (data && data.current) {
         const cur = data.current;
+        const locName = data.location && data.location.name ? data.location.name : cityName;
         const parsed = {
           current: {
             temperature_2m: cur.temperature,
@@ -910,11 +921,12 @@
             uv_index: cur.uv_index !== undefined ? cur.uv_index : 6,
             condition_text: (cur.weather_descriptions && cur.weather_descriptions[0]) ? cur.weather_descriptions[0] : "Clear"
           },
+          location_name: locName,
           source: "Weatherstack"
         };
         state.weatherCache[cacheKey] = parsed;
         renderRadarMetrics(parsed);
-        if (radarUpdatedTag) radarUpdatedTag.textContent = 'Live Weatherstack';
+        if (radarUpdatedTag) radarUpdatedTag.textContent = `Live Weatherstack (${locName})`;
         return true;
       }
       throw new Error('Weatherstack returned unexpected payload structure');
