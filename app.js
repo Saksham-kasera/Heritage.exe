@@ -74,16 +74,12 @@
   ];
 
   // ========================================================================
-  // Weather API Configuration (OpenWeatherMap / WeatherAPI / Open-Meteo)
-  // Supports dynamic API key insertion with zero-crash keyless fallback
+  // Weather API Configuration — reads from gitignored config.js
+  // Falls back to keyless Open-Meteo if no key is provided
   // ========================================================================
   const WEATHER_CONFIG = {
-    apiKey: (function () {
-      try { return localStorage.getItem('safarsaarthi_weather_api_key') || ""; } catch (_) { return ""; }
-    })(),
-    provider: (function () {
-      try { return localStorage.getItem('safarsaarthi_weather_provider') || "openweathermap"; } catch (_) { return "openweathermap"; }
-    })()
+    apiKey: (window.APP_CONFIG && window.APP_CONFIG.weatherApiKey) ? String(window.APP_CONFIG.weatherApiKey).trim() : "",
+    provider: (window.APP_CONFIG && window.APP_CONFIG.weatherProvider) ? String(window.APP_CONFIG.weatherProvider) : "openmeteo"
   };
 
   // Application State
@@ -338,19 +334,6 @@
   const plannerResults = document.getElementById('planner-results');
   const plannerDayBtns = document.querySelectorAll('.planner-day-btn');
   const plannerPaceBtns = document.querySelectorAll('.planner-pace-btn');
-
-  // Weather Key Modal Elements
-  const openWeatherKeyBtn = document.getElementById('open-weather-key-btn');
-  const weatherKeyStatus = document.getElementById('weather-key-status');
-  const weatherKeyModal = document.getElementById('weather-key-modal');
-  const closeWeatherModalBtn = document.getElementById('close-weather-modal-btn');
-  const weatherProviderSelect = document.getElementById('weather-provider-select');
-  const weatherKeyInput = document.getElementById('weather-key-input');
-  const toggleKeyVisibilityBtn = document.getElementById('toggle-key-visibility-btn');
-  const keyVisIcon = document.getElementById('key-vis-icon');
-  const saveWeatherKeyBtn = document.getElementById('save-weather-key-btn');
-  const resetWeatherKeyBtn = document.getElementById('reset-weather-key-btn');
-  const weatherKeyFeedback = document.getElementById('weather-key-feedback');
 
   // Equalizer Bars
   const eqBars = [
@@ -869,23 +852,6 @@
   // Mausam-X Live Weather Radar Engine (OpenWeatherMap / WeatherAPI / Open-Meteo)
   // Supports dynamic API key insertion with zero-crash keyless fallback
   // ========================================================================
-  function updateWeatherKeyBadge() {
-    if (!weatherKeyStatus) return;
-    if (WEATHER_CONFIG.apiKey && WEATHER_CONFIG.apiKey.trim().length > 0) {
-      const provName = WEATHER_CONFIG.provider === 'weatherapi' ? 'WeatherAPI' : 'OpenWeather';
-      weatherKeyStatus.textContent = `🟢 ${provName}`;
-      if (weatherKeyStatus.parentElement) {
-        weatherKeyStatus.parentElement.classList.remove('text-secondary');
-        weatherKeyStatus.parentElement.classList.add('text-forest', 'font-medium');
-      }
-    } else {
-      weatherKeyStatus.textContent = 'API Key';
-      if (weatherKeyStatus.parentElement) {
-        weatherKeyStatus.parentElement.classList.remove('text-forest', 'font-medium');
-        weatherKeyStatus.parentElement.classList.add('text-secondary');
-      }
-    }
-  }
 
   function updateMausamRadar(monument) {
     const coords = monument.coords || { lat: 27.1751, lon: 78.0421 };
@@ -893,8 +859,6 @@
     const radarSiteLabel = document.getElementById('radar-site-label');
     const radarUpdatedTag = document.getElementById('radar-updated-tag');
     if (radarSiteLabel) radarSiteLabel.textContent = `Precinct Microclimate Node · ${city}`;
-
-    updateWeatherKeyBadge();
 
     const providerKey = (WEATHER_CONFIG.apiKey && WEATHER_CONFIG.apiKey.trim().length > 0) ? WEATHER_CONFIG.provider : 'openmeteo';
     const cacheKey = `${monument.id}_${providerKey}`;
@@ -1028,97 +992,6 @@
     if (radarCondition && cur.condition_text) {
       radarCondition.textContent = `${cur.condition_text} · Clear Air`;
     }
-  }
-
-  // Weather Key Modal Controller
-  if (openWeatherKeyBtn && weatherKeyModal && closeWeatherModalBtn) {
-    openWeatherKeyBtn.addEventListener('click', () => {
-      weatherKeyModal.classList.remove('hidden');
-      weatherKeyModal.classList.add('flex');
-      weatherKeyInput.value = WEATHER_CONFIG.apiKey || '';
-      weatherProviderSelect.value = WEATHER_CONFIG.provider || 'openweathermap';
-      weatherKeyFeedback.className = 'hidden text-[12px] p-2.5 rounded-lg font-medium';
-    });
-
-    closeWeatherModalBtn.addEventListener('click', () => {
-      weatherKeyModal.classList.add('hidden');
-      weatherKeyModal.classList.remove('flex');
-    });
-
-    weatherKeyModal.addEventListener('click', (e) => {
-      if (e.target === weatherKeyModal) {
-        weatherKeyModal.classList.add('hidden');
-        weatherKeyModal.classList.remove('flex');
-      }
-    });
-  }
-
-  if (toggleKeyVisibilityBtn && weatherKeyInput && keyVisIcon) {
-    toggleKeyVisibilityBtn.addEventListener('click', () => {
-      const isPassword = weatherKeyInput.type === 'password';
-      weatherKeyInput.type = isPassword ? 'text' : 'password';
-      keyVisIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
-    });
-  }
-
-  if (saveWeatherKeyBtn) {
-    saveWeatherKeyBtn.addEventListener('click', () => {
-      const key = weatherKeyInput.value.trim();
-      const provider = weatherProviderSelect.value;
-
-      if (!key) {
-        weatherKeyFeedback.className = 'text-[12px] p-2.5 rounded-lg font-medium bg-error-container text-on-error-container';
-        weatherKeyFeedback.textContent = 'Please enter an API key or click Reset to use default keyless radar.';
-        return;
-      }
-
-      WEATHER_CONFIG.apiKey = key;
-      WEATHER_CONFIG.provider = provider;
-
-      try {
-        localStorage.setItem('safarsaarthi_weather_api_key', key);
-        localStorage.setItem('safarsaarthi_weather_provider', provider);
-      } catch (_) {}
-
-      weatherKeyFeedback.className = 'text-[12px] p-2.5 rounded-lg font-medium bg-sage-pale/60 text-forest';
-      weatherKeyFeedback.textContent = `✓ Key saved! Connecting to ${provider === 'weatherapi' ? 'WeatherAPI.com' : 'OpenWeatherMap'}...`;
-
-      // Clear cache and refresh radar
-      state.weatherCache = {};
-      const monument = getMonument(state.currentMonumentId);
-      updateMausamRadar(monument);
-
-      setTimeout(() => {
-        weatherKeyModal.classList.add('hidden');
-        weatherKeyModal.classList.remove('flex');
-      }, 1200);
-    });
-  }
-
-  if (resetWeatherKeyBtn) {
-    resetWeatherKeyBtn.addEventListener('click', () => {
-      WEATHER_CONFIG.apiKey = '';
-      WEATHER_CONFIG.provider = 'openmeteo';
-      weatherKeyInput.value = '';
-      weatherProviderSelect.value = 'openmeteo';
-
-      try {
-        localStorage.removeItem('safarsaarthi_weather_api_key');
-        localStorage.removeItem('safarsaarthi_weather_provider');
-      } catch (_) {}
-
-      weatherKeyFeedback.className = 'text-[12px] p-2.5 rounded-lg font-medium bg-surface-container text-secondary';
-      weatherKeyFeedback.textContent = 'Reverted to default free Open-Meteo keyless satellite radar.';
-
-      state.weatherCache = {};
-      const monument = getMonument(state.currentMonumentId);
-      updateMausamRadar(monument);
-
-      setTimeout(() => {
-        weatherKeyModal.classList.add('hidden');
-        weatherKeyModal.classList.remove('flex');
-      }, 1000);
-    });
   }
 
   // ========================================================================

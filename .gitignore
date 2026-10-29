@@ -16,3 +16,7 @@ yarn-error.log*
 .env
 .env.local
 .env.*.local
+
+# Local weather API key config — DO NOT COMMIT
+# Copy config.example.js → config.js and add your key there
+config.js

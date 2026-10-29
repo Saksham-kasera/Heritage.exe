@@ -106,201 +106,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <style>
-/* ==========================================================================
-   Safar Saarthi (सफ़र सारथी) — Warm Editorial Heritage Stylesheet (style.css)
-   Aesthetic: Oura Warm-Paper & Archival Broadsheet
-   Canvas: #f7f1e8 | Surface: #ffffff | Hairline: #e1dcd3 | Ink: #1c1b1a
-   ========================================================================== */
-
-@layer base {
-  html, body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f1e8;
-    color: #1c1b1a;
-    -webkit-tap-highlight-color: transparent;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  }
-
-  body {
-    overscroll-behavior-y: none;
-    min-height: 100vh;
-  }
-
-  .pb-safe {
-    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
-  }
-
-  .pt-safe {
-    padding-top: env(safe-area-inset-top, 0px);
-  }
-
-  /* Broadsheet fine hairline borders */
-  .border-hairline {
-    border-color: #e1dcd3;
-  }
-}
-
-/* Hide scrollbar for clean horizontal carousels */
-::-webkit-scrollbar {
-  display: none;
-}
-* {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Equalizer soundwave bar transitions */
-.eq-bar {
-  transition: height 0.15s ease-in-out;
-  border-radius: 9999px;
-}
-
-/* Smooth tab transitions */
-.tab-view {
-  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Pulse animation for active radar nodes */
-@keyframes radarPulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 66, 40, 0.6);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 8px rgba(34, 66, 40, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 66, 40, 0);
-  }
-}
-
-.radar-live-dot {
-  animation: radarPulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
-}
-
-/* Dark Mode overrides for warm editorial night theme */
-.dark {
-  background-color: #151413 !important;
-  color: #f4f0ee !important;
-}
-
-.dark body {
-  background-color: #151413 !important;
-  color: #f4f0ee !important;
-}
-
-.dark .bg-canvas {
-  background-color: #151413 !important;
-}
-
-.dark .bg-canvas\/90,
-.dark .bg-canvas\/95 {
-  background-color: rgba(21, 20, 19, 0.94) !important;
-}
-
-.dark .bg-surface {
-  background-color: #242220 !important;
-  color: #f4f0ee !important;
-}
-
-.dark .bg-surface-container {
-  background-color: #2e2b28 !important;
-}
-
-.dark .bg-surface-container-low {
-  background-color: #1e1d1b !important;
-}
-
-.dark .bg-surface-container-high {
-  background-color: #383531 !important;
-}
-
-.dark .bg-surface-container-highest {
-  background-color: #423f3a !important;
-}
-
-.dark .text-on-surface {
-  color: #f4f0ee !important;
-}
-
-.dark .text-secondary {
-  color: #a8a49c !important;
-}
-
-.dark .text-on-surface-variant {
-  color: #c9c5bd !important;
-}
-
-.dark .border-hairline {
-  border-color: #3b3834 !important;
-}
-
-.dark .shadow-sm {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35) !important;
-}
-
-/* Tap feedback */
-button:active {
-  transform: scale(0.97);
-}
-
-/* Range input styling for fare calculator */
-input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  background: transparent;
-}
-
-input[type=range]:focus {
-  outline: none;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 6px;
-  cursor: pointer;
-  background: #e8e2d9;
-  border-radius: 9999px;
-}
-
-.dark input[type=range]::-webkit-slider-runnable-track {
-  background: #3d3a35;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  height: 22px;
-  width: 22px;
-  border-radius: 50%;
-  background: #2a72de;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s ease;
-}
-
-input[type=range]::-webkit-slider-thumb:active {
-  transform: scale(1.15);
-}
-
-
-</style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body class="bg-canvas text-on-surface font-body min-h-screen flex flex-col selection:bg-gold-pale selection:text-ink-band antialiased">
@@ -435,10 +241,6 @@ input[type=range]::-webkit-slider-thumb:active {
             </div>
           </div>
           <div class="flex items-center gap-1.5">
-            <button id="open-weather-key-btn" type="button" class="flex items-center gap-1 bg-surface-container px-space-xs py-0.5 rounded-full text-[11px] text-secondary hover:text-primary transition-colors border border-hairline/60" title="Configure Weather API Key">
-              <span class="material-symbols-outlined text-[13px]">key</span>
-              <span id="weather-key-status">API Key</span>
-            </button>
             <div class="flex items-center gap-1 bg-surface-container px-space-xs py-0.5 rounded-full">
               <span class="material-symbols-outlined text-[13px] text-secondary">update</span>
               <span class="font-caption text-[11px] text-secondary" id="radar-updated-tag">Live Feed</span>
@@ -1441,69 +1243,6 @@ input[type=range]::-webkit-slider-thumb:active {
   </div>
 
   <!-- ========================================================================
-       WEATHER API KEY CONFIGURATION MODAL
-       Allows connecting OpenWeatherMap, WeatherAPI, or resetting to Keyless Open-Meteo
-       ======================================================================== -->
-  <div id="weather-key-modal" class="fixed inset-0 z-50 bg-ink-band/40 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity">
-    <div class="w-full max-w-md bg-surface rounded-2xl p-space-lg flex flex-col gap-space-md shadow-2xl border border-hairline">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
-            <span class="material-symbols-outlined text-[20px]">vpn_key</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="font-eyebrow text-eyebrow text-secondary uppercase">Mausam-X Integration</span>
-            <span class="font-heading-2-mobile text-[18px] font-semibold text-on-surface">Weather API Key</span>
-          </div>
-        </div>
-        <button id="close-weather-modal-btn" type="button" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary hover:text-on-surface">
-          <span class="material-symbols-outlined text-[18px]">close</span>
-        </button>
-      </div>
-
-      <p class="font-body-sm text-[13px] text-secondary leading-relaxed">
-        Connect your custom <strong>OpenWeatherMap</strong> or <strong>WeatherAPI.com</strong> key for high-frequency satellite telemetry. If left blank, Safar Saarthi automatically uses keyless Open-Meteo with zero failure.
-      </p>
-
-      <div class="flex flex-col gap-1.5">
-        <label for="weather-provider-select" class="font-ui text-[12px] font-medium text-on-surface">API Provider:</label>
-        <select id="weather-provider-select" class="p-2.5 rounded-lg bg-surface-container text-on-surface text-sm border border-hairline focus:outline-none focus:border-primary">
-          <option value="openweathermap">OpenWeatherMap (OneCall &amp; Current Weather)</option>
-          <option value="weatherapi">WeatherAPI.com (Real-Time Forecast)</option>
-          <option value="openmeteo">Open-Meteo (Default Keyless Satellite)</option>
-        </select>
-      </div>
-
-      <div class="flex flex-col gap-1.5">
-        <label for="weather-key-input" class="font-ui text-[12px] font-medium text-on-surface">API Key / Token:</label>
-        <div class="relative flex items-center">
-          <input 
-            type="password" 
-            id="weather-key-input" 
-            placeholder="Paste your 32-character API key..." 
-            class="w-full p-2.5 pr-10 rounded-lg bg-surface-container text-on-surface text-sm font-mono border border-hairline focus:outline-none focus:border-primary"
-            autocomplete="off"
-          />
-          <button id="toggle-key-visibility-btn" type="button" class="absolute right-2.5 text-secondary hover:text-on-surface" title="Show/Hide Key">
-            <span id="key-vis-icon" class="material-symbols-outlined text-[18px]">visibility</span>
-          </button>
-        </div>
-      </div>
-
-      <div id="weather-key-feedback" class="hidden text-[12px] p-2.5 rounded-lg font-medium"></div>
-
-      <div class="flex items-center gap-2 pt-2">
-        <button id="save-weather-key-btn" type="button" class="flex-1 py-2.5 rounded-full bg-primary text-on-primary font-button text-[14px] font-semibold active:scale-95 transition-all shadow-sm hover:bg-primary-container">
-          Save &amp; Connect Key
-        </button>
-        <button id="reset-weather-key-btn" type="button" class="px-4 py-2.5 rounded-full bg-surface-container text-secondary font-button text-[14px] hover:text-on-surface active:scale-95 transition-all border border-hairline/60">
-          Reset
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================
        BOTTOM FIXED DOCK NAVIGATION
        4 Tabs: Home, Monuments, Emergency, Feedback
        ======================================================================== -->
@@ -1538,6 +1277,7 @@ input[type=range]::-webkit-slider-thumb:active {
   </nav>
 
   <!-- Load Critical Datasets & Application Logic -->
+  <script>window.APP_CONFIG = window.APP_CONFIG || { weatherApiKey: "", weatherProvider: "openmeteo" };</script>
   <script>
 // ==========================================================================
 // SafarSaarthi (सफ़र सारथी) — Enriched Monument Dataset (data.js)
@@ -4128,16 +3868,12 @@ if (typeof module !== 'undefined' && module.exports) {
   ];
 
   // ========================================================================
-  // Weather API Configuration (OpenWeatherMap / WeatherAPI / Open-Meteo)
-  // Supports dynamic API key insertion with zero-crash keyless fallback
+  // Weather API Configuration — reads from gitignored config.js
+  // Falls back to keyless Open-Meteo if no key is provided
   // ========================================================================
   const WEATHER_CONFIG = {
-    apiKey: (function () {
-      try { return localStorage.getItem('safarsaarthi_weather_api_key') || ""; } catch (_) { return ""; }
-    })(),
-    provider: (function () {
-      try { return localStorage.getItem('safarsaarthi_weather_provider') || "openweathermap"; } catch (_) { return "openweathermap"; }
-    })()
+    apiKey: (window.APP_CONFIG && window.APP_CONFIG.weatherApiKey) ? String(window.APP_CONFIG.weatherApiKey).trim() : "",
+    provider: (window.APP_CONFIG && window.APP_CONFIG.weatherProvider) ? String(window.APP_CONFIG.weatherProvider) : "openmeteo"
   };
 
   // Application State
@@ -4392,19 +4128,6 @@ if (typeof module !== 'undefined' && module.exports) {
   const plannerResults = document.getElementById('planner-results');
   const plannerDayBtns = document.querySelectorAll('.planner-day-btn');
   const plannerPaceBtns = document.querySelectorAll('.planner-pace-btn');
-
-  // Weather Key Modal Elements
-  const openWeatherKeyBtn = document.getElementById('open-weather-key-btn');
-  const weatherKeyStatus = document.getElementById('weather-key-status');
-  const weatherKeyModal = document.getElementById('weather-key-modal');
-  const closeWeatherModalBtn = document.getElementById('close-weather-modal-btn');
-  const weatherProviderSelect = document.getElementById('weather-provider-select');
-  const weatherKeyInput = document.getElementById('weather-key-input');
-  const toggleKeyVisibilityBtn = document.getElementById('toggle-key-visibility-btn');
-  const keyVisIcon = document.getElementById('key-vis-icon');
-  const saveWeatherKeyBtn = document.getElementById('save-weather-key-btn');
-  const resetWeatherKeyBtn = document.getElementById('reset-weather-key-btn');
-  const weatherKeyFeedback = document.getElementById('weather-key-feedback');
 
   // Equalizer Bars
   const eqBars = [
@@ -4923,23 +4646,6 @@ if (typeof module !== 'undefined' && module.exports) {
   // Mausam-X Live Weather Radar Engine (OpenWeatherMap / WeatherAPI / Open-Meteo)
   // Supports dynamic API key insertion with zero-crash keyless fallback
   // ========================================================================
-  function updateWeatherKeyBadge() {
-    if (!weatherKeyStatus) return;
-    if (WEATHER_CONFIG.apiKey && WEATHER_CONFIG.apiKey.trim().length > 0) {
-      const provName = WEATHER_CONFIG.provider === 'weatherapi' ? 'WeatherAPI' : 'OpenWeather';
-      weatherKeyStatus.textContent = `🟢 ${provName}`;
-      if (weatherKeyStatus.parentElement) {
-        weatherKeyStatus.parentElement.classList.remove('text-secondary');
-        weatherKeyStatus.parentElement.classList.add('text-forest', 'font-medium');
-      }
-    } else {
-      weatherKeyStatus.textContent = 'API Key';
-      if (weatherKeyStatus.parentElement) {
-        weatherKeyStatus.parentElement.classList.remove('text-forest', 'font-medium');
-        weatherKeyStatus.parentElement.classList.add('text-secondary');
-      }
-    }
-  }
 
   function updateMausamRadar(monument) {
     const coords = monument.coords || { lat: 27.1751, lon: 78.0421 };
@@ -4947,8 +4653,6 @@ if (typeof module !== 'undefined' && module.exports) {
     const radarSiteLabel = document.getElementById('radar-site-label');
     const radarUpdatedTag = document.getElementById('radar-updated-tag');
     if (radarSiteLabel) radarSiteLabel.textContent = `Precinct Microclimate Node · ${city}`;
-
-    updateWeatherKeyBadge();
 
     const providerKey = (WEATHER_CONFIG.apiKey && WEATHER_CONFIG.apiKey.trim().length > 0) ? WEATHER_CONFIG.provider : 'openmeteo';
     const cacheKey = `${monument.id}_${providerKey}`;
@@ -5082,97 +4786,6 @@ if (typeof module !== 'undefined' && module.exports) {
     if (radarCondition && cur.condition_text) {
       radarCondition.textContent = `${cur.condition_text} · Clear Air`;
     }
-  }
-
-  // Weather Key Modal Controller
-  if (openWeatherKeyBtn && weatherKeyModal && closeWeatherModalBtn) {
-    openWeatherKeyBtn.addEventListener('click', () => {
-      weatherKeyModal.classList.remove('hidden');
-      weatherKeyModal.classList.add('flex');
-      weatherKeyInput.value = WEATHER_CONFIG.apiKey || '';
-      weatherProviderSelect.value = WEATHER_CONFIG.provider || 'openweathermap';
-      weatherKeyFeedback.className = 'hidden text-[12px] p-2.5 rounded-lg font-medium';
-    });
-
-    closeWeatherModalBtn.addEventListener('click', () => {
-      weatherKeyModal.classList.add('hidden');
-      weatherKeyModal.classList.remove('flex');
-    });
-
-    weatherKeyModal.addEventListener('click', (e) => {
-      if (e.target === weatherKeyModal) {
-        weatherKeyModal.classList.add('hidden');
-        weatherKeyModal.classList.remove('flex');
-      }
-    });
-  }
-
-  if (toggleKeyVisibilityBtn && weatherKeyInput && keyVisIcon) {
-    toggleKeyVisibilityBtn.addEventListener('click', () => {
-      const isPassword = weatherKeyInput.type === 'password';
-      weatherKeyInput.type = isPassword ? 'text' : 'password';
-      keyVisIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
-    });
-  }
-
-  if (saveWeatherKeyBtn) {
-    saveWeatherKeyBtn.addEventListener('click', () => {
-      const key = weatherKeyInput.value.trim();
-      const provider = weatherProviderSelect.value;
-
-      if (!key) {
-        weatherKeyFeedback.className = 'text-[12px] p-2.5 rounded-lg font-medium bg-error-container text-on-error-container';
-        weatherKeyFeedback.textContent = 'Please enter an API key or click Reset to use default keyless radar.';
-        return;
-      }
-
-      WEATHER_CONFIG.apiKey = key;
-      WEATHER_CONFIG.provider = provider;
-
-      try {
-        localStorage.setItem('safarsaarthi_weather_api_key', key);
-        localStorage.setItem('safarsaarthi_weather_provider', provider);
-      } catch (_) {}
-
-      weatherKeyFeedback.className = 'text-[12px] p-2.5 rounded-lg font-medium bg-sage-pale/60 text-forest';
-      weatherKeyFeedback.textContent = `✓ Key saved! Connecting to ${provider === 'weatherapi' ? 'WeatherAPI.com' : 'OpenWeatherMap'}...`;
-
-      // Clear cache and refresh radar
-      state.weatherCache = {};
-      const monument = getMonument(state.currentMonumentId);
-      updateMausamRadar(monument);
-
-      setTimeout(() => {
-        weatherKeyModal.classList.add('hidden');
-        weatherKeyModal.classList.remove('flex');
-      }, 1200);
-    });
-  }
-
-  if (resetWeatherKeyBtn) {
-    resetWeatherKeyBtn.addEventListener('click', () => {
-      WEATHER_CONFIG.apiKey = '';
-      WEATHER_CONFIG.provider = 'openmeteo';
-      weatherKeyInput.value = '';
-      weatherProviderSelect.value = 'openmeteo';
-
-      try {
-        localStorage.removeItem('safarsaarthi_weather_api_key');
-        localStorage.removeItem('safarsaarthi_weather_provider');
-      } catch (_) {}
-
-      weatherKeyFeedback.className = 'text-[12px] p-2.5 rounded-lg font-medium bg-surface-container text-secondary';
-      weatherKeyFeedback.textContent = 'Reverted to default free Open-Meteo keyless satellite radar.';
-
-      state.weatherCache = {};
-      const monument = getMonument(state.currentMonumentId);
-      updateMausamRadar(monument);
-
-      setTimeout(() => {
-        weatherKeyModal.classList.add('hidden');
-        weatherKeyModal.classList.remove('flex');
-      }, 1000);
-    });
   }
 
   // ========================================================================
