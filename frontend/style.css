@@ -256,8 +256,9 @@ body.desktop-mode #view-home > div:nth-child(2) {
   height: 380px !important;
 }
 
-/* Home Right 5 Columns (Mausam-X Radar + Verified Utilities + Craft Dossier) */
+/* Home Right 5 Columns (Mausam-X Radar + Metro Radar + Verified Utilities + Craft Dossier) */
 body.desktop-mode #view-home > section:nth-child(3),
+body.desktop-mode #home-metro-radar,
 body.desktop-mode #view-home > section:nth-child(6),
 body.desktop-mode #view-home > div:nth-child(7) {
   grid-column: span 5 / span 5 !important;
@@ -376,3 +377,11 @@ body.desktop-mode #view-feedback form > div:last-child {
   }
 }
 
+
+/* --- Desktop 12-Column Layout for Monument Metro & News Sections --- */
+body.desktop-mode #monument-metro-section {
+  grid-column: span 6 / span 6 !important;
+}
+body.desktop-mode #monument-news-section {
+  grid-column: span 6 / span 6 !important;
+}

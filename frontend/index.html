@@ -282,6 +282,33 @@
         </div>
       </div>
 
+      
+      <!-- Live Civic & Travel Pulse Ticker (Public News Dispatch) -->
+      <div id="home-ticker-card"
+        class="flex items-center justify-between p-space-sm rounded-xl bg-surface border border-hairline shadow-xs group transition-all hover:border-primary/40 cursor-pointer">
+        <div class="flex items-center gap-space-xs min-w-0">
+          <div id="home-ticker-badge"
+            class="shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-ui font-bold uppercase tracking-wider bg-error-container text-on-error-container border border-error/30">
+            <span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+            <span id="home-ticker-severity">High Impact</span>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="font-caption text-[10px] text-mute font-medium uppercase tracking-wide" id="home-ticker-label">Live Civic &amp; Travel Dispatch</span>
+              <span class="text-mute text-[10px]">·</span>
+              <span class="font-caption text-[10px] text-secondary font-medium" id="home-ticker-time">Updated 45 mins ago</span>
+            </div>
+            <p class="font-ui text-[12.5px] font-semibold text-on-surface truncate group-hover:text-primary transition-colors" id="home-ticker-headline">
+              Zero-Emission Zone Enforced 500m Around Taj East &amp; West Gates
+            </p>
+          </div>
+        </div>
+        <button id="home-ticker-btn" type="button" class="shrink-0 flex items-center gap-0.5 text-primary text-[11px] font-ui font-semibold ml-2 group-hover:translate-x-0.5 transition-transform">
+          <span id="home-ticker-cta">View All</span>
+          <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        </button>
+      </div>
+
       <!-- Editorial Visual Frame (Field Dispatch #104) -->
       <div
         class="relative w-full h-48 rounded-xl overflow-hidden shadow-sm bg-surface-container border border-hairline/80 group">
@@ -425,6 +452,88 @@
         </div>
       </section>
 
+      <!-- ====================================================================
+           LIVE METRO & TRANSIT RADAR (Nearest Station & Route Maps Hub)
+           ==================================================================== -->
+      <section id="home-metro-radar" class="flex flex-col bg-surface rounded-xl p-space-lg shadow-sm border border-hairline gap-space-sm">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between pb-space-xs border-b border-hairline/60">
+          <div class="flex items-center gap-space-xs">
+            <div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined text-[19px]">subway</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-title text-[15px] font-semibold text-on-surface leading-tight" id="metro-radar-title">Metro &amp; Transit Radar</span>
+              <span class="font-caption text-[11px] text-mute" id="metro-radar-subtitle">Live GPS Telemetry &amp; Route Maps</span>
+            </div>
+          </div>
+          
+          <button id="rescan-metro-btn" type="button" title="Rescan nearest metro station" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-secondary hover:text-on-surface font-ui text-[11px] transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[14px]" id="rescan-metro-icon">near_me</span>
+            <span id="rescan-metro-text">Scan GPS</span>
+          </button>
+        </div>
+
+        <!-- Nearest Station Display Box -->
+        <div class="p-space-sm rounded-lg bg-surface-container-low border border-hairline/60 flex flex-col gap-2">
+          
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-eyebrow text-[10px] text-tertiary uppercase font-bold tracking-wider" id="nearest-metro-badge">Nearest Metro to You</span>
+                <span id="nearest-metro-line-pill" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-ui font-semibold bg-purple-100 text-purple-900 border border-purple-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-600" id="nearest-metro-dot"></span>
+                  <span id="nearest-metro-line-text">Violet Line (Line 6)</span>
+                </span>
+              </div>
+              <h3 class="font-heading-2-mobile text-[18px] font-semibold text-on-surface leading-snug mt-1" id="nearest-metro-name">
+                Bata Chowk / बाटा चौक
+              </h3>
+              <p class="font-caption text-[11px] text-secondary" id="nearest-metro-landmark">
+                Faridabad Corridor · Gate 1 (Mathura Rd)
+              </p>
+            </div>
+
+            <div class="flex flex-col items-end shrink-0">
+              <span class="font-title text-[18px] font-bold text-forest leading-none" id="nearest-metro-distance">1.2 km</span>
+              <span class="font-caption text-[10px] text-mute mt-0.5" id="nearest-metro-time">~14 min walk</span>
+            </div>
+          </div>
+
+          <!-- Micro Telemetry Row -->
+          <div class="grid grid-cols-2 gap-2 pt-1 border-t border-hairline/40 text-[11px] font-caption text-secondary">
+            <div class="flex items-center gap-1 truncate">
+              <span class="material-symbols-outlined text-[13px] text-mute shrink-0">schedule</span>
+              <span id="nearest-metro-timings" class="truncate">05:30 AM – 11:30 PM</span>
+            </div>
+            <div class="flex items-center gap-1 justify-end truncate">
+              <span class="material-symbols-outlined text-[13px] text-mute shrink-0">payments</span>
+              <span id="nearest-metro-fare" class="truncate">Token: ₹10 – ₹60 (NCMC)</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <!-- Direct Directions (Google Maps Intent) -->
+          <a id="nearest-metro-nav-btn" href="https://www.google.com/maps/dir/?api=1&destination=Bata+Chowk+Metro+Station" target="_blank" rel="noopener noreferrer"
+            class="h-10 rounded-full bg-primary-container text-on-primary-container font-button text-[12px] font-semibold flex items-center justify-center gap-1.5 shadow-xs active:scale-95 transition-all hover:bg-primary">
+            <span class="material-symbols-outlined text-[16px]">navigation</span>
+            <span>Get Directions</span>
+          </a>
+
+          <!-- View City Route Maps Modal -->
+          <button id="open-metro-maps-btn" type="button"
+            class="h-10 rounded-full bg-surface-container text-on-surface font-button text-[12px] font-semibold flex items-center justify-center gap-1.5 border border-hairline active:scale-95 transition-all hover:bg-surface-container-high">
+            <span class="material-symbols-outlined text-[16px] text-tertiary">map</span>
+            <span>View Metro Maps</span>
+          </button>
+        </div>
+
+      </section>
+
       <!-- Optimal Visiting Window Banner -->
       <div
         class="flex items-start gap-space-sm p-space-md rounded-xl bg-tertiary-fixed shadow-sm border border-tertiary/20">
@@ -464,7 +573,7 @@
           <span class="font-eyebrow text-eyebrow uppercase text-secondary">Verified Travel Utilities</span>
           <span class="font-caption text-caption text-tertiary font-medium">Golden Triangle</span>
         </div>
-        <div class="grid grid-cols-3 gap-space-xs">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs">
           <!-- Audio Walk Button -->
           <button id="quick-audio-walk" type="button"
             class="flex flex-col items-start p-space-sm rounded-xl bg-surface shadow-sm border border-hairline text-left transition-transform active:scale-95 group">
@@ -474,6 +583,16 @@
             </div>
             <span class="font-title text-[13px] font-medium text-on-surface">Audio Walk</span>
             <span class="font-caption text-[10px] text-secondary mt-0.5 leading-tight">Curated ASI lore</span>
+          </button>
+          <!-- Metro Maps Button -->
+          <button id="quick-metro-maps" type="button"
+            class="flex flex-col items-start p-space-sm rounded-xl bg-surface shadow-sm border border-hairline text-left transition-transform active:scale-95 group">
+            <div
+              class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary mb-space-xs group-hover:bg-primary-fixed group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-[20px]">subway</span>
+            </div>
+            <span class="font-title text-[13px] font-medium text-on-surface">Metro Maps</span>
+            <span class="font-caption text-[10px] text-secondary mt-0.5 leading-tight">City route lines</span>
           </button>
           <!-- Transit Shield Button -->
           <button id="quick-transit-shield" type="button"
@@ -838,6 +957,83 @@
           <span id="sister-maps-btn-text">Open in Google Maps &amp; Directions</span>
         </a>
       </article>
+
+      <!-- ====================================================================
+           LAST-MILE METRO & TRANSIT ACCESS (Active Monument Connectivity)
+           ==================================================================== -->
+      <section id="monument-metro-section" class="flex flex-col bg-surface rounded-xl p-space-lg shadow-sm border border-hairline gap-space-sm">
+        <div class="flex items-center justify-between pb-space-xs border-b border-hairline/60">
+          <div class="flex items-center gap-space-xs">
+            <div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined text-[19px]">subway</span>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5">
+                <span class="font-eyebrow text-eyebrow text-tertiary uppercase font-bold" id="metro-eyebrow-text">Last-Mile Metro Access</span>
+                <span class="px-2 py-0.2 rounded-full text-[10px] font-ui font-semibold bg-primary/10 text-primary">Direct Corridors</span>
+              </div>
+              <h3 class="font-title text-[16px] font-semibold text-on-surface leading-tight" id="metro-section-title">
+                Nearest Stations &amp; Exit Gates
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <div id="metro-stations-list" class="space-y-2 pt-1">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PUBLIC NEWS & LOCAL VISITOR ADVISORIES (Live Civic & Travel Pulse)
+           ==================================================================== -->
+      <section id="monument-news-section" class="flex flex-col bg-surface rounded-xl p-space-lg shadow-sm border border-hairline gap-space-sm">
+        <div class="flex items-center justify-between pb-space-xs border-b border-hairline/60">
+          <div class="flex items-center gap-space-xs">
+            <div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0">
+              <span class="material-symbols-outlined text-[19px]">newspaper</span>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5">
+                <span class="font-eyebrow text-eyebrow text-tertiary uppercase font-bold" id="news-eyebrow">Live Civic &amp; Travel Pulse</span>
+                <span id="news-source-badge" class="px-2 py-0.2 rounded-full text-[10px] font-ui font-semibold bg-forest/10 text-forest">Verified Civic Feed</span>
+              </div>
+              <h3 class="font-title text-[16px] font-semibold text-on-surface leading-tight" id="news-section-title">
+                Local Area News &amp; Visitor Advisories
+              </h3>
+            </div>
+          </div>
+
+          <button id="refresh-news-btn" type="button" title="Refresh local news advisories" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-secondary hover:text-on-surface font-ui text-[11px] transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[14px]" id="refresh-news-icon">refresh</span>
+            <span id="refresh-news-text">Refresh</span>
+          </button>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar" id="news-filters-row">
+          <button type="button" data-news-filter="all" class="news-filter-btn shrink-0 px-3 py-1 rounded-full bg-ink-band text-surface font-ui text-[11px] font-semibold shadow-xs transition-all">
+            All
+          </button>
+          <button type="button" data-news-filter="traffic" class="news-filter-btn shrink-0 px-3 py-1 rounded-full bg-surface-container text-secondary hover:text-on-surface font-ui text-[11px] font-medium transition-all">
+            Traffic &amp; Routes
+          </button>
+          <button type="button" data-news-filter="monument" class="news-filter-btn shrink-0 px-3 py-1 rounded-full bg-surface-container text-secondary hover:text-on-surface font-ui text-[11px] font-medium transition-all">
+            Monument Notices
+          </button>
+          <button type="button" data-news-filter="weather" class="news-filter-btn shrink-0 px-3 py-1 rounded-full bg-surface-container text-secondary hover:text-on-surface font-ui text-[11px] font-medium transition-all">
+            Weather / AQI
+          </button>
+          <button type="button" data-news-filter="events" class="news-filter-btn shrink-0 px-3 py-1 rounded-full bg-surface-container text-secondary hover:text-on-surface font-ui text-[11px] font-medium transition-all">
+            Cultural Events
+          </button>
+        </div>
+
+        <!-- News Cards Container -->
+        <div id="news-cards-container" class="space-y-2.5 pt-1">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </section>
 
     </section>
 
@@ -1495,6 +1691,106 @@
         <span>Generate Archival Itinerary</span>
         <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
       </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CITY METRO ROUTE MAPS & TRANSIT EXPLORER MODAL
+       Full-screen / bottom sheet modal with interactive SVG line maps for
+       Delhi NCR, Agra, Jaipur, Mumbai, Kolkata, Bengaluru
+       ======================================================================== -->
+  <div id="metro-modal" class="fixed inset-0 z-[100] bg-ink-band/60 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity">
+    <div class="w-full max-w-3xl bg-surface rounded-t-2xl sm:rounded-2xl p-space-md sm:p-space-lg pb-10 sm:pb-space-lg flex flex-col gap-space-md shadow-2xl max-h-[90vh] overflow-y-auto border-t sm:border border-hairline">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-2 border-b border-hairline/60">
+        <div class="flex items-center gap-space-xs">
+          <div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+            <span class="material-symbols-outlined text-[20px]">train</span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-1.5">
+              <span class="font-eyebrow text-eyebrow text-tertiary uppercase font-bold">Safar Saarthi Transit</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] bg-forest/10 text-forest font-ui font-semibold">Official Network Radar</span>
+            </div>
+            <h2 class="font-heading-2-mobile text-[20px] font-light text-on-surface" id="metro-modal-header-title">City Metro Route Maps</h2>
+          </div>
+        </div>
+        <button id="close-metro-modal-btn" type="button" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- City Switcher Tabs (Horizontal Scrollable) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar" id="metro-city-tabs">
+        <button type="button" data-city="delhi-ncr" class="metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-semibold bg-ink-band text-surface shadow-xs transition-all">
+          🚇 Delhi NCR (DMRC)
+        </button>
+        <button type="button" data-city="agra" class="metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-medium bg-surface-container text-secondary hover:text-on-surface transition-all">
+          🕌 Agra (UPMRC)
+        </button>
+        <button type="button" data-city="jaipur" class="metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-medium bg-surface-container text-secondary hover:text-on-surface transition-all">
+          🌸 Jaipur (JMRC)
+        </button>
+        <button type="button" data-city="mumbai" class="metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-medium bg-surface-container text-secondary hover:text-on-surface transition-all">
+          🌊 Mumbai (MMRDA)
+        </button>
+        <button type="button" data-city="kolkata" class="metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-medium bg-surface-container text-secondary hover:text-on-surface transition-all">
+          🚢 Kolkata
+        </button>
+        <button type="button" data-city="bengaluru" class="metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-medium bg-surface-container text-secondary hover:text-on-surface transition-all">
+          🌳 Bengaluru (Namma)
+        </button>
+      </div>
+
+      <!-- Selected City Metro Info Strip -->
+      <div class="p-space-sm rounded-lg bg-surface-container-low border border-hairline/60 flex flex-wrap items-center justify-between gap-2 text-[12px] font-caption">
+        <div class="flex flex-col">
+          <span class="font-ui font-semibold text-on-surface text-[13px]" id="modal-network-name">Delhi NCR Metro (DMRC)</span>
+          <span class="text-secondary" id="modal-network-tagline">12 Lines · 393 km Network connecting Delhi, Faridabad, Gurgaon & Noida</span>
+        </div>
+        <div class="flex items-center gap-3 text-secondary text-[11px] font-medium">
+          <span id="modal-network-timings">🕒 05:30 AM – 11:30 PM</span>
+          <span id="modal-network-fare">🎟️ ₹10 – ₹60</span>
+        </div>
+      </div>
+
+      <!-- Interactive SVG Schematic Metro Map Container -->
+      <div class="relative w-full rounded-xl bg-surface-container-high/40 border border-hairline overflow-hidden">
+        <div class="p-2 border-b border-hairline/60 flex items-center justify-between bg-surface/90 backdrop-blur-xs">
+          <span class="font-eyebrow text-[11px] text-tertiary uppercase font-bold" id="map-legend-label">Schematic Route Map &amp; Interchanges</span>
+          <a id="modal-official-map-link" href="https://www.delhimetrorail.com/network_map" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-[11px] text-primary hover:underline font-ui font-medium">
+            <span>Official High-Res Portal Map</span>
+            <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+          </a>
+        </div>
+        
+        <!-- Rendered SVG Map with color lines, stations & landmark callouts -->
+        <div id="metro-svg-canvas" class="w-full h-64 sm:h-80 overflow-auto p-2 flex items-center justify-center">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+
+      <!-- Station Search & Filter -->
+      <div class="flex flex-col gap-1.5">
+        <div class="relative w-full">
+          <span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-mute">search</span>
+          <input type="text" id="metro-station-search" placeholder="Search station (e.g. Bata Chowk, Qutub Minar, Taj East Gate)..."
+            class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container border border-hairline text-[13px] font-body text-on-surface placeholder:text-mute focus:outline-none focus:border-primary transition-all"/>
+        </div>
+      </div>
+
+      <!-- Stations List & Heritage Monuments Connections -->
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-center justify-between">
+          <span class="font-eyebrow text-[11px] text-secondary uppercase font-semibold">Stations &amp; Monument Connectors</span>
+          <span class="font-caption text-[11px] text-mute" id="modal-stations-count">16 Stations</span>
+        </div>
+        <div id="modal-stations-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto pr-1">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+
     </div>
   </div>
 

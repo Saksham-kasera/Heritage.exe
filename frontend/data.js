@@ -2505,6 +2505,2121 @@ const MONUMENTS = [
   }
 ];
 
+
+// ==========================================================================
+// SafarSaarthi Metro Transit Networks & Station Directory (METRO_NETWORKS)
+// ==========================================================================
+const METRO_NETWORKS = [
+  {
+    "id": "delhi-ncr",
+    "name": {
+      "en": "Delhi NCR Metro (DMRC)",
+      "hi": "दिल्ली एनसीआर मेट्रो (DMRC)"
+    },
+    "tagline": {
+      "en": "Connecting Delhi, Faridabad, Gurugram & Noida",
+      "hi": "दिल्ली, फरीदाबाद, गुरुग्राम एवं नोएडा नेटवर्क"
+    },
+    "cities": [
+      "Delhi",
+      "Faridabad",
+      "Gurugram",
+      "Noida"
+    ],
+    "totalStations": 288,
+    "linesCount": "12 Lines · 393 km Network",
+    "timings": "05:30 AM – 11:30 PM",
+    "fare": "₹10 – ₹60 (NCMC & Smart Card 10% off)",
+    "officialMapUrl": "https://www.delhimetrorail.com/network_map",
+    "officialPortalUrl": "https://www.delhimetrorail.com/",
+    "svgMap": "<svg viewBox=\"0 0 800 480\" xmlns=\"http://www.w3.org/2000/svg\" class=\"w-full h-auto select-none font-sans\">\n      <defs>\n        <filter id=\"shadow\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feDropShadow dx=\"0\" dy=\"2\" stdDeviation=\"2\" flood-opacity=\"0.15\"/></filter>\n      </defs>\n      <!-- Background Grid -->\n      <rect width=\"800\" height=\"480\" fill=\"#faf7f2\" rx=\"12\"/>\n      <path d=\"M 0 120 L 800 120 M 0 240 L 800 240 M 0 360 L 800 360 M 200 0 L 200 480 M 400 0 L 400 480 M 600 0 L 600 480\" stroke=\"#eee8de\" stroke-width=\"1\" stroke-dasharray=\"4,6\"/>\n      \n      <!-- Yamuna River Ribbon -->\n      <path d=\"M 450 0 C 470 120, 500 220, 480 340 C 470 410, 490 480, 510 480\" fill=\"none\" stroke=\"#dbeafe\" stroke-width=\"26\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n      <text x=\"500\" y=\"240\" fill=\"#60a5fa\" font-size=\"11\" font-weight=\"600\" transform=\"rotate(75, 500, 240)\" letter-spacing=\"3\">YAMUNA RIVER</text>\n\n      <!-- Lines -->\n      <!-- Red Line (Line 1) -->\n      <line x1=\"80\" y1=\"80\" x2=\"720\" y2=\"80\" stroke=\"#ef4444\" stroke-width=\"7\" stroke-linecap=\"round\"/>\n      \n      <!-- Yellow Line (Line 2) -->\n      <path d=\"M 230 30 L 370 80 L 330 140 L 300 200 L 300 260 L 250 330 L 190 400 L 120 450\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      \n      <!-- Blue Line (Line 3/4) -->\n      <path d=\"M 60 270 L 200 240 L 300 200 L 430 200 L 590 240 L 730 260\" fill=\"none\" stroke=\"#3b82f6\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      \n      <!-- Violet Line (Line 6 - Faridabad Corridor) -->\n      <path d=\"M 370 80 L 420 130 L 400 180 L 300 260 L 370 320 L 410 360 L 440 395 L 470 430 L 500 465\" fill=\"none\" stroke=\"#8b5cf6\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n\n      <!-- Airport Express Line -->\n      <path d=\"M 330 140 L 220 220 L 140 290 L 80 350\" fill=\"none\" stroke=\"#f97316\" stroke-width=\"4\" stroke-dasharray=\"6,4\" stroke-linecap=\"round\"/>\n\n      <!-- Interchange Stations Rings -->\n      <!-- Kashmere Gate (Red/Yellow/Violet) -->\n      <circle cx=\"370\" cy=\"80\" r=\"10\" fill=\"#ffffff\" stroke=\"#1c1b1a\" stroke-width=\"3\"/>\n      <text x=\"370\" y=\"62\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#1c1b1a\">Kashmere Gate 🔄</text>\n\n      <!-- Rajiv Chowk (Yellow/Blue) -->\n      <circle cx=\"300\" cy=\"200\" r=\"10\" fill=\"#ffffff\" stroke=\"#1c1b1a\" stroke-width=\"3\"/>\n      <text x=\"290\" y=\"190\" text-anchor=\"end\" font-size=\"11\" font-weight=\"bold\" fill=\"#1c1b1a\">Rajiv Chowk (CP) 🔄</text>\n\n      <!-- Central Secretariat (Yellow/Violet) -->\n      <circle cx=\"300\" cy=\"260\" r=\"9\" fill=\"#ffffff\" stroke=\"#1c1b1a\" stroke-width=\"2.5\"/>\n      <text x=\"285\" y=\"264\" text-anchor=\"end\" font-size=\"10\" font-weight=\"bold\" fill=\"#1c1b1a\">Central Sectt 🔄</text>\n\n      <!-- Heritage Stations & Callouts -->\n      <!-- Lal Qila Station (Violet Line) -->\n      <circle cx=\"420\" cy=\"130\" r=\"6\" fill=\"#8b5cf6\" stroke=\"#ffffff\" stroke-width=\"2\"/>\n      <g filter=\"url(#shadow)\">\n        <rect x=\"432\" y=\"118\" width=\"130\" height=\"24\" rx=\"12\" fill=\"#ffffff\" stroke=\"#8b5cf6\" stroke-width=\"1.5\"/>\n        <text x=\"442\" y=\"134\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#8b5cf6\">🏛️ Lal Qila (Red Fort)</text>\n      </g>\n\n      <!-- Chandni Chowk Station (Yellow Line) -->\n      <circle cx=\"330\" cy=\"140\" r=\"5\" fill=\"#eab308\" stroke=\"#ffffff\" stroke-width=\"2\"/>\n      <text x=\"320\" y=\"136\" text-anchor=\"end\" font-size=\"9.5\" font-weight=\"600\" fill=\"#5a544c\">Chandni Chowk</text>\n\n      <!-- Qutub Minar Station (Yellow Line) -->\n      <circle cx=\"190\" cy=\"400\" r=\"6\" fill=\"#eab308\" stroke=\"#ffffff\" stroke-width=\"2\"/>\n      <g filter=\"url(#shadow)\">\n        <rect x=\"55\" y=\"388\" width=\"124\" height=\"24\" rx=\"12\" fill=\"#ffffff\" stroke=\"#ca8a04\" stroke-width=\"1.5\"/>\n        <text x=\"65\" y=\"404\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#854d0e\">🗼 Qutub Minar</text>\n      </g>\n\n      <!-- FARIDABAD CORRIDOR HIGHLIGHTS (Violet Line) -->\n      <!-- Badkal Mor -->\n      <circle cx=\"410\" cy=\"360\" r=\"5\" fill=\"#8b5cf6\" stroke=\"#ffffff\" stroke-width=\"2\"/>\n      <text x=\"422\" y=\"364\" font-size=\"9\" font-weight=\"600\" fill=\"#4c1d95\">Badkal Mor (Faridabad)</text>\n\n      <!-- Old Faridabad -->\n      <circle cx=\"440\" cy=\"395\" r=\"5\" fill=\"#8b5cf6\" stroke=\"#ffffff\" stroke-width=\"2\"/>\n      <text x=\"452\" y=\"399\" font-size=\"9\" font-weight=\"600\" fill=\"#4c1d95\">Old Faridabad Stn</text>\n\n      <!-- Bata Chowk (User Location Landmark) -->\n      <circle cx=\"470\" cy=\"430\" r=\"7\" fill=\"#7c3aed\" stroke=\"#ffffff\" stroke-width=\"2.5\"/>\n      <g filter=\"url(#shadow)\">\n        <rect x=\"484\" y=\"418\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#7c3aed\"/>\n        <text x=\"494\" y=\"434\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#ffffff\">📍 Bata Chowk (Faridabad)</text>\n      </g>\n\n      <!-- Raja Nahar Singh (Ballabhgarh Terminus) -->\n      <circle cx=\"500\" cy=\"465\" r=\"5\" fill=\"#8b5cf6\" stroke=\"#ffffff\" stroke-width=\"2\"/>\n      <text x=\"512\" y=\"469\" font-size=\"9\" font-weight=\"600\" fill=\"#4c1d95\">Raja Nahar Singh (Ballabhgarh)</text>\n\n      <!-- Legend -->\n      <g transform=\"translate(20, 20)\" font-size=\"10\" font-weight=\"600\">\n        <rect width=\"180\" height=\"120\" rx=\"8\" fill=\"#ffffff\" stroke=\"#e1dcd3\" filter=\"url(#shadow)\"/>\n        <text x=\"12\" y=\"20\" font-size=\"11\" font-weight=\"bold\" fill=\"#1c1b1a\">Delhi NCR Metro Lines</text>\n        <circle cx=\"20\" cy=\"38\" r=\"4\" fill=\"#8b5cf6\"/><text x=\"32\" y=\"41\" fill=\"#4c1d95\">Violet Line (Faridabad - Delhi)</text>\n        <circle cx=\"20\" cy=\"56\" r=\"4\" fill=\"#eab308\"/><text x=\"32\" y=\"59\" fill=\"#854d0e\">Yellow Line (Gurugram - Delhi)</text>\n        <circle cx=\"20\" cy=\"74\" r=\"4\" fill=\"#3b82f6\"/><text x=\"32\" y=\"77\" fill=\"#1e3a8a\">Blue Line (Dwarka - Noida)</text>\n        <circle cx=\"20\" cy=\"92\" r=\"4\" fill=\"#ef4444\"/><text x=\"32\" y=\"95\" fill=\"#991b1b\">Red Line (Rithala - Ghaziabad)</text>\n        <line x1=\"14\" y1=\"108\" x2=\"26\" y2=\"108\" stroke=\"#f97316\" stroke-width=\"3\" stroke-dasharray=\"3,2\"/><text x=\"32\" y=\"111\" fill=\"#c2410c\">Airport Express (IGI T3)</text>\n      </g>\n    </svg>",
+    "stations": [
+      {
+        "id": "bata-chowk",
+        "name": {
+          "en": "Bata Chowk",
+          "hi": "बाटा चौक"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.3752,
+        "lon": 77.3168,
+        "city": "Faridabad",
+        "landmark": "Faridabad Heritage & Industrial Hub",
+        "gate": "Gate 1 (Mathura Rd)"
+      },
+      {
+        "id": "old-faridabad",
+        "name": {
+          "en": "Old Faridabad",
+          "hi": "ओल्ड फरीदाबाद"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.4116,
+        "lon": 77.3147,
+        "city": "Faridabad",
+        "landmark": "Old Faridabad Rail Terminus",
+        "gate": "Gate 2 (Railway Stn)"
+      },
+      {
+        "id": "neelam-chowk",
+        "name": {
+          "en": "Neelam Chowk Ajronda",
+          "hi": "नीलम चौक अज्रोंडा"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.3962,
+        "lon": 77.316,
+        "city": "Faridabad",
+        "landmark": "Central Faridabad Commercial",
+        "gate": "Gate 1 (Ajronda Chowk)"
+      },
+      {
+        "id": "badkal-mor",
+        "name": {
+          "en": "Badkal Mor",
+          "hi": "बड़खल मोड़"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.4285,
+        "lon": 77.3121,
+        "city": "Faridabad",
+        "landmark": "Badkhal Lake Eco Corridor",
+        "gate": "Gate 1 (Badkhal Rd)"
+      },
+      {
+        "id": "sector-28",
+        "name": {
+          "en": "Sector 28",
+          "hi": "सेक्टर 28"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.4447,
+        "lon": 77.3101,
+        "city": "Faridabad",
+        "landmark": "Faridabad North",
+        "gate": "Gate 2 (NH-19)"
+      },
+      {
+        "id": "mewala-maharajpur",
+        "name": {
+          "en": "Mewala Maharajpur",
+          "hi": "मेवला महाराजपुर"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.4608,
+        "lon": 77.3079,
+        "city": "Faridabad",
+        "landmark": "Sector 31 Corridor",
+        "gate": "Gate 1"
+      },
+      {
+        "id": "nhpc-chowk",
+        "name": {
+          "en": "NHPC Chowk",
+          "hi": "एनएचपीसी चौक"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.4777,
+        "lon": 77.3061,
+        "city": "Faridabad",
+        "landmark": "Surajkund Crafts Mela Feeder",
+        "gate": "Gate 1 (Surajkund Rd)"
+      },
+      {
+        "id": "sarai",
+        "name": {
+          "en": "Sarai",
+          "hi": "सराय"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.4975,
+        "lon": 77.3042,
+        "city": "Faridabad",
+        "landmark": "Delhi-Faridabad Toll Border",
+        "gate": "Gate 2"
+      },
+      {
+        "id": "escorts-mujesar",
+        "name": {
+          "en": "Escorts Mujesar",
+          "hi": "एस्कॉर्ट्स मुजेसर"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.3562,
+        "lon": 77.319,
+        "city": "Faridabad",
+        "landmark": "YMCA Univ & Sector 11",
+        "gate": "Gate 1"
+      },
+      {
+        "id": "raja-nahar-singh",
+        "name": {
+          "en": "Raja Nahar Singh (Ballabhgarh)",
+          "hi": "राजा नाहर सिंह (बल्लभगढ़)"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.337,
+        "lon": 77.3228,
+        "city": "Faridabad",
+        "landmark": "Ballabhgarh Palace & Bus Port",
+        "gate": "Gate 3 (Ballabhgarh Bus Stand)"
+      },
+      {
+        "id": "lal-qila",
+        "name": {
+          "en": "Lal Qila (Red Fort)",
+          "hi": "लाल किला"
+        },
+        "line": "Violet Line (Line 6)",
+        "color": "#8B5CF6",
+        "lat": 28.656,
+        "lon": 77.2384,
+        "city": "Delhi",
+        "landmark": "Red Fort & Meena Bazaar",
+        "gate": "Gate 4 (Direct to Lahori Gate)",
+        "monumentMatch": "red-fort"
+      },
+      {
+        "id": "chandni-chowk",
+        "name": {
+          "en": "Chandni Chowk",
+          "hi": "चाँदनी चौक"
+        },
+        "line": "Yellow Line (Line 2)",
+        "color": "#EAB308",
+        "lat": 28.6578,
+        "lon": 77.2302,
+        "city": "Delhi",
+        "landmark": "Sis Ganj Gurudwara & Old Delhi",
+        "gate": "Gate 1 (Town Hall)"
+      },
+      {
+        "id": "qutub-minar",
+        "name": {
+          "en": "Qutub Minar",
+          "hi": "क़ुतुब मीनार"
+        },
+        "line": "Yellow Line (Line 2)",
+        "color": "#EAB308",
+        "lat": 28.5135,
+        "lon": 77.1856,
+        "city": "Delhi",
+        "landmark": "Qutub Minar UNESCO Complex (900m)",
+        "gate": "Gate 2 (Feeder E-Rickshaw)",
+        "monumentMatch": "qutub-minar"
+      },
+      {
+        "id": "rajiv-chowk",
+        "name": {
+          "en": "Rajiv Chowk",
+          "hi": "राजीव चौक"
+        },
+        "line": "Yellow / Blue Interchange",
+        "color": "#3B82F6",
+        "lat": 28.6328,
+        "lon": 77.2195,
+        "city": "Delhi",
+        "landmark": "Connaught Place Heritage Colonnade",
+        "gate": "Gate 7 (Central Park)"
+      },
+      {
+        "id": "kashmere-gate",
+        "name": {
+          "en": "Kashmere Gate",
+          "hi": "कश्मीरी गेट"
+        },
+        "line": "Red / Yellow / Violet Interchange",
+        "color": "#EF4444",
+        "lat": 28.6675,
+        "lon": 77.2285,
+        "city": "Delhi",
+        "landmark": "Historic Kashmere Gate & ISBT",
+        "gate": "Gate 3"
+      },
+      {
+        "id": "central-sec",
+        "name": {
+          "en": "Central Secretariat",
+          "hi": "केंद्रीय सचिवालय"
+        },
+        "line": "Yellow / Violet Interchange",
+        "color": "#EAB308",
+        "lat": 28.6147,
+        "lon": 77.2119,
+        "city": "Delhi",
+        "landmark": "National Museum & India Gate",
+        "gate": "Gate 3 (Kartavya Path)"
+      }
+    ]
+  },
+  {
+    "id": "agra",
+    "name": {
+      "en": "Agra Metro (UPMRC)",
+      "hi": "आगरा मेट्रो (UPMRC)"
+    },
+    "tagline": {
+      "en": "Priority Heritage Corridor connecting Taj Mahal & Fort",
+      "hi": "ताज महल व आगरा किला हेरिटेज कॉरिडोर"
+    },
+    "cities": [
+      "Agra"
+    ],
+    "totalStations": 6,
+    "linesCount": "Priority Yellow Line · 6 km Operational",
+    "timings": "06:00 AM – 10:00 PM",
+    "fare": "₹10 – ₹30 (NCMC & UPI QR enabled)",
+    "officialMapUrl": "https://www.upmetrorail.com/page.php?id=agra-metro",
+    "officialPortalUrl": "https://www.upmetrorail.com/",
+    "svgMap": "<svg viewBox=\"0 0 700 320\" xmlns=\"http://www.w3.org/2000/svg\" class=\"w-full h-auto select-none font-sans\">\n      <defs>\n        <filter id=\"shadow-ag\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feDropShadow dx=\"0\" dy=\"2\" stdDeviation=\"2\" flood-opacity=\"0.15\"/></filter>\n      </defs>\n      <rect width=\"700\" height=\"320\" fill=\"#faf7f2\" rx=\"12\"/>\n      \n      <!-- Yamuna River Curve in Agra -->\n      <path d=\"M 0 60 C 200 40, 360 80, 480 170 C 560 230, 640 280, 700 290\" fill=\"none\" stroke=\"#dbeafe\" stroke-width=\"32\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n      <text x=\"250\" y=\"52\" fill=\"#60a5fa\" font-size=\"11\" font-weight=\"600\" letter-spacing=\"2\">YAMUNA RIVER (AGRA)</text>\n\n      <!-- Yellow Line Route -->\n      <path d=\"M 90 90 L 210 130 L 330 170 L 440 200 L 530 230 L 610 260\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n\n      <!-- Stations -->\n      <!-- 1. Mankameshwar -->\n      <circle cx=\"90\" cy=\"90\" r=\"7\" fill=\"#ffffff\" stroke=\"#ca8a04\" stroke-width=\"3\"/>\n      <text x=\"90\" y=\"72\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#1c1b1a\">Mankameshwar Mandir</text>\n      <text x=\"90\" y=\"112\" text-anchor=\"middle\" font-size=\"9\" fill=\"#854d0e\">मनकामेश्वर (जामा मस्जिद)</text>\n\n      <!-- 2. Agra Fort Metro -->\n      <circle cx=\"210\" cy=\"130\" r=\"8\" fill=\"#ca8a04\" stroke=\"#ffffff\" stroke-width=\"2.5\"/>\n      <g filter=\"url(#shadow-ag)\">\n        <rect x=\"145\" y=\"145\" width=\"130\" height=\"24\" rx=\"12\" fill=\"#ffffff\" stroke=\"#ca8a04\" stroke-width=\"1.5\"/>\n        <text x=\"155\" y=\"161\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#854d0e\">🏰 Agra Fort Metro</text>\n      </g>\n\n      <!-- 3. Taj Mahal Metro -->\n      <circle cx=\"330\" cy=\"170\" r=\"7\" fill=\"#ffffff\" stroke=\"#ca8a04\" stroke-width=\"3\"/>\n      <text x=\"330\" y=\"152\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#1c1b1a\">Taj Mahal Metro</text>\n      <text x=\"330\" y=\"192\" text-anchor=\"middle\" font-size=\"9\" fill=\"#854d0e\">पुरानी मंडी चौराहा</text>\n\n      <!-- 4. Fatehabad Road -->\n      <circle cx=\"440\" cy=\"200\" r=\"7\" fill=\"#ffffff\" stroke=\"#ca8a04\" stroke-width=\"3\"/>\n      <text x=\"440\" y=\"182\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"bold\" fill=\"#1c1b1a\">Fatehabad Road</text>\n      <text x=\"440\" y=\"222\" text-anchor=\"middle\" font-size=\"9\" fill=\"#854d0e\">हस्तशिल्प बाज़ार</text>\n\n      <!-- 5. Capt. Shubham Gupta -->\n      <circle cx=\"530\" cy=\"230\" r=\"6\" fill=\"#ffffff\" stroke=\"#ca8a04\" stroke-width=\"2.5\"/>\n      <text x=\"530\" y=\"212\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"600\" fill=\"#1c1b1a\">Capt. Shubham Gupta</text>\n\n      <!-- 6. Taj East Gate (Flagship) -->\n      <circle cx=\"610\" cy=\"260\" r=\"9\" fill=\"#eab308\" stroke=\"#ffffff\" stroke-width=\"3\"/>\n      <g filter=\"url(#shadow-ag)\">\n        <rect x=\"525\" y=\"278\" width=\"165\" height=\"26\" rx=\"13\" fill=\"#eab308\"/>\n        <text x=\"535\" y=\"295\" font-size=\"11\" font-weight=\"bold\" fill=\"#1c1b1a\">🕌 Taj East Gate (1.2 km)</text>\n      </g>\n    </svg>",
+    "stations": [
+      {
+        "id": "taj-east-gate",
+        "name": {
+          "en": "Taj East Gate",
+          "hi": "ताज ईस्ट गेट"
+        },
+        "line": "Yellow Line (Priority)",
+        "color": "#EAB308",
+        "lat": 27.1685,
+        "lon": 78.056,
+        "city": "Agra",
+        "landmark": "Taj Mahal Eastern Gate (1.2 km)",
+        "gate": "Gate 1 (E-Cart Feeder)",
+        "monumentMatch": "taj-mahal"
+      },
+      {
+        "id": "capt-shubham-gupta",
+        "name": {
+          "en": "Captain Shubham Gupta",
+          "hi": "कैप्टन शुभम गुप्ता"
+        },
+        "line": "Yellow Line (Priority)",
+        "color": "#EAB308",
+        "lat": 27.1642,
+        "lon": 78.0425,
+        "city": "Agra",
+        "landmark": "Basai Corridor",
+        "gate": "Gate 2"
+      },
+      {
+        "id": "fatehabad-road",
+        "name": {
+          "en": "Fatehabad Road",
+          "hi": "फतेहाबाद रोड"
+        },
+        "line": "Yellow Line (Priority)",
+        "color": "#EAB308",
+        "lat": 27.1601,
+        "lon": 78.0335,
+        "city": "Agra",
+        "landmark": "Hotel & Artisan Inlay Guilds",
+        "gate": "Gate 1 (Fatehabad Rd)"
+      },
+      {
+        "id": "taj-mahal-metro",
+        "name": {
+          "en": "Taj Mahal Metro (Purani Mandi)",
+          "hi": "ताज महल मेट्रो (पुरानी मंडी)"
+        },
+        "line": "Yellow Line (Priority)",
+        "color": "#EAB308",
+        "lat": 27.172,
+        "lon": 78.038,
+        "city": "Agra",
+        "landmark": "Taj Western Gate Walkway",
+        "gate": "Gate 2 (Shilpgram E-Cart)"
+      },
+      {
+        "id": "agra-fort-metro",
+        "name": {
+          "en": "Agra Fort Metro",
+          "hi": "आगरा किला मेट्रो"
+        },
+        "line": "Yellow Line (Priority)",
+        "color": "#EAB308",
+        "lat": 27.1795,
+        "lon": 78.021,
+        "city": "Agra",
+        "landmark": "Agra Fort & Diwan-i-Am",
+        "gate": "Gate 1 (Amar Singh Gate)"
+      },
+      {
+        "id": "mankameshwar",
+        "name": {
+          "en": "Mankameshwar Mandir",
+          "hi": "मनकामेश्वर मंदिर"
+        },
+        "line": "Yellow Line (Priority)",
+        "color": "#EAB308",
+        "lat": 27.1855,
+        "lon": 78.016,
+        "city": "Agra",
+        "landmark": "Historic Jama Masjid & Rawatpara",
+        "gate": "Gate 1"
+      }
+    ]
+  },
+  {
+    "id": "jaipur",
+    "name": {
+      "en": "Jaipur Metro (JMRC)",
+      "hi": "जयपुर मेट्रो (JMRC)"
+    },
+    "tagline": {
+      "en": "Pink Line Walled City UNESCO Heritage Route",
+      "hi": "गुलाबी नगर परकोटा यूनेस्को हेरिटेज मार्ग"
+    },
+    "cities": [
+      "Jaipur"
+    ],
+    "totalStations": 11,
+    "linesCount": "Pink Line · 12 km Network",
+    "timings": "06:20 AM – 09:49 PM",
+    "fare": "₹6 – ₹22",
+    "officialMapUrl": "https://transport.rajasthan.gov.in/content/transportportal/en/metro/Route-and-Fare.html",
+    "officialPortalUrl": "https://transport.rajasthan.gov.in/jmrc",
+    "svgMap": "<svg viewBox=\"0 0 700 280\" xmlns=\"http://www.w3.org/2000/svg\" class=\"w-full h-auto select-none font-sans\">\n      <defs>\n        <filter id=\"shadow-jp\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feDropShadow dx=\"0\" dy=\"2\" stdDeviation=\"2\" flood-opacity=\"0.15\"/></filter>\n      </defs>\n      <rect width=\"700\" height=\"280\" fill=\"#faf7f2\" rx=\"12\"/>\n      \n      <!-- Walled Pink City Perimeter Scrim -->\n      <rect x=\"420\" y=\"30\" width=\"260\" height=\"220\" rx=\"8\" fill=\"#fdf2f8\" stroke=\"#fbcfe8\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\"/>\n      <text x=\"435\" y=\"50\" fill=\"#db2777\" font-size=\"10\" font-weight=\"bold\" letter-spacing=\"1\">UNESCO WALLED CITY (PARKOTA)</text>\n\n      <!-- Pink Line Track -->\n      <path d=\"M 60 190 L 160 160 L 260 140 L 360 120 L 460 100 L 540 85 L 630 70\" fill=\"none\" stroke=\"#ec4899\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n\n      <!-- Stations -->\n      <circle cx=\"60\" cy=\"190\" r=\"6\" fill=\"#ffffff\" stroke=\"#db2777\" stroke-width=\"2.5\"/>\n      <text x=\"60\" y=\"210\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"600\" fill=\"#1c1b1a\">Mansarovar</text>\n\n      <circle cx=\"160\" cy=\"160\" r=\"6\" fill=\"#ffffff\" stroke=\"#db2777\" stroke-width=\"2.5\"/>\n      <text x=\"160\" y=\"180\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"600\" fill=\"#1c1b1a\">Civil Lines</text>\n\n      <circle cx=\"260\" cy=\"140\" r=\"7\" fill=\"#ffffff\" stroke=\"#db2777\" stroke-width=\"3\"/>\n      <text x=\"260\" y=\"122\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"bold\" fill=\"#1c1b1a\">🚆 Railway Station</text>\n\n      <circle cx=\"360\" cy=\"120\" r=\"7\" fill=\"#ffffff\" stroke=\"#db2777\" stroke-width=\"3\"/>\n      <text x=\"360\" y=\"102\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"bold\" fill=\"#1c1b1a\">🚌 Sindhi Camp (ISBT)</text>\n\n      <circle cx=\"460\" cy=\"100\" r=\"7\" fill=\"#ffffff\" stroke=\"#db2777\" stroke-width=\"3\"/>\n      <text x=\"460\" y=\"122\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"bold\" fill=\"#1c1b1a\">Chandpole Gate</text>\n\n      <circle cx=\"540\" cy=\"85\" r=\"7\" fill=\"#ffffff\" stroke=\"#db2777\" stroke-width=\"3\"/>\n      <text x=\"540\" y=\"107\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"bold\" fill=\"#1c1b1a\">Chhoti Chaupar</text>\n\n      <circle cx=\"630\" cy=\"70\" r=\"9\" fill=\"#ec4899\" stroke=\"#ffffff\" stroke-width=\"3\"/>\n      <g filter=\"url(#shadow-jp)\">\n        <rect x=\"520\" y=\"18\" width=\"168\" height=\"26\" rx=\"13\" fill=\"#ec4899\"/>\n        <text x=\"530\" y=\"35\" font-size=\"11\" font-weight=\"bold\" fill=\"#ffffff\">🌸 Badi Chaupar (Hawa Mahal)</text>\n      </g>\n    </svg>",
+    "stations": [
+      {
+        "id": "badi-chaupar",
+        "name": {
+          "en": "Badi Chaupar",
+          "hi": "बड़ी चौपड़"
+        },
+        "line": "Pink Line",
+        "color": "#EC4899",
+        "lat": 26.9238,
+        "lon": 75.8285,
+        "city": "Jaipur",
+        "landmark": "Hawa Mahal (200m) & Jantar Mantar",
+        "gate": "Gate 1 (Direct to Hawa Mahal Bazaar)",
+        "monumentMatch": "hawa-mahal"
+      },
+      {
+        "id": "chhoti-chaupar",
+        "name": {
+          "en": "Chhoti Chaupar",
+          "hi": "छोटी चौपड़"
+        },
+        "line": "Pink Line",
+        "color": "#EC4899",
+        "lat": 26.923,
+        "lon": 75.819,
+        "city": "Jaipur",
+        "landmark": "Kishanpole & Gangaur Ghat Bazaar",
+        "gate": "Gate 2"
+      },
+      {
+        "id": "chandpole",
+        "name": {
+          "en": "Chandpole",
+          "hi": "चांदपोल"
+        },
+        "line": "Pink Line",
+        "color": "#EC4899",
+        "lat": 26.9248,
+        "lon": 75.8055,
+        "city": "Jaipur",
+        "landmark": "Historic Chandpole Gateway",
+        "gate": "Gate 1"
+      },
+      {
+        "id": "sindhi-camp",
+        "name": {
+          "en": "Sindhi Camp",
+          "hi": "सिंधी कैंप"
+        },
+        "line": "Pink Line",
+        "color": "#EC4899",
+        "lat": 26.9205,
+        "lon": 75.7972,
+        "city": "Jaipur",
+        "landmark": "ISBT Inter-State Bus Terminal",
+        "gate": "Gate 2 (Bus Terminus)"
+      },
+      {
+        "id": "railway-station-jaipur",
+        "name": {
+          "en": "Railway Station",
+          "hi": "रेलवे स्टेशन (जयपुर)"
+        },
+        "line": "Pink Line",
+        "color": "#EC4899",
+        "lat": 26.9189,
+        "lon": 75.7876,
+        "city": "Jaipur",
+        "landmark": "Jaipur Junction Main Station",
+        "gate": "Gate 1 (Platform 1 Exit)"
+      }
+    ]
+  },
+  {
+    "id": "mumbai",
+    "name": {
+      "en": "Mumbai Metro & Suburban",
+      "hi": "मुंबई मेट्रो एवं उपनगरीय"
+    },
+    "tagline": {
+      "en": "Aqua Line 3 & Western/Central Railway Heritage Corridors",
+      "hi": "एक्वा लाइन 3 व ऐतिहासिक रेलवे नेटवर्क"
+    },
+    "cities": [
+      "Mumbai"
+    ],
+    "totalStations": 38,
+    "linesCount": "Aqua Line 3, Line 1 & Suburban Core",
+    "timings": "04:30 AM – 01:00 AM",
+    "fare": "₹10 – ₹50",
+    "officialMapUrl": "https://mmrcl.com/",
+    "officialPortalUrl": "https://mmrda.maharashtra.gov.in/",
+    "svgMap": "<svg viewBox=\"0 0 700 340\" xmlns=\"http://www.w3.org/2000/svg\" class=\"w-full h-auto select-none font-sans\">\n      <defs><filter id=\"shadow-mb\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feDropShadow dx=\"0\" dy=\"2\" stdDeviation=\"2\" flood-opacity=\"0.15\"/></filter></defs>\n      <rect width=\"700\" height=\"340\" fill=\"#faf7f2\" rx=\"12\"/>\n      \n      <!-- Arabian Sea Outline -->\n      <path d=\"M 0 0 L 220 0 C 230 100, 260 200, 310 340 L 0 340 Z\" fill=\"#eff6ff\" opacity=\"0.6\"/>\n      <text x=\"80\" y=\"160\" fill=\"#93c5fd\" font-size=\"12\" font-weight=\"bold\" letter-spacing=\"3\">ARABIAN SEA</text>\n\n      <!-- Aqua Line 3 (Underground Metro) -->\n      <path d=\"M 490 30 L 440 90 L 410 160 L 400 220 L 380 270 L 350 310\" fill=\"none\" stroke=\"#06b6d4\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      \n      <!-- Western Railway Suburban -->\n      <path d=\"M 450 30 L 410 90 L 380 160 L 360 230 L 340 280\" fill=\"none\" stroke=\"#3b82f6\" stroke-width=\"5\" stroke-linecap=\"round\"/>\n\n      <!-- Central Railway Suburban -->\n      <path d=\"M 540 30 L 490 100 L 450 170 L 430 220\" fill=\"none\" stroke=\"#ef4444\" stroke-width=\"5\" stroke-linecap=\"round\"/>\n\n      <!-- Stations -->\n      <circle cx=\"430\" cy=\"220\" r=\"9\" fill=\"#ffffff\" stroke=\"#ef4444\" stroke-width=\"3\"/>\n      <g filter=\"url(#shadow-mb)\">\n        <rect x=\"445\" y=\"206\" width=\"165\" height=\"24\" rx=\"12\" fill=\"#ffffff\" stroke=\"#ef4444\" stroke-width=\"1.5\"/>\n        <text x=\"455\" y=\"222\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#b91c1c\">🏛️ CSMT Terminus</text>\n      </g>\n\n      <circle cx=\"340\" cy=\"280\" r=\"8\" fill=\"#ffffff\" stroke=\"#3b82f6\" stroke-width=\"3\"/>\n      <text x=\"325\" y=\"284\" text-anchor=\"end\" font-size=\"10\" font-weight=\"bold\" fill=\"#1e3a8a\">Churchgate</text>\n\n      <circle cx=\"350\" cy=\"310\" r=\"9\" fill=\"#06b6d4\" stroke=\"#ffffff\" stroke-width=\"3\"/>\n      <g filter=\"url(#shadow-mb)\">\n        <rect x=\"365\" y=\"296\" width=\"185\" height=\"26\" rx=\"13\" fill=\"#06b6d4\"/>\n        <text x=\"375\" y=\"313\" font-size=\"11\" font-weight=\"bold\" fill=\"#ffffff\">⛵ Vidhan Bhavan (Gateway 1.5km)</text>\n      </g>\n    </svg>",
+    "stations": [
+      {
+        "id": "csmt-mumbai",
+        "name": {
+          "en": "CSMT Terminus",
+          "hi": "सीएसएमटी टर्मिनस"
+        },
+        "line": "Aqua Line 3 / Central Line",
+        "color": "#06B6D4",
+        "lat": 18.94,
+        "lon": 72.8353,
+        "city": "Mumbai",
+        "landmark": "CSMT UNESCO Victorian Terminus (300m)",
+        "gate": "Subway to Main Concourse"
+      },
+      {
+        "id": "churchgate",
+        "name": {
+          "en": "Churchgate",
+          "hi": "चर्चगेट"
+        },
+        "line": "Aqua Line 3 / Western Line",
+        "color": "#3B82F6",
+        "lat": 18.9322,
+        "lon": 72.8264,
+        "city": "Mumbai",
+        "landmark": "Marine Drive & Oval Maidan Art Deco",
+        "gate": "Eros Cinema Subway"
+      },
+      {
+        "id": "vidhan-bhavan",
+        "name": {
+          "en": "Vidhan Bhavan",
+          "hi": "विधान भवन"
+        },
+        "line": "Aqua Line 3",
+        "color": "#06B6D4",
+        "lat": 18.927,
+        "lon": 72.8235,
+        "city": "Mumbai",
+        "landmark": "Gateway of India (1.5 km)",
+        "gate": "Gate 1 (Nariman Point)",
+        "monumentMatch": "gateway-india"
+      },
+      {
+        "id": "hutatma-chowk",
+        "name": {
+          "en": "Hutatma Chowk (Flora Fountain)",
+          "hi": "हुतात्मा चौक"
+        },
+        "line": "Aqua Line 3",
+        "color": "#06B6D4",
+        "lat": 18.9325,
+        "lon": 72.8322,
+        "city": "Mumbai",
+        "landmark": "Fort Heritage Precinct & Flora Fountain",
+        "gate": "Gate 2 (MG Road)"
+      }
+    ]
+  },
+  {
+    "id": "kolkata",
+    "name": {
+      "en": "Kolkata Metro",
+      "hi": "कोलकाता मेट्रो"
+    },
+    "tagline": {
+      "en": "India's First Metro & Underwater Hooghly River Tunnel",
+      "hi": "भारत की प्रथम मेट्रो व हुगली नदी जलमग्न सुरंग"
+    },
+    "cities": [
+      "Kolkata"
+    ],
+    "totalStations": 40,
+    "linesCount": "Blue Line (Line 1) & Green Line (Line 2)",
+    "timings": "06:45 AM – 10:00 PM",
+    "fare": "₹5 – ₹30",
+    "officialMapUrl": "https://mtp.indianrailways.gov.in/",
+    "officialPortalUrl": "https://mtp.indianrailways.gov.in/",
+    "svgMap": "<svg viewBox=\"0 0 700 280\" xmlns=\"http://www.w3.org/2000/svg\" class=\"w-full h-auto select-none font-sans\">\n      <defs><filter id=\"shadow-kl\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feDropShadow dx=\"0\" dy=\"2\" stdDeviation=\"2\" flood-opacity=\"0.15\"/></filter></defs>\n      <rect width=\"700\" height=\"280\" fill=\"#faf7f2\" rx=\"12\"/>\n      \n      <!-- Hooghly River -->\n      <path d=\"M 330 0 C 340 90, 310 180, 320 280\" fill=\"none\" stroke=\"#dbeafe\" stroke-width=\"36\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n      <text x=\"325\" y=\"140\" fill=\"#60a5fa\" font-size=\"11\" font-weight=\"bold\" transform=\"rotate(85, 325, 140)\" letter-spacing=\"2\">HOOGHLY RIVER</text>\n\n      <!-- Blue Line (North-South) -->\n      <line x1=\"420\" y1=\"20\" x2=\"420\" y2=\"260\" stroke=\"#2563eb\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n\n      <!-- Green Line (East-West Underwater Tunnel) -->\n      <path d=\"M 120 120 L 230 120 L 420 120 L 580 120\" fill=\"none\" stroke=\"#10b981\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n\n      <!-- Underwater Tunnel Highlight Indicator -->\n      <rect x=\"250\" y=\"108\" width=\"130\" height=\"24\" rx=\"12\" fill=\"#047857\"/>\n      <text x=\"315\" y=\"124\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"bold\" fill=\"#ffffff\">🌊 Underwater Tunnel (520m)</text>\n\n      <!-- Stations -->\n      <circle cx=\"230\" cy=\"120\" r=\"7\" fill=\"#ffffff\" stroke=\"#10b981\" stroke-width=\"3\"/>\n      <text x=\"215\" y=\"104\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"bold\" fill=\"#1c1b1a\">🚆 Howrah Station</text>\n\n      <circle cx=\"420\" cy=\"120\" r=\"10\" fill=\"#ffffff\" stroke=\"#1c1b1a\" stroke-width=\"3\"/>\n      <text x=\"435\" y=\"112\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#1c1b1a\">Esplanade 🔄</text>\n\n      <circle cx=\"420\" cy=\"170\" r=\"6\" fill=\"#ffffff\" stroke=\"#2563eb\" stroke-width=\"2.5\"/>\n      <text x=\"435\" y=\"174\" font-size=\"9.5\" font-weight=\"600\" fill=\"#1c1b1a\">Park Street</text>\n\n      <circle cx=\"420\" cy=\"220\" r=\"8\" fill=\"#2563eb\" stroke=\"#ffffff\" stroke-width=\"2.5\"/>\n      <g filter=\"url(#shadow-kl)\">\n        <rect x=\"435\" y=\"206\" width=\"175\" height=\"26\" rx=\"13\" fill=\"#ffffff\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n        <text x=\"445\" y=\"223\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#1d4ed8\">🏛️ Maidan (Victoria Memorial)</text>\n      </g>\n    </svg>",
+    "stations": [
+      {
+        "id": "maidan-kolkata",
+        "name": {
+          "en": "Maidan",
+          "hi": "मैदान"
+        },
+        "line": "Blue Line (Line 1)",
+        "color": "#2563EB",
+        "lat": 22.5458,
+        "lon": 88.3496,
+        "city": "Kolkata",
+        "landmark": "Victoria Memorial (600m)",
+        "gate": "Gate 2 (Jawaharlal Nehru Rd)"
+      },
+      {
+        "id": "park-street",
+        "name": {
+          "en": "Park Street",
+          "hi": "पार्क स्ट्रीट"
+        },
+        "line": "Blue Line (Line 1)",
+        "color": "#2563EB",
+        "lat": 22.5532,
+        "lon": 88.3512,
+        "city": "Kolkata",
+        "landmark": "Indian Museum & Heritage Arcade",
+        "gate": "Gate 1 (Museum Gate)"
+      },
+      {
+        "id": "esplanade-kol",
+        "name": {
+          "en": "Esplanade",
+          "hi": "एस्प्लेनेड"
+        },
+        "line": "Blue / Green Interchange",
+        "color": "#10B981",
+        "lat": 22.5645,
+        "lon": 88.3518,
+        "city": "Kolkata",
+        "landmark": "Raj Bhavan & New Market",
+        "gate": "Gate 4 (Curzon Park)"
+      },
+      {
+        "id": "howrah-kol",
+        "name": {
+          "en": "Howrah Metro",
+          "hi": "हावड़ा मेट्रो"
+        },
+        "line": "Green Line (Underwater Tunnel)",
+        "color": "#10B981",
+        "lat": 22.5855,
+        "lon": 88.343,
+        "city": "Kolkata",
+        "landmark": "Howrah Bridge & Historic Station",
+        "gate": "Subway to Howrah Junction"
+      }
+    ]
+  },
+  {
+    "id": "bengaluru",
+    "name": {
+      "en": "Bengaluru Namma Metro",
+      "hi": "बेंगलुरु नम्मा मेट्रो"
+    },
+    "tagline": {
+      "en": "Purple & Green Lines Connecting Garden City Heritage",
+      "hi": "पर्पल एवं ग्रीन लाइन हेरिटेज कनेक्टिविटी"
+    },
+    "cities": [
+      "Bengaluru"
+    ],
+    "totalStations": 66,
+    "linesCount": "Purple Line & Green Line · 73 km",
+    "timings": "05:00 AM – 11:00 PM",
+    "fare": "₹10 – ₹60",
+    "officialMapUrl": "https://english.bmrc.co.in/",
+    "officialPortalUrl": "https://english.bmrc.co.in/",
+    "svgMap": "<svg viewBox=\"0 0 700 280\" xmlns=\"http://www.w3.org/2000/svg\" class=\"w-full h-auto select-none font-sans\">\n      <defs><filter id=\"shadow-blr\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feDropShadow dx=\"0\" dy=\"2\" stdDeviation=\"2\" flood-opacity=\"0.15\"/></filter></defs>\n      <rect width=\"700\" height=\"280\" fill=\"#faf7f2\" rx=\"12\"/>\n      \n      <!-- Purple Line (East-West) -->\n      <line x1=\"80\" y1=\"140\" x2=\"620\" y2=\"140\" stroke=\"#a855f7\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n\n      <!-- Green Line (North-South) -->\n      <line x1=\"340\" y1=\"30\" x2=\"340\" y2=\"250\" stroke=\"#10b981\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n\n      <!-- Majestic Interchange -->\n      <circle cx=\"340\" cy=\"140\" r=\"10\" fill=\"#ffffff\" stroke=\"#1c1b1a\" stroke-width=\"3\"/>\n      <text x=\"325\" y=\"130\" text-anchor=\"end\" font-size=\"11\" font-weight=\"bold\" fill=\"#1c1b1a\">Majestic 🔄</text>\n\n      <!-- Vidhana Soudha -->\n      <circle cx=\"430\" cy=\"140\" r=\"8\" fill=\"#a855f7\" stroke=\"#ffffff\" stroke-width=\"2.5\"/>\n      <g filter=\"url(#shadow-blr)\">\n        <rect x=\"380\" y=\"80\" width=\"160\" height=\"26\" rx=\"13\" fill=\"#ffffff\" stroke=\"#a855f7\" stroke-width=\"1.5\"/>\n        <text x=\"390\" y=\"97\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#7e22ce\">🏛️ Vidhana Soudha</text>\n      </g>\n\n      <!-- Cubbon Park -->\n      <circle cx=\"510\" cy=\"140\" r=\"7\" fill=\"#ffffff\" stroke=\"#a855f7\" stroke-width=\"2.5\"/>\n      <text x=\"510\" y=\"165\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"bold\" fill=\"#1c1b1a\">🌳 Cubbon Park</text>\n\n      <!-- MG Road -->\n      <circle cx=\"580\" cy=\"140\" r=\"6\" fill=\"#ffffff\" stroke=\"#a855f7\" stroke-width=\"2.5\"/>\n      <text x=\"580\" y=\"165\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"600\" fill=\"#1c1b1a\">MG Road</text>\n    </svg>",
+    "stations": [
+      {
+        "id": "vidhana-soudha",
+        "name": {
+          "en": "Dr. B.R. Ambedkar Vidhana Soudha",
+          "hi": "विधान सौध"
+        },
+        "line": "Purple Line",
+        "color": "#A855F7",
+        "lat": 12.9798,
+        "lon": 77.5908,
+        "city": "Bengaluru",
+        "landmark": "Vidhana Soudha Neo-Dravidian Palace",
+        "gate": "Gate 1 (High Court)"
+      },
+      {
+        "id": "cubbon-park",
+        "name": {
+          "en": "Cubbon Park",
+          "hi": "कब्बन पार्क"
+        },
+        "line": "Purple Line",
+        "color": "#A855F7",
+        "lat": 12.9815,
+        "lon": 77.599,
+        "city": "Bengaluru",
+        "landmark": "Cubbon Park & State Central Library",
+        "gate": "Gate 2 (Chinnaswamy Stadium)"
+      },
+      {
+        "id": "mg-road",
+        "name": {
+          "en": "Mahatma Gandhi Road",
+          "hi": "एमजी रोड"
+        },
+        "line": "Purple Line",
+        "color": "#A855F7",
+        "lat": 12.9754,
+        "lon": 77.6066,
+        "city": "Bengaluru",
+        "landmark": "Colonial Boulevard & Brigade Rd",
+        "gate": "Gate 1"
+      },
+      {
+        "id": "majestic-blr",
+        "name": {
+          "en": "Nadaprabhu Kempegowda (Majestic)",
+          "hi": "मैजेस्टिक"
+        },
+        "line": "Purple / Green Interchange",
+        "color": "#10B981",
+        "lat": 12.9756,
+        "lon": 77.5728,
+        "city": "Bengaluru",
+        "landmark": "Central Railway & KSRTC Bus Hub",
+        "gate": "Gate 4 (City Railway Station)"
+      }
+    ]
+  }
+];
+
+
+// ==========================================================================
+// SafarSaarthi — Enriched Metro/Transit & Local Civic News Data
+// Covers all 10 UNESCO Flagship Monuments (EN / HI Bilingual)
+// ==========================================================================
+
+const MONUMENT_ENRICHMENTS = {
+  "taj-mahal": {
+    nearbyMetro: [
+      {
+        id: "taj-east-gate-metro",
+        name: { en: "Taj East Gate Metro Station", hi: "ताज पूर्वी गेट मेट्रो स्टेशन" },
+        line: { en: "Agra Metro · Yellow Line (Priority Corridor)", hi: "आगरा मेट्रो · येलो लाइन (प्रायोरिटी कॉरिडोर)" },
+        lineColor: "#eab308",
+        lineTextColor: "#1c1b1a",
+        distance: "0.6 km",
+        exitGateTip: {
+          en: "Exit Gate 1 leads directly to Shilpgram ADA Golf Cart shuttle plaza",
+          hi: "गेट 1 से बाहर निकलें — शिल्पग्राम बैटरी गोल्फ़ कार्ट शटल प्लाज़ा सीधा सामने है"
+        },
+        lastMileTime: {
+          en: "3 min golf cart / 8 min pedestrian shaded walkway",
+          hi: "3 मिनट गोल्फ़ कार्ट / 8 मिनट पैदल छायादार पथ"
+        },
+        estimatedFare: { en: "₹20 (Golf Cart) / Free Walk", hi: "₹20 (गोल्फ़ कार्ट) / पैदल निःशुल्क" },
+        lat: 27.1695,
+        lon: 78.0532
+      },
+      {
+        id: "taj-mahal-metro",
+        name: { en: "Taj Mahal Metro Station (Purani Mandi)", hi: "ताज महल मेट्रो स्टेशन (पुरानी मंडी)" },
+        line: { en: "Agra Metro · Yellow Line Underground", hi: "आगरा मेट्रो · येलो लाइन भूमिगत" },
+        lineColor: "#ca8a04",
+        lineTextColor: "#ffffff",
+        distance: "0.9 km",
+        exitGateTip: {
+          en: "Exit Gate 2 for West Gate ticket counters & Fatehabad Road heritage walk",
+          hi: "पश्चिमी गेट टिकट काउंटर और फतेहाबाद रोड के लिए गेट 2 से निकलें"
+        },
+        lastMileTime: {
+          en: "4 min E-Rickshaw / 10 min walk to West Gate",
+          hi: "4 मिनट ई-रिक्शा / पश्चिमी गेट तक 10 मिनट पैदल"
+        },
+        estimatedFare: { en: "₹15 – ₹20 (E-Rickshaw)", hi: "₹15 – ₹20 (ई-रिक्शा)" },
+        lat: 27.1722,
+        lon: 78.0345
+      },
+      {
+        id: "agra-fort-metro",
+        name: { en: "Mankameshwar / Agra Fort Metro Station", hi: "मनकामेश्वर / आगरा फोर्ट मेट्रो स्टेशन" },
+        line: { en: "Agra Metro · Yellow Line Hub", hi: "आगरा मेट्रो · येलो लाइन हब" },
+        lineColor: "#eab308",
+        lineTextColor: "#1c1b1a",
+        distance: "2.4 km",
+        exitGateTip: {
+          en: "Exit Gate 3 for Yamuna Kinara corridor & direct transit to Agra Fort",
+          hi: "यमुना किनारा रोड और आगरा किले से सीधे संपर्क के लिए गेट 3 चुनें"
+        },
+        lastMileTime: {
+          en: "6 min Metro ride to Taj East Gate (₹20 token)",
+          hi: "ताज पूर्वी गेट तक 6 मिनट मेट्रो यात्रा (₹20 टोकन)"
+        },
+        estimatedFare: { en: "₹20 (Metro Token)", hi: "₹20 (मेट्रो टोकन)" },
+        lat: 27.1812,
+        lon: 78.0218
+      }
+    ],
+    localNews: [
+      {
+        id: "taj-news-1",
+        category: "traffic",
+        severity: "high",
+        timestamp: { en: "Updated 45 mins ago", hi: "45 मिनट पहले अपडेट किया गया" },
+        source: { en: "Agra Traffic Police Advisory", hi: "आगरा यातायात पुलिस सूचना" },
+        headline: {
+          en: "Zero-Emission Zone Enforced 500m Around Taj East & West Gates",
+          hi: "ताज के पूर्वी और पश्चिमी गेट के 500 मीटर दायरे में पेट्रोल/डीज़ल वाहन प्रतिबंधित"
+        },
+        summary: {
+          en: "All private cabs and petrol autos must drop passengers at Shilpgram (East) or Amrood Ka Teela (West) parking plazas. Only ADA electric golf carts and Agra Metro operate inside the eco-zone.",
+          hi: "सभी निजी कैब और ऑटो को शिल्पग्राम (पूर्व) या अमरूद का टीला (पश्चिम) पार्किंग पर रुकना होगा। इको-ज़ोन के भीतर केवल इलेक्ट्रिक गोल्फ़ कार्ट और मेट्रो उपलब्ध हैं।"
+        },
+        actionTip: {
+          en: "Take Agra Metro Yellow Line to Taj East Gate Station to skip the 800m parking barrier.",
+          hi: "पार्किंग बैरियर से बचने के लिए आगरा मेट्रो येलो लाइन से सीधे ताज पूर्वी गेट स्टेशन उतरें।"
+        }
+      },
+      {
+        id: "taj-news-2",
+        category: "monument",
+        severity: "advisory",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "ASI Agra Circle Notice", hi: "एएसआई आगरा मंडल सूचना" },
+        headline: {
+          en: "Separate ₹200 Mausoleum Inner Chamber Token Mandatory Alongside Entry Ticket",
+          hi: "मुख्य गुंबद कक्ष में प्रवेश हेतु ₹200 का अतिरिक्त टोकन अनिवार्य"
+        },
+        summary: {
+          en: "Visitors wishing to enter the central marble chamber housing the cenotaphs must select the Main Mausoleum add-on on the official ASI portal or East/West Gate QR kiosks.",
+          hi: "मुख्य संगमरमर कक्ष में जाने के इच्छुक पर्यटकों को आधिकारिक एएसआई पोर्टल या गेट के क्यूआर कियोस्क से मुख्य मकबरा ऐड-ऑन टिकट लेना आवश्यक है।"
+        },
+        actionTip: {
+          en: "Scan the ASI Fast-Track QR before 9:30 AM to avoid main dome queue bottlenecks.",
+          hi: "मुख्य गुंबद की कतार से बचने के लिए सुबह 9:30 बजे से पहले क्यूआर टिकट बुक करें।"
+        }
+      },
+      {
+        id: "taj-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X & UPPCB Air Bulletin", hi: "मौसम-X एवं पर्यावरण बुलेटिन" },
+        headline: {
+          en: "Clear Morning Visibility Across Yamuna Terrace; Midday Marble Glare High",
+          hi: "यमुना तट पर सुबह साफ़ दृश्यता; दोपहर में संगमरमर पर तेज़ धूप की चमक"
+        },
+        summary: {
+          en: "Morning mist clears by 7:15 AM offering crisp photography conditions. White marble surface temperature rises rapidly after 11:30 AM.",
+          hi: "सुबह 7:15 बजे तक हल्का कोहरा छंट जाएगा जिससे फोटोग्राफी के लिए बेहतरीन दृश्य मिलेंगे। 11:30 बजे के बाद संगमरमर का फर्श गर्म हो सकता है।"
+        },
+        actionTip: {
+          en: "Carry polarized sunglasses and collect complimentary shoe covers at the Chameli Farsh ramp.",
+          hi: "धूप का चश्मा साथ रखें और चमेली फ़र्श रैंप से शू-कवर अवश्य लें।"
+        }
+      },
+      {
+        id: "taj-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "UP Tourism Cultural Desk", hi: "उत्तर प्रदेश पर्यटन सांस्कृतिक प्रकोष्ठ" },
+        headline: {
+          en: "Evening Parchin Kari Marble Inlay Live Demonstration at Shilpgram Guild",
+          hi: "शिल्पग्राम में शाम को परचिन कारी पच्चीकारी कला का लाइव प्रदर्शन"
+        },
+        summary: {
+          en: "Master descendants of 17th-century Mughal artisans are hosting free 30-minute stone-inlay craft sessions at the government-empanelled Shilpgram complex from 4:30 PM to 6:30 PM.",
+          hi: "17वीं सदी के मुग़ल कारीगरों के वंशज शाम 4:30 से 6:30 बजे तक शिल्पग्राम परिसर में निःशुल्क पच्चीकारी कला का लाइव प्रदर्शन कर रहे हैं।"
+        },
+        actionTip: {
+          en: "Visit Shilpgram after sunset reflection viewing at Mehtab Bagh.",
+          hi: "मेहताब बाग से सूर्यास्त देखने के बाद शिल्पग्राम की कार्यशाला का आनंद लें।"
+        }
+      }
+    ]
+  },
+  "hawa-mahal": {
+    nearbyMetro: [
+      {
+        id: "badi-chaupar-metro",
+        name: { en: "Badi Chaupar Metro Station", hi: "बड़ी चौपड़ मेट्रो स्टेशन" },
+        line: { en: "Jaipur Metro · Pink Line (Line 1)", hi: "जयपुर मेट्रो · पिंक लाइन (लाइन 1)" },
+        lineColor: "#ec4899",
+        lineTextColor: "#ffffff",
+        distance: "0.25 km",
+        exitGateTip: {
+          en: "Exit Gate 2 (Sireh Deori Bazaar side) — Hawa Mahal facade is 200m straight ahead",
+          hi: "गेट 2 (सिरेह ड्योढ़ी बाज़ार) से बाहर निकलें — हवा महल मात्र 200 मीटर आगे है"
+        },
+        lastMileTime: {
+          en: "3 min heritage arcade walk",
+          hi: "3 मिनट गुलाबी नगरी बरामदे में पैदल पथ"
+        },
+        estimatedFare: { en: "Free 3-min walk", hi: "पैदल 3 मिनट (निःशुल्क)" },
+        lat: 26.9228,
+        lon: 75.8261
+      },
+      {
+        id: "chhoti-chaupar-metro",
+        name: { en: "Chhoti Chaupar Metro Station", hi: "छोटी चौपड़ मेट्रो स्टेशन" },
+        line: { en: "Jaipur Metro · Pink Line Underground", hi: "जयपुर मेट्रो · पिंक लाइन भूमिगत" },
+        lineColor: "#db2777",
+        lineTextColor: "#ffffff",
+        distance: "1.1 km",
+        exitGateTip: {
+          en: "Exit Gate 1 for Tripolia Bazaar & City Palace royal courtyard route",
+          hi: "त्रिपोलिया बाज़ार और सिटी पैलेस मार्ग के लिए गेट 1 से बाहर आएं"
+        },
+        lastMileTime: {
+          en: "4 min Pink E-Rickshaw / 12 min bazaar walk",
+          hi: "4 मिनट पिंक ई-रिक्शा / 12 मिनट बाज़ार वॉक"
+        },
+        estimatedFare: { en: "₹15 (Pink E-Rickshaw)", hi: "₹15 (पिंक ई-रिक्शा)" },
+        lat: 26.9248,
+        lon: 75.8165
+      },
+      {
+        id: "chandpole-metro",
+        name: { en: "Chandpole Metro Station", hi: "चांदपोल मेट्रो स्टेशन" },
+        line: { en: "Jaipur Metro · Pink Line Interchange", hi: "जयपुर मेट्रो · पिंक लाइन स्टेशन" },
+        lineColor: "#ec4899",
+        lineTextColor: "#ffffff",
+        distance: "2.2 km",
+        exitGateTip: {
+          en: "Direct 4-minute underground train to Badi Chaupar every 10 mins",
+          hi: "हर 10 मिनट में बड़ी चौपड़ के लिए सीधी 4-मिनट भूमिगत मेट्रो"
+        },
+        lastMileTime: {
+          en: "4 min Metro ride to Badi Chaupar",
+          hi: "बड़ी चौपड़ तक 4 मिनट मेट्रो यात्रा"
+        },
+        estimatedFare: { en: "₹12 (Metro Token)", hi: "₹12 (मेट्रो टोकन)" },
+        lat: 26.9265,
+        lon: 75.8072
+      }
+    ],
+    localNews: [
+      {
+        id: "hawa-news-1",
+        category: "traffic",
+        severity: "high",
+        timestamp: { en: "Updated 1 hour ago", hi: "1 घंटे पहले अपडेट किया गया" },
+        source: { en: "Jaipur Walled City Traffic Cell", hi: "जयपुर परकोटा यातायात प्रकोष्ठ" },
+        headline: {
+          en: "One-Way Heritage Traffic Loop Active on Sireh Deori Bazaar Road",
+          hi: "सिरेह ड्योढ़ी बाज़ार मार्ग पर वन-वे यातायात व्यवस्था लागू"
+        },
+        summary: {
+          en: "Four-wheelers are restricted between Badi Chaupar and Zorawar Singh Gate during peak morning hours (9:00 AM–12:30 PM) to protect pedestrian corridors.",
+          hi: "सुबह के व्यस्त समय (9:00 AM–12:30 PM) में बड़ी चौपड़ और ज़ोरावर सिंह गेट के बीच चार-पहिया वाहनों का प्रवेश सीमित है।"
+        },
+        actionTip: {
+          en: "Use Jaipur Metro Pink Line to Badi Chaupar Station (250m walk to Hawa Mahal entry).",
+          hi: "हवा महल पहुंचने के लिए जयपुर मेट्रो पिंक लाइन से बड़ी चौपड़ स्टेशन उतरें (मात्र 250 मीटर पैदल)।"
+        }
+      },
+      {
+        id: "hawa-news-2",
+        category: "monument",
+        severity: "info",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "Rajasthan Archaeology & Museums Dept", hi: "राजस्थान पुरातत्व एवं संग्रहालय विभाग" },
+        headline: {
+          en: "Composite Jaipur Heritage Ticket Saves 40% Across 8 Royal Monuments",
+          hi: "संयुक्त जयपुर हेरिटेज टिकट से 8 प्रमुख स्मारकों पर 40% की बचत"
+        },
+        summary: {
+          en: "A single composite pass issued at Hawa Mahal rear courtyard covers Hawa Mahal, Jantar Mantar, Amer Fort, Nahargarh, and Albert Hall for 2 consecutive days.",
+          hi: "हवा महल के पिछले प्रांगण से जारी संयुक्त टिकट 2 दिनों के लिए हवा महल, जंतर मंतर, आमेर किला, नाहरगढ़ और अल्बर्ट हॉल में मान्य है।"
+        },
+        actionTip: {
+          en: "Enter Hawa Mahal from the quiet Tripolia side gate via Sarhad courtyard.",
+          hi: "हवा महल में प्रवेश के लिए त्रिपोलिया बाज़ार की तरफ बने शांत पिछले द्वार का उपयोग करें।"
+        }
+      },
+      {
+        id: "hawa-news-3",
+        category: "weather",
+        severity: "advisory",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Jaipur Node", hi: "मौसम-X जयपुर केंद्र" },
+        headline: {
+          en: "Golden Morning Sun Illuminates 953 Jharokhas Between 8:00 AM & 9:45 AM",
+          hi: "सुबह 8:00 से 9:45 बजे के बीच 953 झरोखों पर सुनहरी धूप का अद्भुत दृश्य"
+        },
+        summary: {
+          en: "East-facing sandstone latticework catches direct morning light and casts stained-glass patterns inside Sharad Mandir.",
+          hi: "पूर्वमुखी लाल-गुलाबी बलुआ पत्थर के झरोखों से सुबह की किरणें शरद मंदिर के भीतर रंगीन कांच की आभा बिखेरती हैं।"
+        },
+        actionTip: {
+          en: "Arrive by 8:30 AM for stained-glass interior photography with <30% crowd.",
+          hi: "रंगीन कांच की रोशनी और कम भीड़ (<30%) के लिए सुबह 8:30 बजे तक पहुंचें।"
+        }
+      },
+      {
+        id: "hawa-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "Pink City Heritage Foundation", hi: "पिंक सिटी हेरिटेज फाउंडेशन" },
+        headline: {
+          en: "Night Facade Illumination Active 7:00 PM – 9:30 PM Along Johari Bazaar",
+          hi: "शाम 7:00 से रात 9:30 बजे तक हवा महल के बाहरी हिस्से की विशेष रोशनी"
+        },
+        summary: {
+          en: "Warm architectural spotlights illuminate the five-storey honeycomb facade every evening, accompanied by heritage walking patrols by Women Pink Squad.",
+          hi: "हर शाम पांच मंज़िला इमारत को गर्म सुनहरी रोशनी से सजाया जाता है और महिला पिंक स्क्वाड गश्त पर रहती है।"
+        },
+        actionTip: {
+          en: "View the illuminated facade freely from the Badi Chaupar promenade after dusk.",
+          hi: "सूर्यास्त के बाद बड़ी चौपड़ से जगमगाते हवा महल का निःशुल्क दीदार करें।"
+        }
+      }
+    ]
+  },
+  "qutub-minar": {
+    nearbyMetro: [
+      {
+        id: "qutab-minar-metro",
+        name: { en: "Qutab Minar Metro Station", hi: "कुतुब मीनार मेट्रो स्टेशन" },
+        line: { en: "Delhi Metro · Yellow Line (Line 2)", hi: "दिल्ली मेट्रो · येलो लाइन (लाइन 2)" },
+        lineColor: "#eab308",
+        lineTextColor: "#1c1b1a",
+        distance: "1.6 km",
+        exitGateTip: {
+          en: "Exit Gate 1 for prepaid DMRC E-Rickshaw & feeder bus stand to Qutub Complex",
+          hi: "कुतुब परिसर के लिए डीएमआरसी ई-रिक्शा और बस स्टैंड हेतु गेट 1 से बाहर निकलें"
+        },
+        lastMileTime: {
+          en: "5 min DMRC E-Rickshaw / 18 min walk along Mehrauli Road",
+          hi: "5 मिनट डीएमआरसी ई-रिक्शा / महरौली मार्ग से 18 मिनट पैदल"
+        },
+        estimatedFare: { en: "₹20 (Shared E-Rickshaw)", hi: "₹20 (शेयर्ड ई-रिक्शा)" },
+        lat: 28.5130,
+        lon: 77.1865
+      },
+      {
+        id: "saket-metro",
+        name: { en: "Saket Metro Station", hi: "साकेत मेट्रो स्टेशन" },
+        line: { en: "Delhi Metro · Yellow Line Underground", hi: "दिल्ली मेट्रो · येलो लाइन भूमिगत" },
+        lineColor: "#ca8a04",
+        lineTextColor: "#ffffff",
+        distance: "2.1 km",
+        exitGateTip: {
+          en: "Exit Gate 2 for Mehrauli Archaeological Park & Garden of Five Senses",
+          hi: "महरौली पुरातत्व पार्क एवं गार्डन ऑफ़ फाइव सेंसेज़ के लिए गेट 2 चुनें"
+        },
+        lastMileTime: {
+          en: "7 min Auto-Rickshaw via Anuvrat Marg",
+          hi: "अणुव्रत मार्ग से 7 मिनट ऑटो-रिक्शा"
+        },
+        estimatedFare: { en: "₹40 – ₹50 (Auto)", hi: "₹40 – ₹50 (ऑटो)" },
+        lat: 28.5206,
+        lon: 77.2014
+      },
+      {
+        id: "malviya-nagar-metro",
+        name: { en: "Malviya Nagar Metro Station", hi: "मालवीय नगर मेट्रो स्टेशन" },
+        line: { en: "Delhi Metro · Yellow Line", hi: "दिल्ली मेट्रो · येलो लाइन" },
+        lineColor: "#eab308",
+        lineTextColor: "#1c1b1a",
+        distance: "2.6 km",
+        exitGateTip: {
+          en: "Exit Gate 3 for Press Enclave Road & Lal Kot Fort wall trail",
+          hi: "प्रेस एन्क्लेव रोड और लाल कोट किला प्राचीर मार्ग के लिए गेट 3 से निकलें"
+        },
+        lastMileTime: {
+          en: "8 min Auto / Cab to Qutub Institutional Area",
+          hi: "कुतुब इंस्टीट्यूशनल एरिया तक 8 मिनट ऑटो/कैब"
+        },
+        estimatedFare: { en: "₹55 (Auto Meter)", hi: "₹55 (ऑटो मीटर)" },
+        lat: 28.5284,
+        lon: 77.2060
+      }
+    ],
+    localNews: [
+      {
+        id: "qutub-news-1",
+        category: "traffic",
+        severity: "advisory",
+        timestamp: { en: "Updated 1 hour ago", hi: "1 घंटे पहले अपडेट किया गया" },
+        source: { en: "Delhi Traffic Police Southern Range", hi: "दिल्ली यातायात पुलिस दक्षिणी रेंज" },
+        headline: {
+          en: "Metro Phase-IV Construction Diversion Near Mehrauli-Badarpur T-Point",
+          hi: "महरौली-बदरपुर टी-पॉइंट के पास मेट्रो फेज-IV निर्माण के कारण मार्ग परिवर्तन"
+        },
+        summary: {
+          en: "Slow vehicular movement reported on Anuvrat Marg during peak hours due to Silver Line viaduct work. DMRC Yellow Line trains are running at 3-minute frequency.",
+          hi: "सिल्वर लाइन निर्माण कार्य के कारण अणुव्रत मार्ग पर वाहनों की गति धीमी है। दिल्ली मेट्रो येलो लाइन हर 3 मिनट पर उपलब्ध है।"
+        },
+        actionTip: {
+          en: "Alight at Qutab Minar Metro Station Gate 1 and take a ₹20 DMRC electric shuttle.",
+          hi: "कुतुब मीनार मेट्रो स्टेशन के गेट 1 पर उतरें और ₹20 की डीएमआरसी इलेक्ट्रिक शटल लें।"
+        }
+      },
+      {
+        id: "qutub-news-2",
+        category: "monument",
+        severity: "info",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "ASI Delhi Circle", hi: "एएसआई दिल्ली मंडल" },
+        headline: {
+          en: "Architectural Floodlighting Extended Till 9:00 PM with Separate Evening Entry",
+          hi: "कुतुब मीनार में रात 9:00 बजे तक विशेष आर्किटेक्चरल लाइटिंग और संध्या प्रवेश"
+        },
+        summary: {
+          en: "Over 350 warm LED architectural lamps highlight the Arabic & Nagari calligraphy bands on the 72.5m victory tower every evening after sunset.",
+          hi: "हर शाम सूर्यास्त के बाद 350 से अधिक वार्म एलईडी लाइटों से 72.5 मीटर ऊंचे विजय स्तंभ की नक्काशी को रोशन किया जाता है।"
+        },
+        actionTip: {
+          en: "Visit between 6:30 PM and 8:00 PM for cooler temperatures and dramatic night views.",
+          hi: "सुहावने मौसम और रात्रि रोशनी के लिए शाम 6:30 से 8:00 बजे के बीच भ्रमण करें।"
+        }
+      },
+      {
+        id: "qutub-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Mehrauli Ridge Station", hi: "मौसम-X महरौली रिज केंद्र" },
+        headline: {
+          en: "Green Forest Canopy Keeps Mehrauli Archaeological Park 2.5°C Cooler",
+          hi: "हरित वन क्षेत्र के कारण महरौली पुरातत्व पार्क का तापमान 2.5°C कम"
+        },
+        summary: {
+          en: "Adjacent 200-acre woodland acts as a natural microclimate sink, offering shaded trails around Jamali Kamali and Rajon Ki Baoli stepwell.",
+          hi: "समीपवर्ती 200 एकड़ का हरित क्षेत्र प्राकृतिक ठंडक प्रदान करता है, जिससे जमाली कमाली और राजों की बावली का रास्ता छायादार रहता है।"
+        },
+        actionTip: {
+          en: "Combine your Qutub visit with the free shaded walk into Mehrauli Archaeological Park.",
+          hi: "कुतुब मीनार के साथ महरौली पुरातत्व पार्क के छायादार पथ का निःशुल्क भ्रमण करें।"
+        }
+      },
+      {
+        id: "qutub-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "Delhi Tourism & INTACH", hi: "दिल्ली पर्यटन एवं इनटैक" },
+        headline: {
+          en: "Guided Heritage Walk Covering Iron Pillar Metallurgy & Alai Darwaza",
+          hi: "लौह स्तंभ धातु विज्ञान और अलाई दरवाज़ा पर विशेष हेरिटेज वॉक"
+        },
+        summary: {
+          en: "Conservation historians lead weekend morning sessions explaining the high-phosphorus rust-free composition of the 4th-century Gupta Iron Pillar.",
+          hi: "संरक्षण इतिहासकार चौथी सदी के जंग-रहित गुप्तकालीन लौह स्तंभ के रहस्य पर सुबह विशेष सत्र आयोजित कर रहे हैं।"
+        },
+        actionTip: {
+          en: "Enable SafarSaarthi Audio Walk Chapter 2 at the Quwwat-ul-Islam courtyard.",
+          hi: "कुव्वत-उल-इस्लाम प्रांगण में सफ़रसारथी ऑडियो वॉक का भाग 2 सुनें।"
+        }
+      }
+    ]
+  },
+  "hampi-chariot": {
+    nearbyMetro: [
+      {
+        id: "gejjala-mandapa-buggy",
+        name: { en: "Gejjala Mandapa EV Buggy Terminal", hi: "गेज्जला मंडप ईवी बग्गी टर्मिनल" },
+        line: { en: "Hampi World Heritage Area · Green EV Corridor", hi: "हम्पी विश्व धरोहर · ग्रीन ईवी कॉरिडोर" },
+        lineColor: "#224228",
+        lineTextColor: "#ffffff",
+        distance: "0.9 km",
+        exitGateTip: {
+          en: "Boarding Bay A for continuous battery-operated buggies to Vittala Temple gate",
+          hi: "विट्ठल मंदिर द्वार के लिए बैटरी चालित बग्गी बोर्डिंग बे A से मिलती है"
+        },
+        lastMileTime: {
+          en: "4 min Eco-Buggy / 11 min Ancient Bazaar Trail walk",
+          hi: "4 मिनट इको-बग्गी / प्राचीन बाज़ार पथ से 11 मिनट पैदल"
+        },
+        estimatedFare: { en: "₹20 Return Ticket", hi: "₹20 (आने-जाने का टिकट)" },
+        lat: 15.3318,
+        lon: 76.4535
+      },
+      {
+        id: "kamalapura-transit",
+        name: { en: "Kamalapura ASI Museum Transit Hub", hi: "कमलापुर एएसआई संग्रहालय ट्रांजिट हब" },
+        line: { en: "Royal Enclosure & Vittala Feeder Route", hi: "रॉयल एनक्लोज़र एवं विट्ठल फीडर रूट" },
+        lineColor: "#0284c7",
+        lineTextColor: "#ffffff",
+        distance: "4.2 km",
+        exitGateTip: {
+          en: "Stop 2 opposite ASI Archaeological Museum for shared autos to Vittala checkpost",
+          hi: "एएसआई संग्रहालय के सामने स्टॉप 2 से विट्ठल चेकपोस्ट के लिए ऑटो उपलब्ध हैं"
+        },
+        lastMileTime: {
+          en: "9 min Auto to Gejjala Mandapa EV plaza",
+          hi: "गेज्जला मंडप ईवी प्लाज़ा तक 9 मिनट ऑटो"
+        },
+        estimatedFare: { en: "₹80 – ₹100 (Auto)", hi: "₹80 – ₹100 (ऑटो)" },
+        lat: 15.3046,
+        lon: 76.4728
+      },
+      {
+        id: "hosapete-junction",
+        name: { en: "Hosapete Junction Railway Hub (HPT)", hi: "होसपेट जंक्शन रेलवे हब (HPT)" },
+        line: { en: "South Western Railway & KSRTC Hampi Express", hi: "दक्षिण पश्चिम रेलवे एवं हम्पी एक्सप्रेस बस हब" },
+        lineColor: "#16a34a",
+        lineTextColor: "#ffffff",
+        distance: "13.0 km",
+        exitGateTip: {
+          en: "Exit Platform 1 East Plaza for KSRTC non-stop Hampi Heritage Shuttle",
+          hi: "प्लेटफॉर्म 1 ईस्ट प्लाज़ा से बाहर निकलें — हम्पी हेरिटेज शटल बस तुरंत मिलती है"
+        },
+        lastMileTime: {
+          en: "22 min KSRTC Shuttle / Prepaid Auto to Hampi Bazaar",
+          hi: "हम्पी बाज़ार तक 22 मिनट केएसआरटीसी शटल / प्रीपेड ऑटो"
+        },
+        estimatedFare: { en: "₹25 (KSRTC Bus) / ₹220 (Auto)", hi: "₹25 (बस) / ₹220 (ऑटो)" },
+        lat: 15.2792,
+        lon: 76.3871
+      }
+    ],
+    localNews: [
+      {
+        id: "hampi-news-1",
+        category: "traffic",
+        severity: "high",
+        timestamp: { en: "Updated 1 hour ago", hi: "1 घंटे पहले अपडेट किया गया" },
+        source: { en: "HWHAMA Heritage Transport Authority", hi: "हम्पी विश्व धरोहर परिवहन प्राधिकरण" },
+        headline: {
+          en: "Motor Vehicles Prohibited Past Gejjala Mandapa Checkpost (1 km Eco Buffer)",
+          hi: "गेज्जला मंडप चेकपोस्ट के आगे पेट्रोल/डीज़ल वाहनों का प्रवेश पूर्णतः वर्जित"
+        },
+        summary: {
+          en: "To protect the 16th-century Vijayanagara granite pavilions from vibration, only official HWHAMA battery buggies and pedestrians are permitted on the final 1 km approach to Vittala Temple.",
+          hi: "16वीं सदी के विजयनगर ग्रेनाइट मंडपों को कंपन से बचाने के लिए अंतिम 1 किमी मार्ग पर केवल बैटरी बग्गी और पैदल यात्रियों को अनुमति है।"
+        },
+        actionTip: {
+          en: "Board the ₹20 EV Buggy at Gejjala Mandapa or walk the scenic Kuduregombe Mantapa trail.",
+          hi: "गेज्जला मंडप से ₹20 की ईवी बग्गी लें या प्राचीन कुदुरेगोम्बे मंडप पथ से पैदल चलें।"
+        }
+      },
+      {
+        id: "hampi-news-2",
+        category: "monument",
+        severity: "advisory",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "ASI Hampi Mini Circle", hi: "एएसआई हम्पी मंडल सूचना" },
+        headline: {
+          en: "Protective Acoustic Cordon Active Around Saptaswara Musical Pillars",
+          hi: "सप्तस्वर संगीतमय स्तंभों के चारों ओर संरक्षण घेरा लागू"
+        },
+        summary: {
+          en: "Visitors may view the 56 resonant granite pillars of the Ranga Mantapa up close, while physical tapping of the columns remains restricted to preserve structural integrity.",
+          hi: "पर्यटक रंग मंडप के 56 संगीतमय ग्रेनाइट स्तंभों को करीब से देख सकते हैं, लेकिन संरक्षण हेतु उन्हें थपथपाने पर प्रतिबंध है।"
+        },
+        actionTip: {
+          en: "Play SafarSaarthi Audio Chapter 2 to hear archival acoustic recordings of the pillars.",
+          hi: "स्तंभों की प्रामाणिक संगीत ध्वनि सुनने के लिए सफ़रसारथी ऑडियो भाग 2 चलाएं।"
+        }
+      },
+      {
+        id: "hampi-news-3",
+        category: "weather",
+        severity: "advisory",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Tungabhadra Basin", hi: "मौसम-X तुंगभद्रा बेसिन केंद्र" },
+        headline: {
+          en: "Granite Boulder Radiation Peaks 12:30 PM – 3:00 PM; Early Morning Ideal",
+          hi: "दोपहर 12:30 से 3:00 बजे के बीच ग्रेनाइट चट्टानों में तेज़ गर्मी; सुबह का समय सर्वोत्तम"
+        },
+        summary: {
+          en: "Exposed boulder landscapes around the Tungabhadra river absorb solar heat rapidly after noon. Morning breeze remains cool and pleasant until 11:00 AM.",
+          hi: "तुंगभद्रा नदी के आसपास की चट्टानें दोपहर में जल्दी गर्म हो जाती हैं। सुबह 11:00 बजे तक ठंडी हवा रहती है।"
+        },
+        actionTip: {
+          en: "Carry 1.5L water in reusable flasks and wear thick cotton socks for bare-foot temple courtyards.",
+          hi: "पानी की बोतल साथ रखें और मंदिर प्रांगण के गर्म पत्थर पर चलने के लिए सूती मोज़े पहनें।"
+        }
+      },
+      {
+        id: "hampi-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "Karnataka Tourism Guild", hi: "कर्नाटक पर्यटन प्रकोष्ठ" },
+        headline: {
+          en: "Traditional Coracle Boats Operating at Purandaradasa Mantapa River Crossing",
+          hi: "पुरंदरदास मंडप नदी घाट पर पारंपरिक गोल टोकरी नाव (कोराकल) संचालन जारी"
+        },
+        summary: {
+          en: "Licensed boatmen are operating calm Tungabhadra river coracle rides near the ancient Vijayanagara bridge ruins during morning and sunset hours.",
+          hi: "सुबह और सूर्यास्त के समय प्राचीन विजयनगर पुल अवशेषों के पास तुंगभद्रा नदी में पारंपरिक कोराकल नाव की सवारी उपलब्ध है।"
+        },
+        actionTip: {
+          en: "Walk 500m riverside from Vittala Temple towards Purandaradasa Mantapa at 4:30 PM.",
+          hi: "शाम 4:30 बजे विट्ठल मंदिर से 500 मीटर नदी किनारे पुरंदरदास मंडप की ओर जाएं।"
+        }
+      }
+    ]
+  },
+  "red-fort": {
+    nearbyMetro: [
+      {
+        id: "lal-qila-metro",
+        name: { en: "Lal Qila Metro Station", hi: "लाल किला मेट्रो स्टेशन" },
+        line: { en: "Delhi Metro · Violet Line (Line 6)", hi: "दिल्ली मेट्रो · वायलेट लाइन (लाइन 6)" },
+        lineColor: "#7c3aed",
+        lineTextColor: "#ffffff",
+        distance: "0.2 km",
+        exitGateTip: {
+          en: "Exit Gate 4 opens directly onto the pedestrian plaza facing Lahori Gate",
+          hi: "गेट 4 से बाहर निकलें — लाहौरी गेट का पैदल प्लाज़ा बिल्कुल सामने है"
+        },
+        lastMileTime: {
+          en: "2 min direct pedestrian walkway (No auto needed)",
+          hi: "मात्र 2 मिनट सीधा पैदल पथ (ऑटो की आवश्यकता नहीं)"
+        },
+        estimatedFare: { en: "Free 2-min walk", hi: "पैदल 2 मिनट (निःशुल्क)" },
+        lat: 28.6558,
+        lon: 77.2372
+      },
+      {
+        id: "jama-masjid-metro",
+        name: { en: "Jama Masjid Metro Station", hi: "जामा मस्जिद मेट्रो स्टेशन" },
+        line: { en: "Delhi Metro · Violet Line Underground", hi: "दिल्ली मेट्रो · वायलेट लाइन भूमिगत" },
+        lineColor: "#6d28d9",
+        lineTextColor: "#ffffff",
+        distance: "0.75 km",
+        exitGateTip: {
+          en: "Exit Gate 3 for Delhi Gate (Southern entrance of Red Fort) & Daryaganj",
+          hi: "लाल किले के दिल्ली गेट (दक्षिणी द्वार) के लिए गेट 3 से बाहर निकलें"
+        },
+        lastMileTime: {
+          en: "4 min E-Rickshaw / 9 min walk via Netaji Subhash Marg",
+          hi: "4 मिनट ई-रिक्शा / नेताजी सुभाष मार्ग से 9 मिनट पैदल"
+        },
+        estimatedFare: { en: "₹15 (E-Rickshaw)", hi: "₹15 (ई-रिक्शा)" },
+        lat: 28.6502,
+        lon: 77.2378
+      },
+      {
+        id: "chandni-chowk-metro",
+        name: { en: "Chandni Chowk Metro Station", hi: "चांदनी चौक मेट्रो स्टेशन" },
+        line: { en: "Delhi Metro · Yellow Line (Line 2)", hi: "दिल्ली मेट्रो · येलो लाइन (लाइन 2)" },
+        lineColor: "#eab308",
+        lineTextColor: "#1c1b1a",
+        distance: "0.95 km",
+        exitGateTip: {
+          en: "Exit Gate 5 onto vehicle-free Shahjahanabad granite boulevard straight to Red Fort",
+          hi: "गेट 5 से बाहर निकलें और वाहन-मुक्त चांदनी चौक हेरिटेज पथ से सीधे लाल किला पहुंचें"
+        },
+        lastMileTime: {
+          en: "5 min Cycle Rickshaw / 11 min promenade walk",
+          hi: "5 मिनट रिक्शा / 11 मिनट हेरिटेज कॉरिडोर वॉक"
+        },
+        estimatedFare: { en: "₹30 (Rickshaw) / Free Walk", hi: "₹30 (रिक्शा) / पैदल निःशुल्क" },
+        lat: 28.6578,
+        lon: 77.2301
+      }
+    ],
+    localNews: [
+      {
+        id: "redfort-news-1",
+        category: "traffic",
+        severity: "high",
+        timestamp: { en: "Updated 30 mins ago", hi: "30 मिनट पहले अपडेट किया गया" },
+        source: { en: "Delhi Traffic Police Central District", hi: "दिल्ली यातायात पुलिस मध्य जिला" },
+        headline: {
+          en: "Chandni Chowk Main Boulevard Pedestrian-Only 9:00 AM to 9:00 PM",
+          hi: "चांदनी चौक मुख्य मार्ग सुबह 9:00 से रात 9:00 बजे तक केवल पैदल यात्रियों हेतु आरक्षित"
+        },
+        summary: {
+          en: "Motorized traffic is barred on the revamped red-granite Chandni Chowk stretch facing Lahori Gate. Visitors arriving by cab must use the Parade Ground underground parking.",
+          hi: "लाहौरी गेट के सामने पुनर्विकसित चांदनी चौक मार्ग पर मोटर वाहन प्रतिबंधित हैं। कैब से आने वाले पर्यटक परेड ग्राउंड भूमिगत पार्किंग का उपयोग करें।"
+        },
+        actionTip: {
+          en: "Take Violet Line to Lal Qila Metro Station Exit Gate 4 (200m direct walk).",
+          hi: "वायलेट लाइन के लाल किला मेट्रो स्टेशन के गेट 4 से निकलें (मात्र 200 मीटर पैदल)।"
+        }
+      },
+      {
+        id: "redfort-news-2",
+        category: "monument",
+        severity: "advisory",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "ASI Red Fort Directorate", hi: "एएसआई लाल किला निदेशालय" },
+        headline: {
+          en: "Yaad-e-Jallian & Subhash Chandra Bose Barrack Museums Open Inside Precinct",
+          hi: "परिसर के भीतर याद-ए-जलियां और सुभाष चंद्र बोस संग्रहालय पर्यटकों के लिए खुले"
+        },
+        summary: {
+          en: "Colonial-era barracks behind Mumtaz Mahal now house four interactive national freedom movement museums accessible via the museum combo e-ticket.",
+          hi: "मुमताज़ महल के पीछे स्थित ऐतिहासिक बैरकों में चार आधुनिक स्वतंत्रता संग्राम संग्रहालय खुले हैं, जिनमें कॉम्बो ई-टिकट से प्रवेश मिलता है।"
+        },
+        actionTip: {
+          en: "Select the ASI Museum Combo Ticket online to skip separate counter queues.",
+          hi: "अलग कतार से बचने के लिए ऑनलाइन एएसआई म्यूज़ियम कॉम्बो टिकट चुनें।"
+        }
+      },
+      {
+        id: "redfort-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Old Delhi Node", hi: "मौसम-X पुरानी दिल्ली केंद्र" },
+        headline: {
+          en: "Breezy Riverfront Conditions at Diwan-i-Khas; Open Courtyards Warm at Noon",
+          hi: "दीवान-ए-ख़ास में सुहावनी हवा; दोपहर में खुले प्रांगणों में हल्की धूप"
+        },
+        summary: {
+          en: "The covered bazaar arcade (Chhatta Chowk) and marble pavilions stay comfortable, while the 400m walk between Naubat Khana and Rang Mahal is unshaded.",
+          hi: "छत्ता चौक का ढका हुआ बाज़ार और संगमरमर के महल ठंडे रहते हैं, जबकि नौबत खाना से रंग महल के बीच का खुला मैदान धूप वाला है।"
+        },
+        actionTip: {
+          en: "Explore the open Diwan-i-Aam courtyard before 11:00 AM, then tour indoor museums at noon.",
+          hi: "सुबह 11:00 बजे से पहले खुले प्रांगण देखें और दोपहर में वातानुकूलित संग्रहालयों का भ्रमण करें।"
+        }
+      },
+      {
+        id: "redfort-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "Jai Hind Sound & Light Desk", hi: "जय हिंद साउंड एंड लाइट डेस्क" },
+        headline: {
+          en: "Jai Hind Projection Mapping & Live Performance Show Tonight at 7:00 PM",
+          hi: "आज शाम 7:00 बजे जय हिंद प्रोजेक्शन मैपिंग और लाइट एंड साउंड शो"
+        },
+        summary: {
+          en: "A 60-minute immersive projection show across Naubat Khana and Diwan-i-Aam narrates 350 years of Red Fort history in Hindi and English.",
+          hi: "नौबत खाना और दीवान-ए-आम की दीवारों पर 60 मिनट का भव्य प्रोजेक्शन शो लाल किले के 350 वर्षों के इतिहास को जीवंत करता है।"
+        },
+        actionTip: {
+          en: "Book evening show seats at Lahori Gate kiosk before 5:30 PM.",
+          hi: "शाम के शो की सीटें शाम 5:30 बजे से पहले लाहौरी गेट कियोस्क से बुक करें।"
+        }
+      }
+    ]
+  },
+  "amer-fort": {
+    nearbyMetro: [
+      {
+        id: "maota-lake-golf-terminal",
+        name: { en: "Maota Lake Lower Ramp & EV Shuttle Plaza", hi: "मावठा झील निचला रैंप एवं ईवी शटल प्लाज़ा" },
+        line: { en: "Amer Fort Hilltop Ascent Corridor", hi: "आमेर किला पहाड़ी आरोहण कॉरिडोर" },
+        lineColor: "#224228",
+        lineTextColor: "#ffffff",
+        distance: "0.35 km",
+        exitGateTip: {
+          en: "East Ramp Gate for cobble-stone walk to Suraj Pol, or rear Kheri Gate for EV Jeep",
+          hi: "सूरज पोल पैदल रैंप के लिए पूर्वी द्वार, या ईवी जीप के लिए खेड़ी गेट चुनें"
+        },
+        lastMileTime: {
+          en: "4 min EV Golf Cart / 12 min royal cobbled ramp walk",
+          hi: "4 मिनट गोल्फ़ कार्ट / 12 मिनट शाही पत्थर के रैंप पर पैदल"
+        },
+        estimatedFare: { en: "₹50 (EV Shuttle) / Free Walk", hi: "₹50 (ईवी शटल) / पैदल निःशुल्क" },
+        lat: 26.9838,
+        lon: 75.8532
+      },
+      {
+        id: "jal-mahal-transit-stop",
+        name: { en: "Jal Mahal / Man Sagar Promenade Hub", hi: "जल महल / मान सागर ट्रांजिट स्टॉप" },
+        line: { en: "Amer Road Heritage Transit Corridor", hi: "आमेर रोड हेरिटेज ट्रांजिट कॉरिडोर" },
+        lineColor: "#0284c7",
+        lineTextColor: "#ffffff",
+        distance: "3.9 km",
+        exitGateTip: {
+          en: "Stop opposite Man Sagar Lake deck for frequent electric autos to Amer",
+          hi: "मान सागर झील डेक के सामने से आमेर के लिए हर 3 मिनट में इलेक्ट्रिक ऑटो मिलते हैं"
+        },
+        lastMileTime: {
+          en: "7 min Electric Auto to Amer Kheri Gate",
+          hi: "आमेर खेड़ी गेट तक 7 मिनट इलेक्ट्रिक ऑटो"
+        },
+        estimatedFare: { en: "₹30 (Shared E-Auto)", hi: "₹30 (शेयर्ड ई-ऑटो)" },
+        lat: 26.9535,
+        lon: 75.8462
+      },
+      {
+        id: "badi-chaupar-amer-feeder",
+        name: { en: "Badi Chaupar Metro + AC Low-Floor Feeder #5", hi: "बड़ी चौपड़ मेट्रो + एसी लो-फ्लोर बस रूट #5" },
+        line: { en: "Jaipur Metro Pink Line + JCTSL Heritage Bus", hi: "जयपुर मेट्रो पिंक लाइन + जेसीटीएसएल बस" },
+        lineColor: "#ec4899",
+        lineTextColor: "#ffffff",
+        distance: "8.2 km",
+        exitGateTip: {
+          en: "Exit Gate 1 at Badi Chaupar to board direct JCTSL AC Bus #5 to Amer Maota Lake",
+          hi: "बड़ी चौपड़ गेट 1 से निकलकर आमेर मावठा झील के लिए सीधी एसी बस #5 पकड़ें"
+        },
+        lastMileTime: {
+          en: "18 min scenic ride past Jal Mahal to Amer Fort base",
+          hi: "जल महल होते हुए आमेर किले तक 18 मिनट का सुरम्य सफ़र"
+        },
+        estimatedFare: { en: "₹25 (AC Bus) / ₹150 (Auto)", hi: "₹25 (एसी बस) / ₹150 (ऑटो)" },
+        lat: 26.9228,
+        lon: 75.8261
+      }
+    ],
+    localNews: [
+      {
+        id: "amer-news-1",
+        category: "traffic",
+        severity: "high",
+        timestamp: { en: "Updated 40 mins ago", hi: "40 मिनट पहले अपडेट किया गया" },
+        source: { en: "Amer Traffic & Heritage Police", hi: "आमेर यातायात एवं पर्यटक पुलिस" },
+        headline: {
+          en: "Rear Kheri Gate Road Restricted to Registered Jeeps & EV Shuttles 8 AM – 1 PM",
+          hi: "सुबह 8 से दोपहर 1 बजे तक खेड़ी गेट पहाड़ी मार्ग केवल पंजीकृत जीप व ईवी शटल हेतु आरक्षित"
+        },
+        summary: {
+          en: "Private cars must park at the Maota Lake multi-level plaza. Visitors can ascend via the scenic Suraj Pol pedestrian ramp or official ₹50 electric golf carts.",
+          hi: "निजी कारों को मावठा झील पार्किंग में खड़ा करना होगा। पर्यटक सूरज पोल पैदल रैंप या ₹50 की आधिकारिक इलेक्ट्रिक गोल्फ़ कार्ट से ऊपर जा सकते हैं।"
+        },
+        actionTip: {
+          en: "Use the Suraj Pol cobbled ramp before 9:30 AM for panoramic Maota Lake views.",
+          hi: "मावठा झील के सुंदर दृश्य के लिए सुबह 9:30 बजे से पहले सूरज पोल रैंप से ऊपर जाएं।"
+        }
+      },
+      {
+        id: "amer-news-2",
+        category: "monument",
+        severity: "info",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "Amer Development & Management Authority", hi: "आमेर विकास एवं प्रबंधन प्राधिकरण" },
+        headline: {
+          en: "Sheesh Mahal Mirror Palace Flow Regulated via One-Way Heritage Queue",
+          hi: "शीश महल दर्पण कक्ष में सुगम दर्शन हेतु वन-वे कतार व्यवस्था लागू"
+        },
+        summary: {
+          en: "To prevent crowding around the convex Belgian glass mosaics, stewards guide visitors through a continuous loop from Ganesh Pol to Sukh Niwas.",
+          hi: "बेल्जियम कांच की बारीक पच्चीकारी के पास भीड़ रोकने के लिए गणेश पोल से सुख निवास तक एकतरफा लूप बनाया गया है।"
+        },
+        actionTip: {
+          en: "After Sheesh Mahal, take the underground tunnel path directly to Jaigarh Fort or Panna Meena Kund.",
+          hi: "शीश महल के बाद पन्ना मीना का कुंड (800 मीटर) का शांत भ्रमण अवश्य करें।"
+        }
+      },
+      {
+        id: "amer-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Aravalli Ridge", hi: "मौसम-X अरावली पर्वत केंद्र" },
+        headline: {
+          en: "Pleasant Hilltop Breeze Across Jaleb Chowk; Clear Aravalli Ridgeline Views",
+          hi: "जलेब चौक पर सुहावनी पहाड़ी हवा; अरावली की प्राचीर का साफ़ नज़ारा"
+        },
+        summary: {
+          en: "Elevated Aravalli breezes keep Sukh Niwas and Diwan-i-Aam 2°C cooler than central Jaipur.",
+          hi: "अरावली की ऊंचाई पर चलने वाली हवाओं से सुख निवास और दीवान-ए-आम का तापमान जयपुर शहर से 2°C कम है।"
+        },
+        actionTip: {
+          en: "Best photography light on Ganesh Pol frescoes is between 8:15 AM and 10:15 AM.",
+          hi: "गणेश पोल की चित्रकारी के लिए सुबह 8:15 से 10:15 बजे की रोशनी सर्वोत्तम है।"
+        }
+      },
+      {
+        id: "amer-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "RTDC Cultural Wing", hi: "आरटीडीसी सांस्कृतिक प्रकोष्ठ" },
+        headline: {
+          en: "Kesar Kyari Musical Light & Sound Show Over Maota Lake at 6:30 PM",
+          hi: "मावठा झील के केसर क्यारी बाग में शाम 6:30 बजे लाइट एंड साउंड शो"
+        },
+        summary: {
+          en: "Evening narration of Kachwaha Rajput history echoed against the Aravalli hills with reflection across Maota Lake.",
+          hi: "अरावली की पहाड़ियों और मावठा झील के प्रतिबिंब के बीच कछवाहा राजपूत इतिहास की संगीतमय प्रस्तुति।"
+        },
+        actionTip: {
+          en: "Pair the evening show with sunset tea at Nahargarh or Panna Meena Stepwell.",
+          hi: "शाम के शो से पहले पन्ना मीना कुंड पर सूर्यास्त का आनंद लें।"
+        }
+      }
+    ]
+  },
+  "gateway-india": {
+    nearbyMetro: [
+      {
+        id: "vidhan-bhavan-metro",
+        name: { en: "Vidhan Bhavan / Cuffe Parade Aqua Line Station", hi: "विधान भवन / कफ परेड एक्वा लाइन स्टेशन" },
+        line: { en: "Mumbai Metro · Aqua Line 3 Southern Corridor", hi: "मुंबई मेट्रो · एक्वा लाइन 3 दक्षिणी कॉरिडोर" },
+        lineColor: "#0284c7",
+        lineTextColor: "#ffffff",
+        distance: "1.4 km",
+        exitGateTip: {
+          en: "Exit Gate A1 towards Regal Circle & Colaba Causeway promenade",
+          hi: "रीगल सर्कल और कोलाबा कॉज़वे के लिए गेट A1 से बाहर निकलें"
+        },
+        lastMileTime: {
+          en: "5 min Taxi / 14 min walk via Regal Cinema & Sailor's Home",
+          hi: "5 मिनट टैक्सी / रीगल सिनेमा होते हुए 14 मिनट पैदल"
+        },
+        estimatedFare: { en: "₹30 (Meter Taxi)", hi: "₹30 (मीटर टैक्सी)" },
+        lat: 18.9254,
+        lon: 72.8242
+      },
+      {
+        id: "churchgate-metro",
+        name: { en: "Churchgate Underground Metro (Aqua Line 3) & WR Terminus", hi: "चर्चगेट भूमिगत मेट्रो (एक्वा लाइन 3) एवं रेलवे टर्मिनस" },
+        line: { en: "Mumbai Metro · Aqua Line 3 & Western Suburban", hi: "मुंबई मेट्रो · एक्वा लाइन 3 एवं पश्चिम रेलवे" },
+        lineColor: "#0284c7",
+        lineTextColor: "#ffffff",
+        distance: "1.5 km",
+        exitGateTip: {
+          en: "Exit Gate B2 (Hutatma Chowk / Flora Fountain side) for fixed-fare heritage taxi",
+          hi: "हुतात्मा चौक / फ्लोरा फाउंटेन की ओर गेट B2 से निकलें — शेयर टैक्सी स्टैंड सामने है"
+        },
+        lastMileTime: {
+          en: "6 min Black-and-Yellow Meter Taxi / BEST AC Bus #103",
+          hi: "6 मिनट काली-पीली मीटर टैक्सी / बेस्ट एसी बस #103"
+        },
+        estimatedFare: { en: "₹35 (Meter Taxi) / ₹10 (BEST AC Bus)", hi: "₹35 (मीटर टैक्सी) / ₹10 (बेस्ट एसी बस)" },
+        lat: 18.9322,
+        lon: 72.8264
+      },
+      {
+        id: "csmt-metro-station",
+        name: { en: "CSMT Metro (Aqua Line 3) & Heritage Terminus", hi: "सीएसएमटी भूमिगत मेट्रो (एक्वा लाइन 3) एवं टर्मिनस" },
+        line: { en: "Mumbai Metro · Aqua Line 3 & Central Line Hub", hi: "मुंबई मेट्रो · एक्वा लाइन 3 एवं मध्य रेलवे" },
+        lineColor: "#0369a1",
+        lineTextColor: "#ffffff",
+        distance: "2.3 km",
+        exitGateTip: {
+          en: "Exit via Heritage Subway Gate 3 for BEST Electric Double-Decker #A-115 to Apollo Bunder",
+          hi: "हेरिटेज सबवे गेट 3 से निकलकर अपोलो बंदर के लिए इलेक्ट्रिक डबल-डेकर बस #A-115 लें"
+        },
+        lastMileTime: {
+          en: "9 min Electric Double-Decker Bus through Kala Ghoda",
+          hi: "काला घोड़ा होते हुए 9 मिनट इलेक्ट्रिक डबल-डेकर बस"
+        },
+        estimatedFare: { en: "₹15 (AC Double-Decker) / ₹45 (Taxi)", hi: "₹15 (एसी डबल-डेकर) / ₹45 (टैक्सी)" },
+        lat: 18.9401,
+        lon: 72.8347
+      }
+    ],
+    localNews: [
+      {
+        id: "gateway-news-1",
+        category: "traffic",
+        severity: "advisory",
+        timestamp: { en: "Updated 40 mins ago", hi: "40 मिनट पहले अपडेट किया गया" },
+        source: { en: "Mumbai Traffic Police Colaba Division", hi: "मुंबई यातायात पुलिस कोलाबा प्रभाग" },
+        headline: {
+          en: "Chhatrapati Shivaji Maharaj Marg Around Apollo Bunder Is a Pedestrian-Only Plaza",
+          hi: "अपोलो बंदर के चारों ओर छत्रपति शिवाजी महाराज मार्ग पैदल प्लाज़ा घोषित"
+        },
+        summary: {
+          en: "Taxis and BEST buses drop visitors at Regal Circle or the Taj Mahal Palace north kerb. Note that auto-rickshaws do not operate in South Mumbai—use meter taxis or BEST AC buses.",
+          hi: "टैक्सी और बेस्ट बसें रीगल सर्कल तक जाती हैं। ध्यान रहे कि दक्षिण मुंबई में ऑटो-रिक्शा नहीं चलते—केवल काली-पीली मीटर टैक्सी या बेस्ट एसी बस का उपयोग करें।"
+        },
+        actionTip: {
+          en: "Take the ₹15 BEST Electric Double-Decker from CSMT or Churchgate to Regal Circle.",
+          hi: "सीएसएमटी या चर्चगेट से रीगल सर्कल तक ₹15 की इलेक्ट्रिक डबल-डेकर बस लें।"
+        }
+      },
+      {
+        id: "gateway-news-2",
+        category: "monument",
+        severity: "info",
+        timestamp: { en: "Updated 1 hour ago", hi: "1 घंटे पहले अपडेट किया गया" },
+        source: { en: "Maharashtra Maritime Board & ASI", hi: "महाराष्ट्र मेरीटाइम बोर्ड एवं एएसआई" },
+        headline: {
+          en: "Elephanta Caves Ferry Departures Operating on Schedule from Jetty #1 & #2",
+          hi: "एलिफेंटा गुफाओं के लिए जेटी #1 और #2 से फेरी नौकाएं समय पर संचालित"
+        },
+        summary: {
+          en: "First boat to UNESCO Elephanta Island departs at 9:00 AM; last return boat leaves Elephanta at 5:30 PM (closed Mondays).",
+          hi: "यूनेस्को एलिफेंटा द्वीप के लिए पहली नाव सुबह 9:00 बजे खुलती है; अंतिम वापसी नाव शाम 5:30 बजे है (सोमवार बंद)।"
+        },
+        actionTip: {
+          en: "Buy official ferry tickets strictly at the MMB counter inside Gateway plaza, never from street touts.",
+          hi: "फेरी टिकट केवल गेटवे प्लाज़ा के आधिकारिक काउंटर से ही खरीदें, दलालों से बचें।"
+        }
+      },
+      {
+        id: "gateway-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Colaba Observatory", hi: "मौसम-X कोलाबा वेधशाला" },
+        headline: {
+          en: "Fresh Arabian Sea Breeze at 18 km/h; High Tide Spray Along Sea Wall at 4:15 PM",
+          hi: "अरब सागर से 18 किमी/घंटा की ताज़ी समुद्री हवा; शाम 4:15 बजे हाई-टाइड"
+        },
+        summary: {
+          en: "Pleasant coastal winds keep the basalt archway comfortable; mild sea spray expected along the eastern seawall during high tide.",
+          hi: "समुद्री हवाओं से अपोलो बंदर का मौसम सुहावना है; हाई-टाइड के समय समुद्री दीवार के पास हल्की बौछारें आ सकती हैं।"
+        },
+        actionTip: {
+          en: "Stroll 700m to Kala Ghoda Art Precinct during midday sun hours.",
+          hi: "दोपहर की धूप के समय 700 मीटर दूर काला घोड़ा कला परिसर का भ्रमण करें।"
+        }
+      },
+      {
+        id: "gateway-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "Kala Ghoda & NCPA Cultural Feed", hi: "काला घोड़ा एवं सांस्कृतिक बुलेटिन" },
+        headline: {
+          en: "Open-Air Victorian & Indo-Saracenic Architecture Walk from Regal to Horniman Circle",
+          hi: "रीगल सर्कल से हॉर्निमन सर्कल तक विक्टोरियन और इंडो-सारासेनिक वास्तुकला वॉक"
+        },
+        summary: {
+          en: "Self-guided heritage plaques along Rampart Row highlight Mumbai's 19th-century Gothic Revival and Art Deco ensembles.",
+          hi: "रैम्पार्ट रो के साथ लगे हेरिटेज पट्ट मुंबई की 19वीं सदी की गोथिक और आर्ट डेको इमारतों का इतिहास बताते हैं।"
+        },
+        actionTip: {
+          en: "Tap Sister Gem below to navigate the 8-minute walk to Kala Ghoda.",
+          hi: "काला घोड़ा तक 8 मिनट के पैदल मार्ग के लिए नीचे दिए गए शांत वैकल्पिक स्थल कार्ड को देखें।"
+        }
+      }
+    ]
+  },
+  "konark-sun-temple": {
+    nearbyMetro: [
+      {
+        id: "konark-mo-bus-hub",
+        name: { en: "Konark CRUT 'Mo Bus' AC Terminal (Route 70 & 72)", hi: "कोणार्क 'मो बस' एसी टर्मिनल (रूट 70 एवं 72)" },
+        line: { en: "Odisha CRUT · Smart AC Transit Corridor", hi: "ओडिशा क्रूट · स्मार्ट एसी बस कॉरिडोर" },
+        lineColor: "#16a34a",
+        lineTextColor: "#ffffff",
+        distance: "0.45 km",
+        exitGateTip: {
+          en: "Alight at Konark Interpretation Centre Plaza — pedestrian avenue leads straight to East Lion Gate",
+          hi: "कोणार्क व्याख्या केंद्र प्लाज़ा पर उतरें — पैदल मार्ग सीधे सिंह द्वार तक जाता है"
+        },
+        lastMileTime: {
+          en: "5 min landscaped heritage plaza walk",
+          hi: "5 मिनट सुसज्जित हेरिटेज प्लाज़ा पैदल पथ"
+        },
+        estimatedFare: { en: "₹70 from Puri / ₹100 from Bhubaneswar (AC Mo Bus)", hi: "पुरी से ₹70 / भुवनेश्वर से ₹100 (एसी मो बस)" },
+        lat: 19.8862,
+        lon: 86.0915
+      },
+      {
+        id: "chandrabhaga-shuttle-node",
+        name: { en: "Chandrabhaga Blue Flag Beach Eco-Shuttle Node", hi: "चंद्रभागा ब्लू फ्लैग बीच इको-शटल स्टॉप" },
+        line: { en: "Konark–Chandrabhaga Heritage Loop", hi: "कोणार्क–चंद्रभागा हेरिटेज लूप" },
+        lineColor: "#eab308",
+        lineTextColor: "#1c1b1a",
+        distance: "3.1 km",
+        exitGateTip: {
+          en: "Board electric golf shuttle opposite Light House gate for Sun Temple return",
+          hi: "सूर्य मंदिर वापसी के लिए लाइटहाउस गेट के सामने से इलेक्ट्रिक शटल लें"
+        },
+        lastMileTime: {
+          en: "6 min E-Rickshaw / Shuttle",
+          hi: "6 मिनट ई-रिक्शा / शटल"
+        },
+        estimatedFare: { en: "₹30 (Shared E-Auto)", hi: "₹30 (शेयर्ड ई-ऑटो)" },
+        lat: 19.8655,
+        lon: 86.1142
+      },
+      {
+        id: "puri-railway-terminus",
+        name: { en: "Puri Railway Terminus (PURI) & Marine Drive Hub", hi: "पुरी रेलवे टर्मिनस (PURI) एवं मरीन ड्राइव हब" },
+        line: { en: "East Coast Railway & Konark Marine Drive Shuttle", hi: "पूर्व तट रेलवे एवं मरीन ड्राइव शटल" },
+        lineColor: "#0284c7",
+        lineTextColor: "#ffffff",
+        distance: "33.5 km",
+        exitGateTip: {
+          en: "Exit Station Forecourt Bay 2 for direct Route 70 AC Mo Bus along scenic Bay of Bengal Marine Drive",
+          hi: "स्टेशन परिसर बे 2 से बंगाल की खाड़ी के तटीय मरीन ड्राइव मार्ग वाली एसी मो बस #70 पकड़ें"
+        },
+        lastMileTime: {
+          en: "45 min coastal drive via Ramchandi Estuary",
+          hi: "रामचंडी मुहाना होते हुए 45 मिनट का तटीय सफ़र"
+        },
+        estimatedFare: { en: "₹70 (AC Mo Bus)", hi: "₹70 (एसी मो बस)" },
+        lat: 19.8076,
+        lon: 85.8380
+      }
+    ],
+    localNews: [
+      {
+        id: "konark-news-1",
+        category: "traffic",
+        severity: "info",
+        timestamp: { en: "Updated 1 hour ago", hi: "1 घंटे पहले अपडेट किया गया" },
+        source: { en: "Odisha CRUT & Puri Traffic Wing", hi: "ओडिशा क्रूट एवं पुरी यातायात प्रकोष्ठ" },
+        headline: {
+          en: "Konark Outer Ring Plaza Pedestrianized; Free EV Carts for Senior Citizens",
+          hi: "कोणार्क बाहरी रिंग प्लाज़ा पैदल यात्रियों हेतु समर्पित; वरिष्ठ नागरिकों के लिए निःशुल्क ईवी कार्ट"
+        },
+        summary: {
+          en: "All buses and taxis stop at the newly landscaped Konark Heritage Plaza 450m from the temple enclosure. Dedicated battery carts operate continuously to the ASI ticket gate.",
+          hi: "सभी बसें और टैक्सियां मंदिर परिसर से 450 मीटर दूर नवनिर्मित हेरिटेज प्लाज़ा पर रुकती हैं। एएसआई गेट तक बैटरी कार्ट लगातार चल रही हैं।"
+        },
+        actionTip: {
+          en: "Visit the free IOCL Sun Temple Interpretation Centre right beside the drop-off plaza first.",
+          hi: "मंदिर में जाने से पहले ड्रॉप-ऑफ प्लाज़ा के पास स्थित निःशुल्क सूर्य मंदिर व्याख्या केंद्र ज़रूर देखें।"
+        }
+      },
+      {
+        id: "konark-news-2",
+        category: "monument",
+        severity: "info",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "ASI Bhubaneswar Circle", hi: "एएसआई भुवनेश्वर मंडल" },
+        headline: {
+          en: "Clear Viewing Corridors Opened Around All 24 Carved Stone Chariot Wheels",
+          hi: "सभी 24 नक्काशीदार पाषाण रथ चक्रों के चारों ओर स्पष्ट अवलोकन पथ खुला"
+        },
+        summary: {
+          en: "Conservation scaffolding on the southern Jagamohana plinth has been removed, allowing unobstructed views of the sundial spokes and astronomical medallions.",
+          hi: "जगमोहन के दक्षिणी चबूतरे से संरक्षण पाड़ हटा दी गई है, जिससे अब धूपघड़ी के तीलियों और नक्काशी का स्पष्ट दर्शन संभव है।"
+        },
+        actionTip: {
+          en: "Examine the 8th wheel on the south base—its axle shadow tells current IST within 2 minutes!",
+          hi: "दक्षिणी आधार के 8वें पहिए को देखें—इसकी धुरी की छाया सटीक समय बताती है!"
+        }
+      },
+      {
+        id: "konark-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Bay of Bengal Coastal Node", hi: "मौसम-X बंगाल की खाड़ी तटीय केंद्र" },
+        headline: {
+          en: "Cooling Sea Breeze from Chandrabhaga Coast; UV Index Moderate After 3:30 PM",
+          hi: "चंद्रभागा तट से ठंडी समुद्री हवा; दोपहर 3:30 बजे के बाद धूप में राहत"
+        },
+        summary: {
+          en: "Onshore coastal winds moderate afternoon humidity across the casuarina groves surrounding the temple lawn.",
+          hi: "तटीय हवाओं और मंदिर के चारों ओर लगे झाऊ के पेड़ों से दोपहर की उमस में राहत रहती है।"
+        },
+        actionTip: {
+          en: "Schedule your Sun Temple walk for 8:00–10:30 AM or 3:30–5:30 PM.",
+          hi: "सूर्य मंदिर भ्रमण के लिए सुबह 8:00–10:30 या शाम 3:30–5:30 बजे का समय चुनें।"
+        }
+      },
+      {
+        id: "konark-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "Odisha Tourism Cultural Desk", hi: "ओडिशा पर्यटन सांस्कृतिक प्रकोष्ठ" },
+        headline: {
+          en: "Bilingual Wireless Audio Headset Sound & Light Show Tonight at 6:30 PM",
+          hi: "आज शाम 6:30 बजे वायरलेस ऑडियो हेडसेट के साथ ध्वनि एवं प्रकाश शो"
+        },
+        summary: {
+          en: "Visitors receive individual wireless headphones (EN/HI/Odia) synced with high-lumen 3D projection mapping on the Natamandira and Chariot plinth.",
+          hi: "पर्यटकों को व्यक्तिगत वायरलेस हेडफ़ोन (अंग्रेज़ी/हिंदी/ओड़िया) दिए जाते हैं जो नटमंदिर पर 3D प्रोजेक्शन मैपिंग के साथ चलते हैं।"
+        },
+        actionTip: {
+          en: "Collect wireless headset tokens at the East Gate booth by 6:00 PM.",
+          hi: "शाम 6:00 बजे तक पूर्वी गेट बूथ से वायरलेस हेडसेट टोकन प्राप्त करें।"
+        }
+      }
+    ]
+  },
+  "meenakshi-temple": {
+    nearbyMetro: [
+      {
+        id: "jhansi-rani-park-ev-plaza",
+        name: { en: "Jhansi Rani Park EV Battery Car Terminal", hi: "झांसी रानी पार्क ईवी बैटरी कार टर्मिनल" },
+        line: { en: "Madurai Temple Precinct · Zero-Vehicle Ring", hi: "मदुरै मंदिर परिसर · वाहन-मुक्त रिंग" },
+        lineColor: "#224228",
+        lineTextColor: "#ffffff",
+        distance: "0.3 km",
+        exitGateTip: {
+          en: "Official Madurai Corporation battery cars drop directly at East & South Gopuram footwear cloakrooms",
+          hi: "मदुरै निगम की बैटरी कारें सीधे पूर्वी और दक्षिणी गोपुरम के क्लोकरूम पर उतारती हैं"
+        },
+        lastMileTime: {
+          en: "2 min Battery Car / 4 min pedestrian street walk",
+          hi: "2 मिनट बैटरी कार / 4 मिनट पैदल पथ"
+        },
+        estimatedFare: { en: "₹15 (Battery Car)", hi: "₹15 (बैटरी कार)" },
+        lat: 9.9175,
+        lon: 78.1165
+      },
+      {
+        id: "madurai-junction-hub",
+        name: { en: "Madurai Junction Railway Station (MDU) East Gate", hi: "मदुरै जंक्शन रेलवे स्टेशन (MDU) पूर्वी गेट" },
+        line: { en: "Southern Railway & Heritage E-Shuttle Corridor", hi: "दक्षिण रेलवे एवं हेरिटेज ई-शटल कॉरिडोर" },
+        lineColor: "#16a34a",
+        lineTextColor: "#ffffff",
+        distance: "1.1 km",
+        exitGateTip: {
+          en: "Exit Platform 1 East Gate onto Town Hall Road — straight 1 km heritage walk to Ashta Shakthi Mandapam",
+          hi: "प्लेटफॉर्म 1 पूर्वी गेट से टाउन हॉल रोड पर निकलें — अष्ट शक्ति मंडपम सीधा 1 किमी आगे है"
+        },
+        lastMileTime: {
+          en: "5 min Prepaid Auto / 12 min straight walk via Town Hall Rd",
+          hi: "5 मिनट प्रीपेड ऑटो / टाउन हॉल रोड से 12 मिनट पैदल"
+        },
+        estimatedFare: { en: "₹40 (Prepaid Auto) / Free Walk", hi: "₹40 (प्रीपेड ऑटो) / पैदल निःशुल्क" },
+        lat: 9.9142,
+        lon: 78.1102
+      },
+      {
+        id: "periyar-bus-terminus",
+        name: { en: "Periyar Central City Bus Terminus", hi: "पेरियार सेंट्रल सिटी बस टर्मिनस" },
+        line: { en: "TNSTC Madurai Smart City Transit Hub", hi: "मदुरै स्मार्ट सिटी बस ट्रांजिट हब" },
+        lineColor: "#0284c7",
+        lineTextColor: "#ffffff",
+        distance: "1.2 km",
+        exitGateTip: {
+          en: "Take the pedestrian subway towards West Masi Street for West Raja Gopuram entry",
+          hi: "पश्चिमी राजा गोपुरम प्रवेश के लिए वेस्ट मासी स्ट्रीट सबवे का उपयोग करें"
+        },
+        lastMileTime: {
+          en: "4 min E-Rickshaw / 10 min walk via West Avani Moola St",
+          hi: "4 मिनट ई-रिक्शा / वेस्ट अवनी मूला स्ट्रीट से 10 मिनट पैदल"
+        },
+        estimatedFare: { en: "₹20 (Shared E-Auto)", hi: "₹20 (शेयर्ड ई-ऑटो)" },
+        lat: 9.9146,
+        lon: 78.1128
+      }
+    ],
+    localNews: [
+      {
+        id: "meenakshi-news-1",
+        category: "monument",
+        severity: "high",
+        timestamp: { en: "Updated 30 mins ago", hi: "30 मिनट पहले अपडेट किया गया" },
+        source: { en: "Madurai Temple Devasthanam Board", hi: "मदुरै मंदिर देवस्थानम बोर्ड सूचना" },
+        headline: {
+          en: "Afternoon Sanctum Closure 12:30 PM – 4:00 PM; Mobile Phones Must Be Deposited",
+          hi: "दोपहर 12:30 से 4:00 बजे तक गर्भगृह बंद; मोबाइल फोन क्लोकरूम में जमा करना अनिवार्य"
+        },
+        summary: {
+          en: "Mobile phones, smartwatches, and cameras are strictly prohibited inside the four Gopuram gates. Secure digital token lockers operate at East, South, North, and West towers.",
+          hi: "चारों गोपुरम द्वारों के भीतर मोबाइल फोन, स्मार्टवॉच और कैमरे ले जाना सख्त वर्जित है। सभी द्वारों पर सुरक्षित डिजिटल लॉकर उपलब्ध हैं।"
+        },
+        actionTip: {
+          en: "Listen to SafarSaarthi Audio Lore before depositing your phone at the East Gopuram locker.",
+          hi: "पूर्वी गोपुरम लॉकर में फोन जमा करने से पहले सफ़रसारथी ऑडियो गाथा सुन लें।"
+        }
+      },
+      {
+        id: "meenakshi-news-2",
+        category: "traffic",
+        severity: "info",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "Madurai City Traffic Police", hi: "मदुरै नगर यातायात पुलिस" },
+        headline: {
+          en: "Four Chithirai Streets Around Temple Are 100% Pedestrian & EV Battery Zones",
+          hi: "मंदिर के चारों ओर की चारों चिथिरई गलियां पूर्णतः पैदल एवं ईवी बैटरी ज़ोन हैं"
+        },
+        summary: {
+          en: "Cabs and autos stop at Jhansi Rani Park or East Veli Street multi-level parking. Free and ₹15 electric carts circle the four 170-foot Gopuram towers.",
+          hi: "कैब और ऑटो झांसी रानी पार्क या ईस्ट वेली स्ट्रीट पार्किंग पर रुकते हैं। चारों 170-फीट गोपुरम के चारों ओर ₹15 की इलेक्ट्रिक कारें चलती हैं।"
+        },
+        actionTip: {
+          en: "Use the East Tower (Ashta Shakthi Mandapam) entrance for the shortest locker & footwear line.",
+          hi: "सबसे कम कतार के लिए पूर्वी गोपुरम (अष्ट शक्ति मंडपम) प्रवेश द्वार चुनें।"
+        }
+      },
+      {
+        id: "meenakshi-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Vaigai River Node", hi: "मौसम-X वैगई नदी केंद्र" },
+        headline: {
+          en: "Cool Granite Mandapams Inside; Visit Thirumalai Nayakkar Palace During 12:30–4 PM Break",
+          hi: "मंडपम के भीतर ठंडा वातावरण; दोपहर 12:30–4 बजे के अंतराल में तिरुमलाई नायक महल देखें"
+        },
+        summary: {
+          en: "While the inner temple closes at midday, the 1,000-Pillar Hall Museum and nearby Thirumalai Nayakkar Palace (1.2 km away) remain open and shaded.",
+          hi: "दोपहर में जब मुख्य गर्भगृह बंद रहता है, तब 1.2 किमी दूर स्थित विशाल तिरुमलाई नायक महल खुला और छायादार रहता है।"
+        },
+        actionTip: {
+          en: "Tap the Sister Gem card below to visit Thirumalai Nayakkar Palace during afternoon break.",
+          hi: "दोपहर के अवकाश में तिरुमलाई नायक महल जाने के लिए नीचे दिए गए वैकल्पिक स्थल कार्ड को देखें।"
+        }
+      },
+      {
+        id: "meenakshi-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "Temple Cultural Chronicle", hi: "मंदिर सांस्कृतिक बुलेटिन" },
+        headline: {
+          en: "Night Palliyarai (Sacred Procession) Ceremony at 9:00 PM with Nadaswaram Music",
+          hi: "रात 9:00 बजे नादस्वरम संगीत के साथ पारंपरिक पल्लियारई शोभायात्रा"
+        },
+        summary: {
+          en: "Every evening at 9:00 PM, temple priests carry the bronze image of Lord Sundareswarar in a silver palanquin accompanied by traditional temple percussion.",
+          hi: "प्रत्येक रात 9:00 बजे पारंपरिक वाद्ययंत्रों की गूंज के साथ चांदी की पालकी में भगवान सुंदरेश्वरर की शोभायात्रा निकाली जाती है।"
+        },
+        actionTip: {
+          en: "Enter by 8:15 PM via South Gopuram to witness the evening procession peacefully.",
+          hi: "रात्रि आरती और शोभायात्रा के शांत दर्शन के लिए रात 8:15 बजे तक दक्षिणी गोपुरम से प्रवेश करें।"
+        }
+      }
+    ]
+  },
+  "ajanta-caves": {
+    nearbyMetro: [
+      {
+        id: "fardapur-t-point-shuttle",
+        name: { en: "Ajanta Foot-Hill MSRTC Green Bus Terminal (Fardapur)", hi: "अजंता तलहटी एमएसआरटीसी ग्रीन बस टर्मिनल (फ़रदापुर)" },
+        line: { en: "MTDC–MSRTC Eco-Shuttle Corridor (Mandatory Final 4 km)", hi: "एमटीडीसी–एमएसआरटीसी इको-शटल कॉरिडोर (अंतिम 4 किमी अनिवार्य)" },
+        lineColor: "#16a34a",
+        lineTextColor: "#ffffff",
+        distance: "4.0 km",
+        exitGateTip: {
+          en: "Bay 1 & 2 inside Visitor Amenity Plaza for AC Green Shuttle to Waghora Gorge Cave 1 ramp",
+          hi: "वाघोरा घाटी की गुफा 1 रैंप तक जाने वाली एसी ग्रीन शटल बस बे 1 और 2 से मिलती है"
+        },
+        lastMileTime: {
+          en: "8 min scenic gorge drive in MSRTC Eco-Bus",
+          hi: "एमएसआरटीसी इको-बस द्वारा घाटी में 8 मिनट का सुरम्य सफ़र"
+        },
+        estimatedFare: { en: "₹25 – ₹30 (AC Eco-Shuttle)", hi: "₹25 – ₹30 (एसी इको-शटल)" },
+        lat: 20.5312,
+        lon: 75.7345
+      },
+      {
+        id: "jalgaon-railway-junction",
+        name: { en: "Jalgaon Railway Junction (JL) — Nearest Railhead", hi: "जलगांव रेलवे जंक्शन (JL) — निकटतम रेलवे स्टेशन" },
+        line: { en: "Central Railway Mainline & Ajanta Express Feeder", hi: "मध्य रेलवे मुख्य लाइन एवं अजंता एक्सप्रेस फीडर" },
+        lineColor: "#0284c7",
+        lineTextColor: "#ffffff",
+        distance: "58.0 km",
+        exitGateTip: {
+          en: "Exit West Station Plaza for MSRTC Shivshahi AC buses & prepaid taxis to Ajanta Caves",
+          hi: "अजंता गुफाओं के लिए शिवशाही एसी बस और प्रीपेड टैक्सी हेतु पश्चिमी स्टेशन प्लाज़ा से निकलें"
+        },
+        lastMileTime: {
+          en: "1 hr 10 min smooth highway transit to Ajanta T-Point",
+          hi: "अजंता टी-पॉइंट तक 1 घंटा 10 मिनट का सुगम राजमार्ग सफ़र"
+        },
+        estimatedFare: { en: "₹110 (MSRTC Bus)", hi: "₹110 (एमएसआरटीसी बस)" },
+        lat: 21.0077,
+        lon: 75.5626
+      },
+      {
+        id: "sambhajinagar-central-hub",
+        name: { en: "Chhatrapati Sambhajinagar (Aurangabad) Station & CIDCO Bus Port", hi: "छत्रपति संभाजीनगर (औरंगाबाद) स्टेशन एवं सिडको बस पोर्ट" },
+        line: { en: "South Central Railway & MTDC Heritage Circuit", hi: "दक्षिण मध्य रेलवे एवं एमटीडीसी हेरिटेज सर्किट" },
+        lineColor: "#7c3aed",
+        lineTextColor: "#ffffff",
+        distance: "99.0 km",
+        exitGateTip: {
+          en: "Platform 1 Tourist Facilitation Desk for 7:30 AM MTDC Ajanta Luxury Coach",
+          hi: "सुबह 7:30 बजे की एमटीडीसी अजंता कोच के लिए प्लेटफॉर्म 1 पर्यटन सहायता केंद्र जाएं"
+        },
+        lastMileTime: {
+          en: "2 hr 10 min via newly widened NH-753F four-lane highway",
+          hi: "नवनिर्मित 4-लेन राजमार्ग NH-753F से 2 घंटे 10 मिनट का सफ़र"
+        },
+        estimatedFare: { en: "₹180 (MSRTC) / ₹2,400 (Return Cab)", hi: "₹180 (बस) / ₹2,400 (वापसी कैब)" },
+        lat: 19.8608,
+        lon: 75.3125
+      }
+    ],
+    localNews: [
+      {
+        id: "ajanta-news-1",
+        category: "monument",
+        severity: "high",
+        timestamp: { en: "Updated 1 hour ago", hi: "1 घंटे पहले अपडेट किया गया" },
+        source: { en: "ASI Aurangabad Circle Notice", hi: "एएसआई छत्रपति संभाजीनगर मंडल सूचना" },
+        headline: {
+          en: "Ajanta Caves Closed Every Monday; 15-Minute Conservation Batch Entry in Caves 1, 2, 16 & 17",
+          hi: "अजंता गुफाएं प्रत्येक सोमवार बंद; गुफा 1, 2, 16 और 17 में 15-मिनट बैच प्रवेश लागू"
+        },
+        summary: {
+          en: "To protect 5th-century tempera murals (Padmapani & Vajrapani) from humidity and CO2, maximum 40 visitors enter painted caves at a time under cold fiber-optic lighting.",
+          hi: "5वीं सदी के पद्मपाणि और वज्रपाणि भित्तिचित्रों को नमी से बचाने के लिए फाइबर-ऑप्टिक रोशनी में एक बार में अधिकतम 40 पर्यटकों को प्रवेश दिया जाता है।"
+        },
+        actionTip: {
+          en: "Catch the first 8:00 AM eco-shuttle from Fardapur T-Point to enter Cave 1 & 2 with zero wait.",
+          hi: "गुफा 1 और 2 में बिना कतार प्रवेश के लिए फ़रदापुर टी-पॉइंट से सुबह 8:00 बजे की पहली इको-शटल पकड़ें।"
+        }
+      },
+      {
+        id: "ajanta-news-2",
+        category: "traffic",
+        severity: "info",
+        timestamp: { en: "Updated 2 hours ago", hi: "2 घंटे पहले अपडेट किया गया" },
+        source: { en: "NHAI & Maharashtra Highway Police", hi: "एनएचएआई एवं महाराष्ट्र राजमार्ग पुलिस" },
+        headline: {
+          en: "New 4-Lane Concrete Highway (NH-753F) Cuts Sambhajinagar–Ajanta Drive Time to 2 Hours",
+          hi: "नए 4-लेन कंक्रीट राजमार्ग (NH-753F) से संभाजीनगर–अजंता का सफ़र अब केवल 2 घंटे में"
+        },
+        summary: {
+          en: "All ghat bottlenecks at Sillod and Soygaon have been bypassed with smooth 4-lane corridors. Private vehicles park at Fardapur T-Point and transfer to MSRTC Green Buses.",
+          hi: "सिल्लोड और सोयगांव के घाट मार्ग अब सुगम 4-लेन हो चुके हैं। निजी वाहन फ़रदापुर टी-पॉइंट पर पार्क होते हैं जहां से ग्रीन बसें गुफाओं तक जाती हैं।"
+        },
+        actionTip: {
+          en: "Keep ₹30 cash/UPI handy for the mandatory MSRTC Green Shuttle at the T-Point.",
+          hi: "टी-पॉइंट पर अनिवार्य एमएसआरटीसी ग्रीन शटल के लिए ₹30 नकद या यूपीआई तैयार रखें।"
+        }
+      },
+      {
+        id: "ajanta-news-3",
+        category: "weather",
+        severity: "info",
+        timestamp: { en: "Updated 3 hours ago", hi: "3 घंटे पहले अपडेट किया गया" },
+        source: { en: "Mausam-X Waghora Gorge Node", hi: "मौसम-X वाघोरा घाटी केंद्र" },
+        headline: {
+          en: "Basalt Rock Caves Stay Naturally Cool at 24°C; Gorge Rim Viewpoint Breezy",
+          hi: "बेसाल्ट चट्टान की गुफाओं का आंतरिक तापमान 24°C; वाघोरा व्यूपॉइंट पर ठंडी हवा"
+        },
+        summary: {
+          en: "The horseshoe-shaped basalt cliff shields the cave colonnades from direct midday sun while the Saptakunda waterfall pool remains full.",
+          hi: "घोड़े की नाल के आकार की बेसाल्ट चट्टान गुफा के बरामदों को सीधी धूप से बचाती है और सप्तकुंड जलप्रपात में पानी का सुंदर प्रवाह है।"
+        },
+        actionTip: {
+          en: "Wear slip-on footwear—shoes must be removed repeatedly outside painted vihara caves.",
+          hi: "आसानी से खुलने वाले जूते/सैंडल पहनें—चित्रित गुफाओं के बाहर जूते बार-बार उतारने होते हैं।"
+        }
+      },
+      {
+        id: "ajanta-news-4",
+        category: "events",
+        severity: "info",
+        timestamp: { en: "Updated Today", hi: "आज अपडेट किया गया" },
+        source: { en: "MTDC Ajanta Visitor Centre", hi: "एमटीडीसी अजंता पर्यटक केंद्र" },
+        headline: {
+          en: "Full-Scale 3D Replica Caves & British Rediscovery Gallery Open at Foot-Hill Plaza",
+          hi: "तलहटी प्लाज़ा में गुफा 1, 2, 16, 17 की पूर्ण-आकार 3D प्रतिकृति गैलरी खुली"
+        },
+        summary: {
+          en: "Before or after visiting the cliff, visitors can photograph high-resolution illuminated replicas of the Jataka murals at the Fardapur Visitor Centre.",
+          hi: "मूल गुफाओं में फ्लैश फोटोग्राफी वर्जित होने के कारण पर्यटक फ़रदापुर केंद्र में बनी सटीक 3D प्रतिकृतियों में नज़दीक से फोटो ले सकते हैं।"
+        },
+        actionTip: {
+          en: "Hike the 15-minute trail across the Waghora footbridge to the 1819 John Smith Viewpoint.",
+          hi: "वाघोरा पुल पार कर 15 मिनट के पैदल पथ से जॉन स्मिथ पैनोरमा व्यूपॉइंट ज़रूर जाएं।"
+        }
+      }
+    ]
+  }
+};
+
+
+// Attach enrichments (nearbyMetro & localNews) to MONUMENTS
+if (typeof MONUMENT_ENRICHMENTS !== 'undefined') {
+  MONUMENTS.forEach(m => {
+    if (MONUMENT_ENRICHMENTS[m.id]) {
+      m.nearbyMetro = MONUMENT_ENRICHMENTS[m.id].nearbyMetro || [];
+      m.localNews = MONUMENT_ENRICHMENTS[m.id].localNews || [];
+    }
+  });
+}
+
+if (typeof window !== "undefined") {
+  window.MONUMENTS = MONUMENTS;
+  window.METRO_NETWORKS = METRO_NETWORKS;
+  window.MONUMENT_ENRICHMENTS = MONUMENT_ENRICHMENTS;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { MONUMENTS };
+  module.exports = { MONUMENTS, METRO_NETWORKS, MONUMENT_ENRICHMENTS };
 }

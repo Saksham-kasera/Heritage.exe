@@ -105,6 +105,9 @@
     plannerPace: 'contemplative',
     weatherCache: {},
     fairFareKm: 6.2,
+    activeMetroCity: 'delhi-ncr',
+    newsFilter: 'all',
+    newsCache: {},
     isNightFare: false,
     userCoords: { lat: 27.1751, lon: 78.0421, name: 'Taj Mahal Precinct, Agra · 27.1751° N', isGps: false }
   };
@@ -339,6 +342,51 @@
   const plannerDayBtns = document.querySelectorAll('.planner-day-btn');
   const plannerPaceBtns = document.querySelectorAll('.planner-pace-btn');
 
+  // Metro Radar & Modal Elements
+  const homeNearestMetroBadge = document.getElementById('nearest-metro-badge');
+  const nearestMetroLinePill = document.getElementById('nearest-metro-line-pill');
+  const nearestMetroLineText = document.getElementById('nearest-metro-line-text');
+  const nearestMetroName = document.getElementById('nearest-metro-name');
+  const nearestMetroLandmark = document.getElementById('nearest-metro-landmark');
+  const nearestMetroDistance = document.getElementById('nearest-metro-distance');
+  const nearestMetroTime = document.getElementById('nearest-metro-time');
+  const nearestMetroTimings = document.getElementById('nearest-metro-timings');
+  const nearestMetroFare = document.getElementById('nearest-metro-fare');
+  const nearestMetroNavBtn = document.getElementById('nearest-metro-nav-btn');
+  const openMetroMapsBtn = document.getElementById('open-metro-maps-btn');
+  const quickMetroMaps = document.getElementById('quick-metro-maps');
+  const rescanMetroBtn = document.getElementById('rescan-metro-btn');
+  const rescanMetroIcon = document.getElementById('rescan-metro-icon');
+  const rescanMetroText = document.getElementById('rescan-metro-text');
+
+  const metroModal = document.getElementById('metro-modal');
+  const closeMetroModalBtn = document.getElementById('close-metro-modal-btn');
+  const metroModalHeaderTitle = document.getElementById('metro-modal-header-title');
+  const modalNetworkName = document.getElementById('modal-network-name');
+  const modalNetworkTagline = document.getElementById('modal-network-tagline');
+  const modalNetworkTimings = document.getElementById('modal-network-timings');
+  const modalNetworkFare = document.getElementById('modal-network-fare');
+  const modalOfficialMapLink = document.getElementById('modal-official-map-link');
+  const metroSvgCanvas = document.getElementById('metro-svg-canvas');
+  const metroStationSearch = document.getElementById('metro-station-search');
+  const modalStationsList = document.getElementById('modal-stations-list');
+  const modalStationsCount = document.getElementById('modal-stations-count');
+  const metroCityTabs = document.querySelectorAll('.metro-city-tab');
+
+  // Home Civic News Ticker & Monument News Elements
+  const homeTickerCard = document.getElementById('home-ticker-card');
+  const homeTickerBadge = document.getElementById('home-ticker-badge');
+  const homeTickerSeverity = document.getElementById('home-ticker-severity');
+  const homeTickerTime = document.getElementById('home-ticker-time');
+  const homeTickerHeadline = document.getElementById('home-ticker-headline');
+  const homeTickerBtn = document.getElementById('home-ticker-btn');
+  const metroStationsList = document.getElementById('metro-stations-list');
+  const refreshNewsBtn = document.getElementById('refresh-news-btn');
+  const refreshNewsIcon = document.getElementById('refresh-news-icon');
+  const newsFilterBtns = document.querySelectorAll('.news-filter-btn');
+  const newsCardsContainer = document.getElementById('news-cards-container');
+
+
   // Equalizer Bars
   const eqBars = [
     document.getElementById('eq-1'),
@@ -487,6 +535,8 @@
 
     // 10. Update Home Radar Context
     updateMausamRadar(monument);
+    renderMonumentMetroList(monument);
+    fetchAndRenderNews(monument);
 
     // 11. Update Desktop Scrim Bar Precinct Tag (Stitch Desktop)
     const desktopPrecinctTag = document.getElementById('desktop-precinct-tag');
@@ -1548,6 +1598,568 @@
     });
   }
 
+  
+  // ========================================================================
+  // Multi-City Metro Transit & Route Maps Engine
+  // ========================================================================
+  const METRO_NETWORKS_DATA = (typeof window !== 'undefined' && window.METRO_NETWORKS)
+    ? window.METRO_NETWORKS
+    : (typeof METRO_NETWORKS !== 'undefined' ? METRO_NETWORKS : []);
+
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Earth radius in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  function findNearestMetroStation(userLat, userLon) {
+    if (!METRO_NETWORKS_DATA || !METRO_NETWORKS_DATA.length) return null;
+
+    let nearest = null;
+    let minDistance = Infinity;
+    let parentNetwork = null;
+
+    METRO_NETWORKS_DATA.forEach(network => {
+      if (Array.isArray(network.stations)) {
+        network.stations.forEach(station => {
+          const dist = calculateDistance(userLat, userLon, station.lat, station.lon);
+          if (dist < minDistance) {
+            minDistance = dist;
+            nearest = station;
+            parentNetwork = network;
+          }
+        });
+      }
+    });
+
+    if (!nearest) return null;
+
+    const distKm = minDistance;
+    const isUnderKm = distKm < 1.0;
+    const distStr = isUnderKm ? `${Math.round(distKm * 1000)} m` : `${distKm.toFixed(1)} km`;
+    const walkMins = Math.max(2, Math.round(distKm * 12));
+    const walkStr = isUnderKm
+      ? `~${walkMins} min walk`
+      : (distKm <= 3.5 ? `~${walkMins} min walk / 6 min auto` : `~${Math.round(distKm * 3)} min transit/auto`);
+
+    return {
+      station: nearest,
+      network: parentNetwork,
+      distanceKm: distKm,
+      distanceStr: distStr,
+      timeStr: walkStr
+    };
+  }
+
+  function updateHomeMetroRadar() {
+    const userLat = state.userCoords.lat;
+    const userLon = state.userCoords.lon;
+    const lang = state.lang;
+    const isHi = lang === 'hi';
+
+    const match = findNearestMetroStation(userLat, userLon);
+    if (!match) return;
+
+    const { station, network, distanceStr, timeStr } = match;
+
+    if (nearestMetroLinePill) {
+      nearestMetroLinePill.style.backgroundColor = `${station.color || '#8B5CF6'}20`;
+      nearestMetroLinePill.style.color = station.color || '#6B21A8';
+      nearestMetroLinePill.style.borderColor = `${station.color || '#8B5CF6'}40`;
+    }
+    if (nearestMetroLineText) {
+      nearestMetroLineText.textContent = station.line;
+    }
+    if (nearestMetroName) {
+      nearestMetroName.textContent = station.name[lang] || station.name.en;
+    }
+    if (nearestMetroLandmark) {
+      const city = station.city ? `${station.city} · ` : '';
+      const gate = station.gate ? ` · ${station.gate}` : '';
+      nearestMetroLandmark.textContent = `${city}${station.landmark || 'Metro Corridor'}${gate}`;
+    }
+    if (nearestMetroDistance) {
+      nearestMetroDistance.textContent = distanceStr;
+    }
+    if (nearestMetroTime) {
+      nearestMetroTime.textContent = timeStr;
+    }
+    if (nearestMetroTimings) {
+      nearestMetroTimings.textContent = network.timings || '05:30 AM – 11:30 PM';
+    }
+    if (nearestMetroFare) {
+      nearestMetroFare.textContent = network.fare || 'Token: ₹10 – ₹60';
+    }
+    if (nearestMetroNavBtn) {
+      nearestMetroNavBtn.href = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLon}&destination=${station.lat},${station.lon}&travelmode=transit`;
+    }
+  }
+
+  function renderModalStations(network, filterText = '') {
+    if (!modalStationsList) return;
+    const lang = state.lang;
+    const isHi = lang === 'hi';
+    const stations = network.stations || [];
+    const query = filterText.toLowerCase().trim();
+
+    const filtered = query
+      ? stations.filter(st => {
+          const enName = (st.name.en || '').toLowerCase();
+          const hiName = (st.name.hi || '').toLowerCase();
+          const lm = (st.landmark || '').toLowerCase();
+          const line = (st.line || '').toLowerCase();
+          return enName.includes(query) || hiName.includes(query) || lm.includes(query) || line.includes(query);
+        })
+      : stations;
+
+    if (modalStationsCount) {
+      modalStationsCount.textContent = isHi
+        ? `${filtered.length} स्टेशन (${network.stationsCount || filtered.length})`
+        : `${filtered.length} Stations displayed`;
+    }
+
+    if (filtered.length === 0) {
+      modalStationsList.innerHTML = `
+        <div class="col-span-1 sm:col-span-2 p-4 text-center text-secondary text-[12px] bg-surface-container-low rounded-lg border border-hairline/60">
+          ${isHi ? 'कोई मेल खाता मेट्रो स्टेशन नहीं मिला।' : 'No matching metro stations found.'}
+        </div>
+      `;
+      return;
+    }
+
+    modalStationsList.innerHTML = filtered.map(st => {
+      const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${st.lat},${st.lon}&travelmode=transit`;
+      return `
+        <div class="p-2.5 rounded-lg bg-surface-container-low border border-hairline/60 flex items-start justify-between gap-2 hover:border-primary/40 transition-colors">
+          <div class="flex flex-col min-w-0">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full text-[9.5px] font-ui font-semibold text-white" style="background-color: ${st.color || '#3b82f6'};">
+                <span>🚇</span>
+                <span>${st.line}</span>
+              </span>
+              ${st.city ? `<span class="text-[10px] text-mute font-caption">${st.city}</span>` : ''}
+            </div>
+            <h5 class="font-title text-[13px] font-semibold text-on-surface mt-0.5 leading-snug">
+              ${st.name[lang] || st.name.en}
+            </h5>
+            <p class="font-caption text-[10.5px] text-secondary truncate">
+              ${st.landmark || 'Corridor'}${st.gate ? ` · ${st.gate}` : ''}
+            </p>
+          </div>
+          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer"
+            class="shrink-0 px-2.5 py-1 rounded-full bg-surface text-primary border border-hairline hover:bg-primary-container text-[11px] font-ui font-semibold flex items-center gap-1 transition-all active:scale-95 shadow-xs">
+            <span>Route</span>
+            <span class="material-symbols-outlined text-[12px]">navigation</span>
+          </a>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderMetroModalView(cityId) {
+    if (!METRO_NETWORKS_DATA || !METRO_NETWORKS_DATA.length) return;
+    const network = METRO_NETWORKS_DATA.find(n => n.id === cityId) || METRO_NETWORKS_DATA[0];
+    const lang = state.lang;
+    const isHi = lang === 'hi';
+
+    state.activeMetroCity = network.id;
+
+    // Update Tab active classes
+    if (metroCityTabs && metroCityTabs.length) {
+      metroCityTabs.forEach(tab => {
+        const isAct = tab.getAttribute('data-city') === network.id;
+        tab.className = isAct
+          ? 'metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-semibold bg-ink-band text-surface shadow-xs transition-all'
+          : 'metro-city-tab shrink-0 px-3 py-1.5 rounded-full font-ui text-[12px] font-medium bg-surface-container text-secondary hover:text-on-surface transition-all';
+      });
+    }
+
+    if (modalNetworkName) {
+      modalNetworkName.textContent = network.name[lang] || network.name.en;
+    }
+    if (modalNetworkTagline) {
+      modalNetworkTagline.textContent = `${network.linesCount || ''} · ${network.tagline[lang] || network.tagline.en}`;
+    }
+    if (modalNetworkTimings) {
+      modalNetworkTimings.textContent = `🕒 ${network.timings || '05:30 AM – 11:30 PM'}`;
+    }
+    if (modalNetworkFare) {
+      modalNetworkFare.textContent = `🎟️ ${network.fare || '₹10 – ₹60'}`;
+    }
+    if (modalOfficialMapLink) {
+      modalOfficialMapLink.href = network.officialMapUrl || network.officialPortalUrl || '#';
+    }
+    if (metroSvgCanvas) {
+      metroSvgCanvas.innerHTML = network.svgMap || '<div class="p-4 text-secondary">Route map rendering...</div>';
+    }
+
+    if (metroStationSearch) {
+      metroStationSearch.value = '';
+    }
+
+    renderModalStations(network, '');
+  }
+
+  function openMetroModal(cityId) {
+    if (!metroModal) return;
+    renderMetroModalView(cityId || state.activeMetroCity || 'delhi-ncr');
+    metroModal.classList.remove('hidden');
+    metroModal.classList.add('flex');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeMetroModal() {
+    if (!metroModal) return;
+    metroModal.classList.add('hidden');
+    metroModal.classList.remove('flex');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  function initMetroTransit() {
+    updateHomeMetroRadar();
+
+    if (openMetroMapsBtn) {
+      openMetroMapsBtn.addEventListener('click', () => openMetroModal(state.activeMetroCity));
+    }
+    if (quickMetroMaps) {
+      quickMetroMaps.addEventListener('click', () => openMetroModal(state.activeMetroCity));
+    }
+    if (closeMetroModalBtn) {
+      closeMetroModalBtn.addEventListener('click', closeMetroModal);
+    }
+    if (metroModal) {
+      metroModal.addEventListener('click', (e) => {
+        if (e.target === metroModal) closeMetroModal();
+      });
+    }
+
+    if (metroCityTabs && metroCityTabs.length) {
+      metroCityTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const cId = tab.getAttribute('data-city');
+          if (cId) renderMetroModalView(cId);
+        });
+      });
+    }
+
+    if (metroStationSearch) {
+      metroStationSearch.addEventListener('input', (e) => {
+        const net = METRO_NETWORKS_DATA.find(n => n.id === state.activeMetroCity) || METRO_NETWORKS_DATA[0];
+        renderModalStations(net, e.target.value);
+      });
+    }
+
+    if (rescanMetroBtn) {
+      rescanMetroBtn.addEventListener('click', () => {
+        if (rescanMetroIcon) rescanMetroIcon.classList.add('animate-spin');
+        if (rescanMetroText) rescanMetroText.textContent = state.lang === 'hi' ? 'खोज रहे हैं...' : 'Scanning...';
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              state.userCoords = {
+                lat: pos.coords.latitude,
+                lon: pos.coords.longitude,
+                name: `Live GPS (${pos.coords.latitude.toFixed(4)}° N, ${pos.coords.longitude.toFixed(4)}° E)`,
+                isGps: true
+              };
+              updateHomeMetroRadar();
+              if (rescanMetroIcon) rescanMetroIcon.classList.remove('animate-spin');
+              if (rescanMetroText) rescanMetroText.textContent = state.lang === 'hi' ? 'स्कैन सफल' : 'Updated';
+              setTimeout(() => {
+                if (rescanMetroText) rescanMetroText.textContent = state.lang === 'hi' ? 'जीपीएस स्कैन' : 'Scan GPS';
+              }, 2000);
+            },
+            () => {
+              // Fallback: update with current userCoords
+              updateHomeMetroRadar();
+              if (rescanMetroIcon) rescanMetroIcon.classList.remove('animate-spin');
+              if (rescanMetroText) rescanMetroText.textContent = state.lang === 'hi' ? 'स्कैन रीफ्रेश' : 'Refreshed';
+              setTimeout(() => {
+                if (rescanMetroText) rescanMetroText.textContent = state.lang === 'hi' ? 'जीपीएस स्कैन' : 'Scan GPS';
+              }, 2000);
+            },
+            { timeout: 7000 }
+          );
+        } else {
+          updateHomeMetroRadar();
+          if (rescanMetroIcon) rescanMetroIcon.classList.remove('animate-spin');
+          if (rescanMetroText) rescanMetroText.textContent = 'Refreshed';
+        }
+      });
+    }
+  }
+
+  // ========================================================================
+  // Public News & Local Visitor Advisories Engine (Live Civic Pulse)
+  // ========================================================================
+  function getSeverityConfig(severity, lang) {
+    if (severity === 'high') {
+      return {
+        label: lang === 'hi' ? 'उच्च प्रभाव (High Impact)' : 'High Impact',
+        badgeCls: 'bg-error-container text-on-error-container border border-error/30',
+        dotCls: 'bg-error animate-pulse'
+      };
+    }
+    if (severity === 'advisory') {
+      return {
+        label: lang === 'hi' ? 'महत्वपूर्ण परामर्श (Advisory)' : 'Advisory',
+        badgeCls: 'bg-tertiary-fixed text-on-tertiary-fixed border border-tertiary/30',
+        dotCls: 'bg-tertiary'
+      };
+    }
+    return {
+      label: lang === 'hi' ? 'उपयोगी सूचना (Good to Know)' : 'Good to Know',
+      badgeCls: 'bg-surface-container-high text-forest border border-forest/30',
+      dotCls: 'bg-forest'
+    };
+  }
+
+  function getCategoryLabel(cat, lang) {
+    const map = {
+      traffic: { en: 'Traffic & Routes', hi: 'यातायात व मार्ग' },
+      monument: { en: 'Monument Notice', hi: 'स्मारक सूचना' },
+      weather: { en: 'Weather / AQI', hi: 'मौसम / वायु' },
+      events: { en: 'Cultural Event', hi: 'सांस्कृतिक कार्यक्रम' }
+    };
+    return (map[cat] && map[cat][lang]) || (lang === 'hi' ? 'सामान्य सूचना' : 'Civic Update');
+  }
+
+  function updateHomeNewsTicker(monument, items) {
+    const lang = state.lang;
+    const list = Array.isArray(items) && items.length > 0 ? items : (monument.localNews || []);
+    if (list.length === 0) return;
+
+    const topItem = list.find(i => i.severity === 'high') || list[0];
+    const sev = getSeverityConfig(topItem.severity, lang);
+
+    if (homeTickerSeverity) homeTickerSeverity.textContent = sev.label;
+    if (homeTickerBadge) {
+      homeTickerBadge.className = `shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-ui font-bold uppercase tracking-wider ${sev.badgeCls}`;
+    }
+    if (homeTickerTime) homeTickerTime.textContent = topItem.timestamp?.[lang] || '';
+    if (homeTickerHeadline) homeTickerHeadline.textContent = topItem.headline?.[lang] || '';
+  }
+
+  function renderNewsCards(monument, items) {
+    if (!newsCardsContainer) return;
+    const lang = state.lang;
+    const isHi = lang === 'hi';
+    const allItems = Array.isArray(items) && items.length > 0 ? items : (monument.localNews || []);
+
+    const filtered = state.newsFilter === 'all'
+      ? allItems
+      : allItems.filter(item => item.category === state.newsFilter);
+
+    if (filtered.length === 0) {
+      newsCardsContainer.innerHTML = `
+        <div class="p-space-md rounded-xl bg-surface-container-low border border-hairline/60 text-center text-secondary font-ui text-[12px]">
+          ${isHi ? 'इस श्रेणी में वर्तमान में कोई सक्रिय सूचना नहीं है।' : 'No active advisories in this category right now.'}
+        </div>
+      `;
+      return;
+    }
+
+    newsCardsContainer.innerHTML = filtered.map(item => {
+      const sev = getSeverityConfig(item.severity, lang);
+      const catLabel = getCategoryLabel(item.category, lang);
+      const tipText = item.actionTip?.[lang] || item.visitorTip?.[lang] || '';
+
+      return `
+        <div class="p-space-sm rounded-xl bg-surface-container-low border border-hairline/70 space-y-2 transition-all hover:border-primary/40">
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-ui font-bold uppercase tracking-wider ${sev.badgeCls}">
+                <span class="w-1.5 h-1.5 rounded-full ${sev.dotCls}"></span>
+                <span>${sev.label}</span>
+              </span>
+              <span class="px-2 py-0.5 rounded-full bg-surface text-secondary font-ui text-[10px] font-medium border border-hairline/60">
+                ${catLabel}
+              </span>
+            </div>
+            <span class="font-caption text-[10px] text-mute shrink-0">
+              ${item.timestamp?.[lang] || ''}
+            </span>
+          </div>
+
+          <div>
+            <h4 class="font-title text-[14px] font-semibold text-on-surface leading-snug">
+              ${item.headline?.[lang] || ''}
+            </h4>
+            <p class="font-body text-[12.5px] text-secondary leading-relaxed mt-1">
+              ${item.summary?.[lang] || ''}
+            </p>
+          </div>
+
+          ${tipText ? `
+            <div class="p-2 rounded-lg bg-surface border border-hairline/60 flex items-start gap-2">
+              <span class="material-symbols-outlined text-tertiary text-[16px] shrink-0 mt-0.5">tips_and_updates</span>
+              <div class="flex flex-col text-[11.5px]">
+                <span class="font-ui font-bold text-tertiary uppercase text-[10px] tracking-wide">${isHi ? 'आपकी यात्रा पर क्या प्रभाव पड़ेगा' : 'HOW IT AFFECTS YOUR VISIT'}</span>
+                <span class="font-body text-on-surface leading-snug mt-0.5">${tipText}</span>
+              </div>
+            </div>
+          ` : ''}
+
+          <div class="flex items-center justify-between text-[10.5px] text-secondary pt-0.5">
+            <span class="inline-flex items-center gap-1 font-ui font-medium">
+              <span class="material-symbols-outlined text-[13px] text-primary">verified</span>
+              <span>${item.source?.[lang] || ''}</span>
+            </span>
+            ${item.link ? `
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="text-primary font-ui font-semibold hover:underline">
+                ${isHi ? 'स्रोत बुलेटिन ↗' : 'Source Bulletin ↗'}
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderMonumentMetroList(monument) {
+    if (!metroStationsList) return;
+    const lang = state.lang;
+    const isHi = lang === 'hi';
+    const stations = Array.isArray(monument.nearbyMetro) ? monument.nearbyMetro : [];
+    const mLat = monument.coords.lat;
+    const mLon = monument.coords.lon;
+
+    if (stations.length === 0) {
+      metroStationsList.innerHTML = `
+        <div class="p-3 rounded-lg bg-surface-container-low border border-hairline/60 text-center text-secondary text-[12px]">
+          ${isHi ? 'इस धरोहर स्थल के निकटतम सीधे मेट्रो स्टेशन की जानकारी जल्द उपलब्ध होगी।' : 'Direct metro connectivity for this site will be updated soon.'}
+        </div>
+      `;
+      return;
+    }
+
+    metroStationsList.innerHTML = stations.map(st => {
+      const gmapsTransitUrl = `https://www.google.com/maps/dir/?api=1&origin=${st.lat},${st.lon}&destination=${mLat},${mLon}&travelmode=transit`;
+      const exitTip = (st.exitGateTip && st.exitGateTip[lang]) || (st.exitGate && st.exitGate[lang]) || 'Exit towards Heritage Plaza';
+      const lastMile = (st.lastMileTime && st.lastMileTime[lang]) || (st.walkOrRickshaw && st.walkOrRickshaw[lang]) || '5-10 min transit';
+      const fare = (st.estimatedFare && st.estimatedFare[lang]) || st.fare || '₹10 - ₹20';
+
+      return `
+        <div class="p-space-sm rounded-xl bg-surface-container-low border border-hairline/70 hover:border-forest/50 transition-all space-y-2">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-white font-ui text-[10px] font-bold tracking-wide" style="background-color: ${st.lineColor || '#ca8a04'};">
+                  <span>🚇</span>
+                  <span>${st.line[lang]}</span>
+                </span>
+                <span class="px-2 py-0.5 rounded-full bg-surface text-forest font-ui text-[10px] font-semibold border border-hairline/60">
+                  ${st.distance}
+                </span>
+              </div>
+              <h4 class="font-title text-[15px] font-semibold text-on-surface mt-1 leading-snug">
+                ${st.name[lang]}
+              </h4>
+            </div>
+            <div class="text-right shrink-0 bg-surface px-2.5 py-1 rounded-lg border border-hairline/60">
+              <span class="block font-caption text-[9px] uppercase text-secondary">${isHi ? 'अनुमानित किराया' : 'Est. Fare'}</span>
+              <span class="font-ui text-[11px] font-bold text-forest">${fare}</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[11.5px]">
+            <div class="p-2 rounded-lg bg-surface border border-hairline/40 flex items-start gap-1.5">
+              <span class="material-symbols-outlined text-tertiary text-[16px] shrink-0 mt-0.5">door_sliding</span>
+              <div class="flex flex-col">
+                <span class="font-caption text-[10px] uppercase text-secondary font-semibold">${isHi ? 'अनुशंसित गेट' : 'Best Exit Gate'}</span>
+                <span class="font-body text-[12px] text-on-surface leading-snug">${exitTip}</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-surface border border-hairline/40 flex items-start gap-1.5">
+              <span class="material-symbols-outlined text-forest text-[16px] shrink-0 mt-0.5">electric_rickshaw</span>
+              <div class="flex flex-col">
+                <span class="font-caption text-[10px] uppercase text-secondary font-semibold">${isHi ? 'अंतिम छोर यात्रा' : 'Last Mile'}</span>
+                <span class="font-body text-[12px] text-on-surface leading-snug">${lastMile}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-1 flex items-center justify-end">
+            <a href="${gmapsTransitUrl}" target="_blank" rel="noopener noreferrer"
+              class="w-full sm:w-auto px-4 py-1.5 rounded-full bg-forest text-white hover:opacity-95 font-ui text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-xs">
+              <span class="material-symbols-outlined text-[15px]">directions</span>
+              <span>${isHi ? 'मेट्रो से स्मारक मार्ग' : 'Transit to Monument'}</span>
+            </a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function fetchAndRenderNews(monument, forceRefresh = false) {
+    const cacheKey = monument.id;
+    const fallbackItems = Array.isArray(monument.localNews) ? monument.localNews : [];
+    const initialItems = (!forceRefresh && state.newsCache[cacheKey]) ? state.newsCache[cacheKey] : fallbackItems;
+
+    updateHomeNewsTicker(monument, initialItems);
+    renderNewsCards(monument, initialItems);
+
+    if (forceRefresh && refreshNewsIcon) {
+      refreshNewsIcon.classList.add('animate-spin');
+      setTimeout(() => {
+        refreshNewsIcon.classList.remove('animate-spin');
+        renderNewsCards(monument, fallbackItems);
+      }, 700);
+    }
+  }
+
+  function initNewsAndMonumentMetro() {
+    // News filter tabs
+    if (newsFilterBtns && newsFilterBtns.length) {
+      newsFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filterVal = btn.getAttribute('data-news-filter') || 'all';
+          state.newsFilter = filterVal;
+
+          newsFilterBtns.forEach(b => {
+            const isAct = b.getAttribute('data-news-filter') === filterVal;
+            b.className = isAct
+              ? 'news-filter-btn shrink-0 px-3 py-1 rounded-full bg-ink-band text-surface font-ui text-[11px] font-semibold shadow-xs transition-all'
+              : 'news-filter-btn shrink-0 px-3 py-1 rounded-full bg-surface-container text-secondary hover:text-on-surface font-ui text-[11px] font-medium transition-all';
+          });
+
+          const currentM = getMonumentById(state.currentMonumentId);
+          if (currentM) renderNewsCards(currentM, currentM.localNews || []);
+        });
+      });
+    }
+
+    // Refresh news button
+    if (refreshNewsBtn) {
+      refreshNewsBtn.addEventListener('click', () => {
+        const currentM = getMonumentById(state.currentMonumentId);
+        if (currentM) fetchAndRenderNews(currentM, true);
+      });
+    }
+
+    // Home ticker card click jumps to monument news
+    const jumpToNews = () => {
+      switchTab('monuments');
+      const newsSec = document.getElementById('monument-news-section');
+      if (newsSec) {
+        setTimeout(() => newsSec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    };
+
+    if (homeTickerCard) homeTickerCard.addEventListener('click', jumpToNews);
+    if (homeTickerBtn) homeTickerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      jumpToNews();
+    });
+  }
+
   // ========================================================================
   // Bilingual (EN / HI) Language Engine
   // ========================================================================
@@ -1586,6 +2198,8 @@
     // Re-render active view
     renderActiveMonument();
     calculateFares();
+    initMetroTransit();
+    initNewsAndMonumentMetro();
   }
 
   if (langEnBtn) langEnBtn.addEventListener('click', () => setLanguage('en'));
