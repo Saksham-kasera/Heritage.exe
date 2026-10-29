@@ -133,6 +133,10 @@
     padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
   }
 
+  .dock-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
   .pt-safe {
     padding-top: env(safe-area-inset-top, 0px);
   }
@@ -1661,29 +1665,29 @@ body.desktop-mode #view-feedback form > div:last-child {
        BOTTOM FIXED DOCK NAVIGATION
        4 Tabs: Home, Monuments, Emergency, Feedback
        ======================================================================== -->
-  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(28,27,26,0.05)] border-t border-hairline/60">
+  <nav class="fixed bottom-0 inset-x-0 z-50 dock-safe bg-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(28,27,26,0.05)] border-t border-hairline/60">
     <div class="flex justify-around items-center h-16 max-w-xl mx-auto px-space-xs">
       
       <!-- Tab 1: Home -->
-      <a href="#home" data-tab="home" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-11 transition-colors text-primary font-medium" aria-current="page">
+      <a href="#home" data-tab="home" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-12 transition-all active:scale-95 text-primary font-medium" aria-current="page">
         <span class="material-symbols-outlined text-[22px]">explore</span>
         <span class="font-ui text-caption text-[11px] leading-none" data-tab-label="home">Home</span>
       </a>
 
       <!-- Tab 2: Monuments -->
-      <a href="#monuments" data-tab="monuments" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-11 text-secondary transition-colors hover:text-on-surface">
+      <a href="#monuments" data-tab="monuments" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-12 text-secondary transition-all active:scale-95 hover:text-on-surface">
         <span class="material-symbols-outlined text-[22px]">account_balance</span>
         <span class="font-ui text-caption text-[11px] leading-none" data-tab-label="monuments">Monuments</span>
       </a>
 
       <!-- Tab 3: Emergency -->
-      <a href="#emergency" data-tab="emergency" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-11 text-secondary transition-colors hover:text-on-surface">
+      <a href="#emergency" data-tab="emergency" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-12 text-secondary transition-all active:scale-95 hover:text-on-surface">
         <span class="material-symbols-outlined text-[22px]">emergency</span>
         <span class="font-ui text-caption text-[11px] leading-none" data-tab-label="emergency">Emergency</span>
       </a>
 
       <!-- Tab 4: Feedback -->
-      <a href="#feedback" data-tab="feedback" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-11 text-secondary transition-colors hover:text-on-surface">
+      <a href="#feedback" data-tab="feedback" class="nav-tab-btn flex flex-col items-center justify-center gap-space-xxs min-w-[56px] h-12 text-secondary transition-all active:scale-95 hover:text-on-surface">
         <span class="material-symbols-outlined text-[22px]">verified_user</span>
         <span class="font-ui text-caption text-[11px] leading-none" data-tab-label="feedback">Feedback</span>
       </a>
