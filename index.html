@@ -240,9 +240,15 @@
               <span class="font-caption text-[11px] text-mute" id="radar-site-label">Precinct Microclimate Node · Agra</span>
             </div>
           </div>
-          <div class="flex items-center gap-1 bg-surface-container px-space-xs py-0.5 rounded-full">
-            <span class="material-symbols-outlined text-[13px] text-secondary">update</span>
-            <span class="font-caption text-[11px] text-secondary" id="radar-updated-tag">Live Feed</span>
+          <div class="flex items-center gap-1.5">
+            <button id="open-weather-key-btn" type="button" class="flex items-center gap-1 bg-surface-container px-space-xs py-0.5 rounded-full text-[11px] text-secondary hover:text-primary transition-colors border border-hairline/60" title="Configure Weather API Key">
+              <span class="material-symbols-outlined text-[13px]">key</span>
+              <span id="weather-key-status">API Key</span>
+            </button>
+            <div class="flex items-center gap-1 bg-surface-container px-space-xs py-0.5 rounded-full">
+              <span class="material-symbols-outlined text-[13px] text-secondary">update</span>
+              <span class="font-caption text-[11px] text-secondary" id="radar-updated-tag">Live Feed</span>
+            </div>
           </div>
         </div>
 
@@ -1237,6 +1243,69 @@
         <span>Generate Archival Itinerary</span>
         <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
       </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       WEATHER API KEY CONFIGURATION MODAL
+       Allows connecting OpenWeatherMap, WeatherAPI, or resetting to Keyless Open-Meteo
+       ======================================================================== -->
+  <div id="weather-key-modal" class="fixed inset-0 z-50 bg-ink-band/40 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity">
+    <div class="w-full max-w-md bg-surface rounded-2xl p-space-lg flex flex-col gap-space-md shadow-2xl border border-hairline">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[20px]">vpn_key</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-eyebrow text-eyebrow text-secondary uppercase">Mausam-X Integration</span>
+            <span class="font-heading-2-mobile text-[18px] font-semibold text-on-surface">Weather API Key</span>
+          </div>
+        </div>
+        <button id="close-weather-modal-btn" type="button" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <p class="font-body-sm text-[13px] text-secondary leading-relaxed">
+        Connect your custom <strong>OpenWeatherMap</strong> or <strong>WeatherAPI.com</strong> key for high-frequency satellite telemetry. If left blank, Safar Saarthi automatically uses keyless Open-Meteo with zero failure.
+      </p>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="weather-provider-select" class="font-ui text-[12px] font-medium text-on-surface">API Provider:</label>
+        <select id="weather-provider-select" class="p-2.5 rounded-lg bg-surface-container text-on-surface text-sm border border-hairline focus:outline-none focus:border-primary">
+          <option value="openweathermap">OpenWeatherMap (OneCall &amp; Current Weather)</option>
+          <option value="weatherapi">WeatherAPI.com (Real-Time Forecast)</option>
+          <option value="openmeteo">Open-Meteo (Default Keyless Satellite)</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="weather-key-input" class="font-ui text-[12px] font-medium text-on-surface">API Key / Token:</label>
+        <div class="relative flex items-center">
+          <input 
+            type="password" 
+            id="weather-key-input" 
+            placeholder="Paste your 32-character API key..." 
+            class="w-full p-2.5 pr-10 rounded-lg bg-surface-container text-on-surface text-sm font-mono border border-hairline focus:outline-none focus:border-primary"
+            autocomplete="off"
+          />
+          <button id="toggle-key-visibility-btn" type="button" class="absolute right-2.5 text-secondary hover:text-on-surface" title="Show/Hide Key">
+            <span id="key-vis-icon" class="material-symbols-outlined text-[18px]">visibility</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="weather-key-feedback" class="hidden text-[12px] p-2.5 rounded-lg font-medium"></div>
+
+      <div class="flex items-center gap-2 pt-2">
+        <button id="save-weather-key-btn" type="button" class="flex-1 py-2.5 rounded-full bg-primary text-on-primary font-button text-[14px] font-semibold active:scale-95 transition-all shadow-sm hover:bg-primary-container">
+          Save &amp; Connect Key
+        </button>
+        <button id="reset-weather-key-btn" type="button" class="px-4 py-2.5 rounded-full bg-surface-container text-secondary font-button text-[14px] hover:text-on-surface active:scale-95 transition-all border border-hairline/60">
+          Reset
+        </button>
+      </div>
     </div>
   </div>
 
