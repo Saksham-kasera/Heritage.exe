@@ -1,7 +1,6 @@
 // ==========================================================================
-// SafarSaarthi (सफ़र सारथी) — Heritage Monument Data (data.js)
-// Expanded with GPS coordinates, HD online imagery, and 10 iconic UNESCO sites.
-// Crowd data sourced from ASI & Google Popular Times Footfall Datasets.
+// SafarSaarthi (सफ़र सारथी) — Enriched Monument Dataset (data.js)
+// 10 Flagship UNESCO Heritage Monuments with Stories, Hourly Footfall, Safety & Sister Gems
 // ==========================================================================
 
 const MONUMENTS = [
@@ -248,9 +247,9 @@ const MONUMENTS = [
       }
     ],
     "coords": {
-        "lat": 27.1751,
-        "lon": 78.0421
-      },
+      "lat": 27.1751,
+      "lon": 78.0421
+    },
     "lat": 27.1751,
     "lon": 78.0421,
     "images": [
@@ -281,7 +280,32 @@ const MONUMENTS = [
         },
         "credit": "Unsplash"
       }
-    ]
+    ],
+    "shortId": "taj",
+    "secretFact": {
+      "title": {
+        "en": "Antiseismic Architecture",
+        "hi": "भूकंपरोधी वास्तुकला"
+      },
+      "en": "The four minarets are angled slightly outwards by precisely 3 degrees so that in the event of a catastrophic earthquake, they fall away from the sacred central dome rather than crushing it.",
+      "hi": "चारों मीनारें बाहर की ओर ठीक 3 डिग्री झुकी हुई हैं ताकि किसी भीषण भूकंप की स्थिति में वे मुख्य गुंबद पर न गिरकर बाहर की तरफ गिरें।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Mehtab Bagh",
+        "hi": "मेहताब बाग"
+      },
+      "tagline": {
+        "en": "The Moonlight Garden across the Yamuna River",
+        "hi": "यमुना नदी के पार चांदनी बाग"
+      },
+      "distance": "1.8 km away",
+      "crowd": "18%",
+      "wait": "0 min",
+      "highlight": "Sunset Prime Reflection",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Mehtab+Bagh+Agra"
+    }
   },
   {
     "id": "hawa-mahal",
@@ -510,9 +534,9 @@ const MONUMENTS = [
       }
     ],
     "coords": {
-        "lat": 26.9239,
-        "lon": 75.8267
-      },
+      "lat": 26.9239,
+      "lon": 75.8267
+    },
     "lat": 26.9239,
     "lon": 75.8267,
     "images": [
@@ -534,7 +558,32 @@ const MONUMENTS = [
         },
         "credit": "Unsplash"
       }
-    ]
+    ],
+    "shortId": "hawa",
+    "secretFact": {
+      "title": {
+        "en": "The Venturi Cooling Miracle",
+        "hi": "वेंचुरी शीतलन प्रभाव"
+      },
+      "en": "The 953 jharokhas (casements) act on the Venturi effect: wind passing through narrow apertures speeds up and cools down, keeping royal women comfortable in 44°C Jaipur heat without any power.",
+      "hi": "हवा महल के 953 झरोखे वेंचुरी प्रभाव पर काम करते हैं। संकरे झरोखों से गुजरती हवा ठंडी होकर महलों के तापमान को 44 डिग्री गर्मी में भी शीतल बनाए रखती थी।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Panna Meena Ka Kund",
+        "hi": "पन्ना मीना का कुंड"
+      },
+      "tagline": {
+        "en": "Geometrical 16th-century stepwell with zero tourist crush",
+        "hi": "16वीं सदी की शांत ज्यामितीय बावड़ी"
+      },
+      "distance": "11.5 km away",
+      "crowd": "12%",
+      "wait": "0 min",
+      "highlight": "Symmetrical Staircase Photography",
+      "image": "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Panna+Meena+Ka+Kund+Amer+Jaipur"
+    }
   },
   {
     "id": "qutub-minar",
@@ -763,9 +812,9 @@ const MONUMENTS = [
       }
     ],
     "coords": {
-        "lat": 28.5244,
-        "lon": 77.1855
-      },
+      "lat": 28.5244,
+      "lon": 77.1855
+    },
     "lat": 28.5244,
     "lon": 77.1855,
     "images": [
@@ -787,7 +836,32 @@ const MONUMENTS = [
         },
         "credit": "Unsplash"
       }
-    ]
+    ],
+    "shortId": "qutub",
+    "secretFact": {
+      "title": {
+        "en": "1,600-Year Rustproof Iron Pillar",
+        "hi": "1600 वर्ष पुराना जंगरोधी लौह स्तंभ"
+      },
+      "en": "The Iron Pillar in the courtyard has stood exposed to Delhi weather for over 16 centuries without rusting, thanks to a high phosphorus, low sulfur composition forming a protective misawite iron film.",
+      "hi": "प्रांगण में खड़ा लौह स्तंभ 1600 वर्षों से धूप और बारिश में बिना जंग लगे अडिग खड़ा है। इसकी धातु में फॉस्फोरस की अनूठी परत इसे आज तक जंग से बचाती है।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Mehrauli Archaeological Park",
+        "hi": "महरौली पुरातत्व पार्क"
+      },
+      "tagline": {
+        "en": "200 acres of 1,000-year Delhi ruins & Rajon Ki Baoli",
+        "hi": "1000 वर्ष पुराने खंडहर और राजों की बावड़ी"
+      },
+      "distance": "850 m away",
+      "crowd": "15%",
+      "wait": "0 min",
+      "highlight": "Ancient Forest Walking Trail",
+      "image": "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Mehrauli+Archaeological+Park+New+Delhi"
+    }
   },
   {
     "id": "hampi-chariot",
@@ -1016,9 +1090,9 @@ const MONUMENTS = [
       }
     ],
     "coords": {
-        "lat": 15.335,
-        "lon": 76.46
-      },
+      "lat": 15.335,
+      "lon": 76.46
+    },
     "lat": 15.335,
     "lon": 76.46,
     "images": [
@@ -1040,7 +1114,32 @@ const MONUMENTS = [
         },
         "credit": "Unsplash"
       }
-    ]
+    ],
+    "shortId": "hampi",
+    "secretFact": {
+      "title": {
+        "en": "Acoustic Musical Pillars",
+        "hi": "ध्वनिक संगीतमय स्तंभ"
+      },
+      "en": "The 56 stone pillars of the Vittala Temple complex are acoustic marvels; when gently tapped with fingertips, they resonate with the 7 fundamental notes (Sa-Re-Ga-Ma-Pa-Dha-Ni) of Indian classical music.",
+      "hi": "विट्ठल मंदिर परिसर के 56 पाषाण स्तंभ उंगलियों से थपथपाने पर भारतीय शास्त्रीय संगीत के सातों सुर (सा-रे-गा-मा-पा-धा-नि) उत्पन्न करते हैं।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Achyutaraya Temple & Courtesan Street",
+        "hi": "अच्युतराय मंदिर व नर्तकी मार्ग"
+      },
+      "tagline": {
+        "en": "Hidden behind Gandhamadana hill with tranquil courtyards",
+        "hi": "गंधमादन पहाड़ी के पीछे एकांत मंदिर"
+      },
+      "distance": "1.4 km away",
+      "crowd": "8%",
+      "wait": "0 min",
+      "highlight": "Solitary Boulder Landscapes",
+      "image": "https://images.unsplash.com/photo-1600100397608-f010e4219b16?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Achyutaraya+Temple+Hampi"
+    }
   },
   {
     "id": "red-fort",
@@ -1053,9 +1152,9 @@ const MONUMENTS = [
       "hi": "पुरानी दिल्ली, राष्ट्रीय राजधानी क्षेत्र"
     },
     "coords": {
-        "lat": 28.6562,
-        "lon": 77.241
-      },
+      "lat": 28.6562,
+      "lon": 77.241
+    },
     "lat": 28.6562,
     "lon": 77.241,
     "era": {
@@ -1272,7 +1371,32 @@ const MONUMENTS = [
         "distance": "4.5 km",
         "fairRange": "₹80 – ₹120"
       }
-    ]
+    ],
+    "shortId": "redfort",
+    "secretFact": {
+      "title": {
+        "en": "The Stream of Paradise (Nahr-i-Bihisht)",
+        "hi": "स्वर्ग की नहर (नहर-ए-बिहिश्त)"
+      },
+      "en": "Water diverted from the Yamuna was lifted by hydraulic Persian wheels to flow directly through marble channels in the royal pavilions, acting as 17th-century evaporative air conditioning.",
+      "hi": "यमुना नदी का जल रहट प्रणाली द्वारा उठाकर शाही महलों के संगमरमरी फर्शों के बीच नहरों में बहाया जाता था, जो 17वीं सदी में प्राकृतिक एयर कंडीशनिंग का काम करता था।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Salimgarh Fort & River Island Gate",
+        "hi": "सलीमगढ़ दुर्ग व नदी द्वीप"
+      },
+      "tagline": {
+        "en": "1546 CE island fortress connected via British arch bridge",
+        "hi": "1546 ईस्वी का शांत द्वीप दुर्ग"
+      },
+      "distance": "450 m away",
+      "crowd": "10%",
+      "wait": "0 min",
+      "highlight": "INA Freedom Fighters Cell",
+      "image": "https://images.unsplash.com/photo-1585135497273-1a86b09fe70e?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Salimgarh+Fort+Old+Delhi"
+    }
   },
   {
     "id": "amer-fort",
@@ -1285,9 +1409,9 @@ const MONUMENTS = [
       "hi": "आमेर, जयपुर, राजस्थान"
     },
     "coords": {
-        "lat": 26.9855,
-        "lon": 75.8513
-      },
+      "lat": 26.9855,
+      "lon": 75.8513
+    },
     "lat": 26.9855,
     "lon": 75.8513,
     "era": {
@@ -1488,7 +1612,32 @@ const MONUMENTS = [
         "distance": "1.2 km",
         "fairRange": "₹450 – ₹550 (Full Jeep)"
       }
-    ]
+    ],
+    "shortId": "amer",
+    "secretFact": {
+      "title": {
+        "en": "Subterranean Escape Tunnels",
+        "hi": "भूमिगत गुप्त सुरंगें"
+      },
+      "en": "A 2-kilometer underground secret tunnel connects Amer Palace to the mountaintop Jaigarh Fort, designed as an impenetrable escape route for the royal family during siege warfare.",
+      "hi": "आमेर महल से जयगढ़ दुर्ग तक 2 किलोमीटर लंबी भूमिगत गुप्त सुरंग बनी है, जिसे युद्ध के समय राजपरिवार की सुरक्षित निकासी के लिए तैयार किया गया था।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Anokhi Museum of Hand Printing",
+        "hi": "अनोखी हस्त मुद्रण संग्रहालय"
+      },
+      "tagline": {
+        "en": "Restored haveli dedicated to block print artisans",
+        "hi": "हस्तशिल्प और ब्लॉक प्रिंटिंग की पुरानी हवेली"
+      },
+      "distance": "1.2 km away",
+      "crowd": "14%",
+      "wait": "0 min",
+      "highlight": "Live Artisan Craft Workshop",
+      "image": "https://images.unsplash.com/photo-1609137144822-0a4401886105?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Anokhi+Museum+of+Hand+Printing+Amer"
+    }
   },
   {
     "id": "gateway-india",
@@ -1501,9 +1650,9 @@ const MONUMENTS = [
       "hi": "अपोलो बंदर, कोलाबा, मुंबई"
     },
     "coords": {
-        "lat": 18.922,
-        "lon": 72.8347
-      },
+      "lat": 18.922,
+      "lon": 72.8347
+    },
     "lat": 18.922,
     "lon": 72.8347,
     "era": {
@@ -1688,7 +1837,32 @@ const MONUMENTS = [
         "distance": "10.0 km",
         "fairRange": "₹200 – ₹260"
       }
-    ]
+    ],
+    "shortId": "gateway",
+    "secretFact": {
+      "title": {
+        "en": "The Final British Departure",
+        "hi": "ब्रिटिश साम्राज्य की अंतिम विदाई"
+      },
+      "en": "Though built to welcome King George V in 1911, the Gateway became the historic ceremonial exit through which the last British regiment (First Battalion Somerset Light Infantry) marched out on 28 Feb 1948.",
+      "hi": "यद्यपि इसका निर्माण 1911 में जॉर्ज पंचम के स्वागत में हुआ था, किंतु 28 फरवरी 1948 को इसी प्रवेश द्वार से अंतिम ब्रिटिश सैनिक टुकड़ी ने भारत से विदाई ली थी।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Sassoon Docks Art District",
+        "hi": "ससून डॉक कला केंद्र"
+      },
+      "tagline": {
+        "en": "Historic 1875 docklands transformed into quiet art halls",
+        "hi": "1875 का ऐतिहासिक डॉकयार्ड और कला दीर्घा"
+      },
+      "distance": "1.6 km away",
+      "crowd": "20%",
+      "wait": "0 min",
+      "highlight": "Koli Maritime Heritage",
+      "image": "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Sassoon+Dock+Colaba+Mumbai"
+    }
   },
   {
     "id": "konark-sun-temple",
@@ -1701,9 +1875,9 @@ const MONUMENTS = [
       "hi": "कोणार्क, पुरी ज़िला, ओडिशा"
     },
     "coords": {
-        "lat": 19.8876,
-        "lon": 86.0945
-      },
+      "lat": 19.8876,
+      "lon": 86.0945
+    },
     "lat": 19.8876,
     "lon": 86.0945,
     "era": {
@@ -1876,7 +2050,32 @@ const MONUMENTS = [
         "distance": "65.0 km",
         "fairRange": "₹1,400 – ₹1,800"
       }
-    ]
+    ],
+    "shortId": "konark",
+    "secretFact": {
+      "title": {
+        "en": "Chronometric Sun Dials",
+        "hi": "सूर्य घड़ी के सटीक पहिये"
+      },
+      "en": "The 24 carved stone chariot wheels are scientific sundials. By observing the shadow cast on the spoke beads, temple astronomers calculated the exact time down to a single minute.",
+      "hi": "कोणार्क के 24 विशाल रथ चक्र वैज्ञानिक सूर्य घड़ियां हैं। तीलियों पर पड़ने वाली छाया को देखकर प्राचीन खगोलशास्त्री मिनट की सटीकता से समय मापते थे।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Chandrabhaga Beach & Estuary",
+        "hi": "चंद्रभागा समुद्र तट"
+      },
+      "tagline": {
+        "en": "Pristine coastal grove where Sun God cured Samba",
+        "hi": "शांत समुद्र तट और पावन नदी संगम"
+      },
+      "distance": "3.1 km away",
+      "crowd": "16%",
+      "wait": "0 min",
+      "highlight": "Untouched Marine Horizon",
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Chandrabhaga+Beach+Konark"
+    }
   },
   {
     "id": "meenakshi-temple",
@@ -1889,9 +2088,9 @@ const MONUMENTS = [
       "hi": "मदुरै, तमिलनाडु"
     },
     "coords": {
-        "lat": 9.9195,
-        "lon": 78.1193
-      },
+      "lat": 9.9195,
+      "lon": 78.1193
+    },
     "lat": 9.9195,
     "lon": 78.1193,
     "era": {
@@ -2064,7 +2263,32 @@ const MONUMENTS = [
         "distance": "12.0 km",
         "fairRange": "₹350 – ₹450"
       }
-    ]
+    ],
+    "shortId": "meenakshi",
+    "secretFact": {
+      "title": {
+        "en": "33,000 Polychrome Stucco Sculptures",
+        "hi": "33,000 रंगीन मूर्तियां"
+      },
+      "en": "The 14 towering gopurams contain an astounding 33,000 hand-carved stucco sculptures of celestial beings, restored and repainted with natural mineral pigments every 12 years.",
+      "hi": "मीनाक्षी मंदिर के 14 गोपुरमों पर 33,000 से अधिक हाथ से तराशी गई देवी-देवताओं की मूर्तियां हैं, जिन्हें हर 12 साल में प्राकृतिक रंगों से पुनः सजाया जाता है।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Thirumalai Nayakkar Mahal",
+        "hi": "तिरुमलाई नायक महल"
+      },
+      "tagline": {
+        "en": "Stunning Indo-Saracenic royal palace with giant stucco pillars",
+        "hi": "विशाल खंभों वाला भव्य 17वीं सदी का महल"
+      },
+      "distance": "1.9 km away",
+      "crowd": "22%",
+      "wait": "0 min",
+      "highlight": "Acoustic Palace Dome",
+      "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Thirumalai+Nayakkar+Mahal+Madurai"
+    }
   },
   {
     "id": "ajanta-caves",
@@ -2077,9 +2301,9 @@ const MONUMENTS = [
       "hi": "छत्रपति संभाजीनगर (औरंगाबाद), महाराष्ट्र"
     },
     "coords": {
-        "lat": 20.5519,
-        "lon": 75.7033
-      },
+      "lat": 20.5519,
+      "lon": 75.7033
+    },
     "lat": 20.5519,
     "lon": 75.7033,
     "era": {
@@ -2252,13 +2476,35 @@ const MONUMENTS = [
         "distance": "102.0 km",
         "fairRange": "₹150 (Bus) – ₹2,200 (Cab)"
       }
-    ]
+    ],
+    "shortId": "ajanta",
+    "secretFact": {
+      "title": {
+        "en": "Mirror-Lit Fresco Painting Technique",
+        "hi": "दर्पण से रोशन भित्ति चित्र"
+      },
+      "en": "Buddhist monks painted the subterranean cave ceiling frescoes without oil lamps—which would leave soot—by using polished bronze mirrors and white sheet reflectors to redirect outside sunlight.",
+      "hi": "गुफाओं में अंधेरे के बावजूद भिक्षुओं ने बिना मशाल (जिससे कालिख जमती) के केवल पॉलिश किए कांस्य दर्पणों से धूप परावर्तित करके इन अमूल्य चित्रों को बनाया था।"
+    },
+    "sisterGem": {
+      "name": {
+        "en": "Ajanta Viewpoint across Waghora Gorge",
+        "hi": "अजंता व्यूप्वाइंट (वाघोरा घाटी)"
+      },
+      "tagline": {
+        "en": "The horseshoe clifftop where John Smith rediscovered caves in 1819",
+        "hi": "पहाड़ी की चोटी जहां से संपूर्ण अजंता का विहंगम दृश्य दिखता है"
+      },
+      "distance": "2.5 km away",
+      "crowd": "5%",
+      "wait": "0 min",
+      "highlight": "Breathtaking Gorge Panorama",
+      "image": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80",
+      "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Ajanta+View+Point+Lenapur"
+    }
   }
 ];
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { MONUMENTS };
-}
-if (typeof window !== 'undefined') {
-  window.MONUMENTS = MONUMENTS;
 }

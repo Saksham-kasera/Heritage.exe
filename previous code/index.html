@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafarSaarthi (सफ़र सारथी) — Indian Heritage Companion</title>
+    <meta
+      name="description"
+      content="A mobile-first Indian heritage companion with bilingual English/Hindi storytelling, Web Speech audio narration, Kids Mode, hourly crowd forecast, safety helplines, and fair-fare guide."
+    />
+    <meta property="og:title" content="SafarSaarthi (सफ़र सारथी) — Indian Heritage Companion" />
+    <meta
+      property="og:description"
+      content="A mobile-first Indian heritage companion with bilingual English/Hindi storytelling, Web Speech audio narration, Kids Mode, hourly crowd forecast, safety helplines, and fair-fare guide."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Fraunces (Display Serif), Plus Jakarta Sans (Body), Noto Sans Devanagari (Hindi) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Top Bar Navigation: Brand Wordmark + Monument Search Bar + All Monuments Button -->
+    <header class="top-bar">
+      <!-- Zone 1: Brand Title (One Line) -->
+      <a href="#home" id="brand-link" class="brand-wordmark">SafarSaarthi · सफ़र सारथी</a>
+
+      <!-- Zone 2: Monument Search Bar (replaces the 4 monument links on top) -->
+      <div class="top-search-wrapper" role="search">
+        <div class="search-input-box">
+          <svg
+            class="search-icon"
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="search"
+            id="monument-search-input"
+            class="monument-search-input"
+            placeholder="Search monuments or city (e.g. Taj Mahal, Jaipur, हम्पी)..."
+            aria-label="Search monuments by name or city"
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            id="clear-search-btn"
+            class="clear-search-btn hidden"
+            aria-label="Clear search"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- Instant Search Suggestions Dropdown -->
+        <div id="search-results-dropdown" class="search-results-dropdown hidden" role="listbox" aria-label="Search suggestions">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+
+      <!-- Zone 3: Actions (Location, Planner, Voice Guide, Dark/Light, All Monuments) -->
+      <div class="top-action-group">
+        <button type="button" id="geo-location-btn" class="btn-top-secondary" title="Detect location to calculate distance to heritage sites">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span id="geo-btn-label">Near Me</span>
+        </button>
+        <button type="button" id="open-planner-btn" class="btn-top-planner" title="AI Trip Planning Agent: Plan 1 to 14 days heritage trip">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
+          </svg>
+          <span id="planner-btn-label">🧭 Safar Planner</span>
+        </button>
+        <button type="button" id="open-voice-assistant-btn" class="btn-top-voice" title="Conversational Heritage Voice Assistant">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+          <span>🎙️ Voice Guide</span>
+        </button>
+        <button type="button" id="theme-toggle-btn" class="btn-theme-toggle" aria-label="Toggle Dark and Light Mode" title="Toggle Dark/Light Mode">
+          <span id="theme-toggle-icon">🌙</span>
+        </button>
+        <button type="button" id="home-nav-btn" class="btn-top-action">All Monuments</button>
+      </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <main class="main-container">
+      <!-- ==================== SCREEN 1: HOME SCREEN ==================== -->
+      <section id="home-view" class="view-section">
+        <div class="hero-intro">
+          <p class="hero-kicker">Bilingual Heritage Guide · Live Weather Radar · Tour Planner</p>
+          <h1 class="hero-title">Discover the living stories carved in stone.</h1>
+          <p class="hero-subtitle">
+            Explore curated historical chapters in English or Hindi, monitor live visit weather & heat advisories inspired by Mausam-X, check hourly crowds, and plan your journey with our AI Tour Planning Agent.
+          </p>
+        </div>
+
+        <!-- Location Status & Region Filter Bar -->
+        <div class="home-filters-bar" role="region" aria-label="Location and Heritage Filters">
+          <div class="location-status-badge" id="location-status-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span id="location-display-text">All India Network · 10 Heritage Sites</span>
+            <button type="button" id="change-loc-btn" class="btn-change-loc" title="Switch your reference city">Change</button>
+          </div>
+
+          <div class="filter-chips-row" role="tablist" aria-label="Region filters">
+            <button type="button" class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All Sites (10)</button>
+            <button type="button" class="filter-chip" data-filter="nearest" id="chip-nearest" role="tab" aria-selected="false">📍 Nearest to Me</button>
+            <button type="button" class="filter-chip" data-filter="north" role="tab" aria-selected="false">Northern India</button>
+            <button type="button" class="filter-chip" data-filter="west-central" role="tab" aria-selected="false">Western / Central</button>
+            <button type="button" class="filter-chip" data-filter="south-east" role="tab" aria-selected="false">Southern & Eastern</button>
+          </div>
+        </div>
+
+        <!-- Search filter feedback when filtering home cards -->
+        <div id="home-search-status" class="home-search-status hidden">
+          <span id="home-search-status-text"></span>
+          <button type="button" id="reset-home-search-btn" class="btn-text-reset">Show all monuments</button>
+        </div>
+
+        <!-- Monument Cards Grid (10 Heritage Sites) -->
+        <div id="monuments-grid" class="monuments-grid" aria-label="Heritage Monuments">
+          <!-- Populated dynamically from MONUMENTS in data.js by app.js -->
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 2: MONUMENT PAGE ==================== -->
+      <section id="monument-view" class="view-section hidden" aria-live="polite">
+        <!-- Back Navigation Row -->
+        <div class="back-row">
+          <button type="button" id="back-home-btn" class="btn-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span id="back-btn-label">Back to Monuments</span>
+          </button>
+        </div>
+
+        <!-- Monument Hero Banner -->
+        <article id="monument-hero" class="monument-hero">
+          <!-- Populated dynamically by app.js -->
+        </article>
+
+        <!-- ==================== FEATURE 2: STORIES, EN/HI, LISTEN, KIDS MODE ==================== -->
+        <div class="controls-toolbar" role="region" aria-label="Story Preferences and Audio Controls">
+          <div class="toolbar-group">
+            <!-- Language Segmented Control (EN / HI) -->
+            <div class="control-block">
+              <span class="control-label" id="lang-label">Language</span>
+              <div class="segmented-control" role="group" aria-labelledby="lang-label">
+                <button type="button" id="lang-en-btn" class="segment-btn active" aria-pressed="true">
+                  English (EN)
+                </button>
+                <button type="button" id="lang-hi-btn" class="segment-btn" aria-pressed="false">
+                  हिन्दी (HI)
+                </button>
+              </div>
+            </div>
+
+            <!-- Kids Mode Toggle Button -->
+            <div class="control-block">
+              <span class="control-label" id="mode-label">Reading Level</span>
+              <button
+                type="button"
+                id="kids-mode-btn"
+                class="toggle-mode-btn"
+                aria-pressed="false"
+                aria-labelledby="mode-label"
+              >
+                <svg class="mode-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <span id="kids-mode-text">Kids Mode: Off</span>
+              </button>
+            </div>
+
+            <!-- Voice Gender Selector (Humanized Female / Male Voice) -->
+            <div class="control-block">
+              <span class="control-label" id="voice-label">Narrator Voice</span>
+              <div class="voice-gender-control" role="group" aria-labelledby="voice-label">
+                <button type="button" id="voice-female-btn" class="btn-voice-gender active" aria-pressed="true" title="Humanized Female Voice">
+                  <span>👩 Female</span>
+                </button>
+                <button type="button" id="voice-male-btn" class="btn-voice-gender" aria-pressed="false" title="Humanized Male Voice">
+                  <span>👨 Male</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Speech API Listen All / Stop Button -->
+          <div class="audio-master-control">
+            <button type="button" id="listen-all-btn" class="btn-listen-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <span id="listen-all-text">Listen to All Stories</span>
+            </button>
+            <button type="button" id="stop-speech-btn" class="btn-stop-audio hidden" aria-label="Stop Audio Narration">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+              </svg>
+              <span>Stop Audio</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Speech Status Feedback Banner (Hidden when idle) -->
+        <div id="speech-status-bar" class="speech-status-bar hidden" role="status">
+          <span id="speech-status-text">Narrating story...</span>
+        </div>
+
+        <!-- Stories Section Header -->
+        <div class="section-header">
+          <div>
+            <h2 id="stories-heading" class="section-title">Architectural & Historical Stories</h2>
+            <p id="stories-subheading" class="section-subtitle">
+              Standard heritage stories — switch to Kids Mode above for simpler, wonder-filled tales.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3-4 Story Cards Container -->
+        <div id="stories-list" class="stories-grid">
+          <!-- Populated dynamically by app.js -->
+        </div>
+
+        <!-- ==================== NEW FEATURE: MAUSAM-X WEATHER & HEAT/RAIN TOUR OUTLOOK ==================== -->
+        <section class="feature-section weather-feature-section" id="monument-weather-section" aria-labelledby="weather-heading">
+          <div class="section-header">
+            <div>
+              <div class="weather-kicker">Live Radar & Heritage Tour Forecast</div>
+              <h2 id="weather-heading" class="section-title">Visit Weather & Heat / Rain Outlook</h2>
+              <p id="weather-subheading" class="section-subtitle">
+                Live atmospheric conditions from Open-Meteo & IMD radar: heat stress comfort level, hourly rain probability, and best visiting windows.
+              </p>
+            </div>
+            <div class="weather-badge-pill" id="weather-updated-pill">
+              <span class="pulse-dot"></span>
+              <span id="weather-updated-text">Live Weather Active</span>
+            </div>
+          </div>
+
+          <!-- Main Weather Cards Grid -->
+          <div class="weather-grid">
+            <!-- Left: Current Conditions & Mausam-X Heat Advisory Meter -->
+            <div class="weather-card current-weather-card">
+              <div class="weather-card-top">
+                <div class="weather-icon-temp">
+                  <span class="weather-big-icon" id="weather-main-icon">🌤️</span>
+                  <div>
+                    <div class="weather-temp-display" id="weather-temp-main">--°C</div>
+                    <div class="weather-condition-caption" id="weather-condition-caption">Loading sky conditions...</div>
+                  </div>
+                </div>
+                <div class="weather-city-badge" id="weather-city-tag">Loading...</div>
+              </div>
+
+              <!-- Secondary Metrics Row -->
+              <div class="weather-metrics-grid">
+                <div class="weather-metric">
+                  <span class="metric-label">Feels Like</span>
+                  <span class="metric-val" id="weather-feels-like">--°C</span>
+                </div>
+                <div class="weather-metric">
+                  <span class="metric-label">Humidity</span>
+                  <span class="metric-val" id="weather-humidity">--%</span>
+                </div>
+                <div class="weather-metric">
+                  <span class="metric-label">Wind Speed</span>
+                  <span class="metric-val" id="weather-wind">-- km/h</span>
+                </div>
+                <div class="weather-metric">
+                  <span class="metric-label">UV Index</span>
+                  <span class="metric-val" id="weather-uv">--</span>
+                </div>
+              </div>
+
+              <!-- Mausam-X Style Heat Risk Advisory Gauge -->
+              <div class="heat-gauge-container">
+                <div class="heat-gauge-header">
+                  <span class="heat-risk-title" id="heat-risk-label">Heat Stress: Pleasant</span>
+                  <span class="heat-risk-advice" id="heat-risk-advice">Comfortable outdoor conditions</span>
+                </div>
+                <div class="heat-meter-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="heat-progress-bar">
+                  <div class="heat-meter-fill" id="heat-meter-fill" style="width: 25%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Rain Probability & Optimal Visit Hours -->
+            <div class="weather-card rain-radar-card">
+              <div class="rain-card-header">
+                <div>
+                  <h3 class="sub-card-title">🌧️ Hourly Rain Probability & Risk</h3>
+                  <p class="sub-card-desc" id="rain-overview-text">Checking precipitation radar...</p>
+                </div>
+                <span class="rain-status-pill" id="rain-badge">Radar Ready</span>
+              </div>
+
+              <!-- Hourly Rain Probability Bars (0-100%) -->
+              <div class="rain-hourly-bars" id="rain-hourly-bars" aria-label="Hourly rain probability bars">
+                <!-- Populated dynamically by app.js -->
+              </div>
+
+              <!-- Optimal Visiting Window Banner -->
+              <div class="optimal-window-banner">
+                <div class="window-banner-icon">🕒</div>
+                <div>
+                  <div class="window-banner-title">Best Visiting Hours Today</div>
+                  <div class="window-banner-body" id="optimal-window-text">
+                    Calculating optimal low-heat and balanced crowd hours...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7-Day Tour Planner Weather Outlook -->
+          <div class="weather-forecast-container">
+            <div class="forecast-header-row">
+              <h3 class="forecast-section-title">📅 7-Day Tour Planning Forecast</h3>
+              <span class="forecast-helper">Pick the clearest, mildest day for your visit</span>
+            </div>
+            <div class="forecast-scroll-row" id="forecast-7day-row">
+              <!-- Populated dynamically by app.js: 7 daily cards -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== FEATURE 3 & 4: CROWD CHART & NEARBY GEM ==================== -->
+        <section class="feature-section" aria-labelledby="crowd-heading">
+          <div class="section-header">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                <h2 id="crowd-heading" class="section-title">Expected Crowd by Hour (8 AM – 6 PM)</h2>
+                <span class="crowd-source-tag" id="crowd-source-tag" title="Aggregated from Archaeological Survey of India (ASI) ticket counters and verified footfall patterns">
+                  🏛️ Verified ASI & Footfall Dataset
+                </span>
+              </div>
+              <p id="crowd-subheading" class="section-subtitle">
+                Pick your planned arrival time slot below to check crowd status and quieter alternatives.
+              </p>
+            </div>
+          </div>
+
+          <div class="crowd-panel">
+            <!-- Dropdown Time Slot Picker + Status Badge Row -->
+            <div class="crowd-controls-row">
+              <div class="time-picker-group">
+                <label for="time-slot-select" id="time-slot-label" class="control-label">
+                  Select Time Slot
+                </label>
+                <select id="time-slot-select" class="time-slot-select">
+                  <!-- Populated dynamically from 8 AM to 6 PM by app.js -->
+                </select>
+              </div>
+
+              <!-- Status Badge for Selected Time Slot -->
+              <div class="crowd-status-wrapper">
+                <span class="control-label" id="crowd-status-caption">Selected Slot Status</span>
+                <div id="crowd-status-badge" class="crowd-status-badge status-high" role="status">
+                  <!-- Populated dynamically by app.js -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Legend for Green / Amber / Red Bars -->
+            <div class="crowd-legend" aria-label="Crowd level colour key">
+              <span class="legend-item">
+                <span class="legend-swatch swatch-green" aria-hidden="true"></span>
+                <span id="legend-low">Low (&lt;45% · Green)</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-swatch swatch-amber" aria-hidden="true"></span>
+                <span id="legend-moderate">Moderate (45–69% · Amber)</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-swatch swatch-red" aria-hidden="true"></span>
+                <span id="legend-high">High / Peak (70%+ · Red)</span>
+              </span>
+            </div>
+
+            <!-- Bar Chart of Expected Crowd (8 AM - 6 PM) -->
+            <div id="crowd-chart-bars" class="crowd-chart-bars" role="img" aria-label="Hourly bar chart of expected crowd from 8 AM to 6 PM">
+              <!-- Populated dynamically by app.js -->
+            </div>
+          </div>
+
+          <!-- Feature 4: "Quieter nearby heritage gem" card (Shown ONLY when status is High or Peak) -->
+          <div id="nearby-gem-container" class="nearby-gem-card hidden" aria-live="polite">
+            <!-- Populated dynamically by app.js when selected slot is High or Peak -->
+          </div>
+        </section>
+
+        <!-- ==================== FEATURE 5: SAFETY & VISIT CHECKLIST ==================== -->
+        <section class="feature-section" aria-labelledby="safety-heading">
+          <div class="section-header">
+            <div>
+              <h2 id="safety-heading" class="section-title">Visitor Safety & Readiness</h2>
+              <p id="safety-subheading" class="section-subtitle">
+                One-tap emergency helplines, nearest assistance centres, and an interactive pre-visit checklist.
+              </p>
+            </div>
+          </div>
+
+          <div class="safety-grid">
+            <!-- Left Column: Tap-to-Call Emergency Buttons + Nearest Police/Hospital -->
+            <div class="safety-card">
+              <h3 id="helplines-title" class="sub-card-title">24×7 Emergency Tap-to-Call Helplines</h3>
+              <p id="helplines-desc" class="sub-card-desc">
+                Tap any button below on your phone to dial official national and tourist support lines immediately.
+              </p>
+
+              <div class="helpline-buttons">
+                <a href="tel:112" class="btn-helpline helpline-emergency">
+                  <div class="helpline-info">
+                    <span class="helpline-number">112</span>
+                    <span id="helpline-112-label" class="helpline-name">National Emergency Response</span>
+                  </div>
+                  <span class="helpline-call-tag">Tap to Call</span>
+                </a>
+
+                <a href="tel:1363" class="btn-helpline helpline-tourist">
+                  <div class="helpline-info">
+                    <span class="helpline-number">1363</span>
+                    <span id="helpline-1363-label" class="helpline-name">24×7 Incredible India Tourist Helpline</span>
+                  </div>
+                  <span class="helpline-call-tag">Tap to Call</span>
+                </a>
+
+                <a href="tel:1091" class="btn-helpline helpline-women">
+                  <div class="helpline-info">
+                    <span class="helpline-number">1091</span>
+                    <span id="helpline-1091-label" class="helpline-name">Women in Distress Helpline</span>
+                  </div>
+                  <span class="helpline-call-tag">Tap to Call</span>
+                </a>
+              </div>
+
+              <!-- Nearest Police & Hospital Info -->
+              <div id="nearest-facilities" class="nearest-facilities">
+                <!-- Populated dynamically by app.js -->
+              </div>
+            </div>
+
+            <!-- Right Column: Interactive Visit Checklist -->
+            <div class="safety-card">
+              <div class="checklist-header-row">
+                <h3 id="checklist-title" class="sub-card-title">Monument Visit Checklist</h3>
+                <span id="checklist-progress" class="checklist-progress">0 / 4 Ready</span>
+              </div>
+              <p id="checklist-desc" class="sub-card-desc">
+                Tick off each item before heading to the entry gate.
+              </p>
+              <div id="visit-checklist" class="visit-checklist">
+                <!-- Populated dynamically by app.js -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== FEATURE 6: FAIR-FARE RANGE TABLE ==================== -->
+        <section class="feature-section" aria-labelledby="fare-heading">
+          <div class="section-header">
+            <div>
+              <h2 id="fare-heading" class="section-title">Fair-Fare Range Guide</h2>
+              <p id="fare-subheading" class="section-subtitle">
+                Estimated local transit fare ranges to help you negotiate fairly and avoid tourist overcharging.
+              </p>
+            </div>
+          </div>
+
+          <div class="fare-table-card">
+            <div class="table-responsive">
+              <table class="fare-table">
+                <thead>
+                  <tr>
+                    <th scope="col" id="th-route">Route</th>
+                    <th scope="col" id="th-mode">Transit Mode</th>
+                    <th scope="col" id="th-distance">Distance</th>
+                    <th scope="col" id="th-fare">Fair-Fare Range</th>
+                  </tr>
+                </thead>
+                <tbody id="fare-table-body">
+                  <!-- Populated dynamically by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Live Travel App Comparison Chart (Rapido, Ola, Uber, Metro & Auto) -->
+          <div class="app-comparison-card" id="app-comparison-section">
+            <div class="app-comparison-header">
+              <div class="app-header-left">
+                <span class="app-header-badge">⚡ Real-Time Transit Comparison</span>
+                <h3 class="app-comparison-title" id="app-comparison-title">
+                  Cab & Bike App Comparison · Uber vs. Ola vs. Rapido
+                </h3>
+                <p class="app-comparison-desc" id="app-comparison-desc">
+                  Live estimated price benchmarks, surge trends, and ETA across major ride-hailing platforms for this monument route.
+                </p>
+              </div>
+              <div class="app-route-selector">
+                <label for="app-route-select" id="app-route-label" class="control-label">Select Travel Route:</label>
+                <select id="app-route-select" class="time-slot-select app-route-dropdown">
+                  <!-- Populated dynamically by app.js from monument routes -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Ride App Comparison Grid -->
+            <div class="app-cards-grid" id="app-cards-grid">
+              <!-- Populated dynamically by app.js with Rapido, Ola, Uber, Local Auto -->
+            </div>
+
+            <div class="app-comparison-footer">
+              <span class="app-note-text" id="app-comparison-note">
+                💡 <strong>Smart Traveler Tip:</strong> Rapido Bike is optimal for solo travelers avoiding traffic bottlenecks. Uber & Ola Auto are metered benchmarks to avoid roadside overcharging.
+              </span>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- ==================== SAFAR AI TOUR PLANNER MODAL ==================== -->
+    <div id="planner-modal" class="planner-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="planner-modal-title">
+      <div class="planner-modal-card">
+        <div class="planner-modal-header">
+          <div class="planner-brand-tag">
+            <span class="planner-badge">AI Tour Agent</span>
+            <h2 id="planner-modal-title" class="planner-title">🧭 Safar AI Tour Planner · सफ़र योजनाकार</h2>
+          </div>
+          <button type="button" id="close-planner-btn" class="btn-close-modal" aria-label="Close Tour Planner">✕</button>
+        </div>
+
+        <p class="planner-lead">
+          Plan your upcoming trip effortlessly. Select your trip length and style, and our Tour Planning Agent will build a weather-optimized, crowd-aware daily itinerary with fair local transit costs and bilingual heritage tips.
+        </p>
+
+        <!-- Planner Form Inputs -->
+        <form id="tour-planner-form" class="planner-form" onsubmit="return false;">
+          <div class="planner-form-grid">
+            <!-- Input 1: Number of Days -->
+            <div class="planner-field">
+              <label for="planner-days-input" class="planner-label">Number of Days for Your Trip</label>
+              <div class="days-preset-row">
+                <button type="button" class="day-preset-btn" data-days="1">1 Day</button>
+                <button type="button" class="day-preset-btn" data-days="2">2 Days</button>
+                <button type="button" class="day-preset-btn active" data-days="3">3 Days</button>
+                <button type="button" class="day-preset-btn" data-days="5">5 Days</button>
+                <button type="button" class="day-preset-btn" data-days="7">7 Days</button>
+                <div class="custom-days-wrapper">
+                  <span class="days-unit">Days:</span>
+                  <input type="number" id="planner-days-input" class="planner-number-input" min="1" max="14" value="3" aria-label="Custom number of days" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Input 2: Starting Region / Hub -->
+            <div class="planner-field">
+              <label for="planner-hub-select" class="planner-label">Starting Hub / Region</label>
+              <select id="planner-hub-select" class="planner-select">
+                <option value="auto">📍 Use My Detected Location</option>
+                <option value="golden-triangle" selected>Golden Triangle (Delhi → Agra → Jaipur)</option>
+                <option value="delhi">Delhi Heritage Circuit (Red Fort, Qutub Minar, Old Delhi)</option>
+                <option value="rajasthan">Royal Rajasthan (Jaipur, Amer Fort, Hawa Mahal)</option>
+                <option value="south-india">South India Ancient Temples (Hampi, Madurai)</option>
+                <option value="west-india">Western Hub & Caves (Mumbai Gateway, Ajanta Caves)</option>
+                <option value="east-india">East Coast Marvels (Konark Sun Temple & Odisha)</option>
+              </select>
+            </div>
+
+            <!-- Input 3: Travel Pace & Style -->
+            <div class="planner-field">
+              <label for="planner-pace-select" class="planner-label">Travel Pace & Vibe</label>
+              <select id="planner-pace-select" class="planner-select">
+                <option value="cultural" selected>🌿 Relaxed & Cultural (In-depth storytelling, shaded cafe breaks)</option>
+                <option value="explorer">⚡ Fast-Paced Explorer (Cover maximum heritage sites, sunrise starts)</option>
+                <option value="family">👨‍👩‍👧 Family & Kids Friendly (Simpler tales, shaded midday, low walking fatigue)</option>
+                <option value="budget">💰 Budget Friendly (Metro & authorized buses, pocket-friendly transit)</option>
+              </select>
+            </div>
+
+            <!-- Input 4: Weather & Heat Adaptation -->
+            <div class="planner-field">
+              <label for="planner-season-select" class="planner-label">Weather & Heat Adaptation</label>
+              <select id="planner-season-select" class="planner-select">
+                <option value="current" selected>🌤️ Synchronize with Live Mausam-X Weather</option>
+                <option value="winter">❄️ Mild Winter (Comfortable outdoor walks throughout day)</option>
+                <option value="summer">☀️ Warm Summer (Early morning & golden hour monuments, indoor afternoons)</option>
+                <option value="monsoon">🌧️ Monsoon (Lush greenery, rain-prepared gear)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="planner-action-bar">
+            <button type="submit" id="generate-itinerary-btn" class="btn-generate-plan">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+              </svg>
+              <span>Build Intelligent Tour Plan</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Itinerary Results Output Container -->
+        <div id="planner-results" class="planner-results hidden">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== HD IMAGE LIGHTBOX MODAL ==================== -->
+    <div id="image-lightbox" class="lightbox-backdrop hidden" role="dialog" aria-modal="true" aria-label="High Definition Monument Photo Lightbox">
+      <div class="lightbox-content">
+        <button type="button" id="close-lightbox-btn" class="lightbox-close" aria-label="Close Lightbox">✕</button>
+        <div class="lightbox-img-wrapper">
+          <img id="lightbox-img" src="" alt="High Definition Monument View" class="lightbox-img" />
+        </div>
+        <div class="lightbox-caption">
+          <div id="lightbox-title" class="lightbox-title">Monument Photography</div>
+          <p id="lightbox-desc" class="lightbox-desc"></p>
+          <div id="lightbox-credit" class="lightbox-credit"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== LOCATION SELECTION MODAL ==================== -->
+    <div id="location-modal" class="location-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="loc-modal-title">
+      <div class="location-modal-card">
+        <div class="planner-modal-header">
+          <h3 id="loc-modal-title" class="sub-card-title">📍 Select Your Location</h3>
+          <button type="button" id="close-loc-modal-btn" class="btn-close-modal" aria-label="Close Location Selector">✕</button>
+        </div>
+        <p class="sub-card-desc">
+          Detect your GPS location or pick a reference Indian city to calculate distances to all 10 heritage sites.
+        </p>
+        <button type="button" id="modal-detect-gps-btn" class="btn-modal-gps">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Detect My Real GPS Location</span>
+        </button>
+        <div class="loc-cities-divider">or choose your city</div>
+        <div class="loc-city-grid" id="loc-city-grid">
+          <!-- Populated dynamically with Indian cities -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== CONVERSATIONAL VOICE ASSISTANT MODAL ==================== -->
+    <div id="voice-assistant-modal" class="planner-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="assistant-modal-title">
+      <div class="assistant-modal-card">
+        <div class="assistant-header">
+          <div class="assistant-title-group">
+            <div class="assistant-avatar">🎙️</div>
+            <div>
+              <h3 id="assistant-modal-title" class="assistant-title">Safar Voice Guide · सारथी आवाज़</h3>
+              <span class="assistant-voice-tag" id="assistant-active-voice-tag">Voice: Natural Female (Riya)</span>
+            </div>
+          </div>
+          <button type="button" id="close-assistant-btn" class="btn-close-modal" aria-label="Close Voice Assistant">✕</button>
+        </div>
+
+        <div class="assistant-body">
+          <!-- Central Pulse Mic -->
+          <button type="button" id="assistant-mic-btn" class="assistant-mic-circle" title="Tap to Speak">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+          </button>
+          <div class="assistant-prompt-text" id="assistant-prompt-text">
+            Tap the microphone and speak in English or Hindi
+          </div>
+
+          <!-- Dialogue Transcript Area -->
+          <div class="assistant-dialogue-box" id="assistant-dialogue-box">
+            <div class="assistant-speech-bubble" id="assistant-initial-bubble">
+              "Namaste! I am your Safar Voice Guide. You can ask me to open any monument, check live weather, hear crowd forecasts, read stories, or plan your trip. How can I help you today?"
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Voice Command Suggestions -->
+        <div>
+          <div class="assistant-examples-title">Try saying:</div>
+          <div class="assistant-chips-grid">
+            <button type="button" class="assistant-chip" data-voice-cmd="Show Taj Mahal">"Show Taj Mahal"</button>
+            <button type="button" class="assistant-chip" data-voice-cmd="What is the weather?">"What's the weather?"</button>
+            <button type="button" class="assistant-chip" data-voice-cmd="Is it crowded today?">"Is it crowded today?"</button>
+            <button type="button" data-voice-cmd="कहानी सुनाओ" class="assistant-chip">"कहानी सुनाओ (Read story)"</button>
+            <button type="button" class="assistant-chip" data-voice-cmd="Switch to Hindi">"हिन्दी में बताओ"</button>
+            <button type="button" class="assistant-chip" data-voice-cmd="Plan a 3 days trip">"Plan a 3 days trip"</button>
+            <button type="button" class="assistant-chip" data-voice-cmd="Toggle dark mode">"Toggle Dark Mode"</button>
+            <button type="button" class="assistant-chip" data-voice-cmd="Switch to male voice">"Switch to Male Voice"</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-brand">SafarSaarthi | CYPHER'26</p>
+        <p class="footer-note">
+          Note: Crowd data and visitor estimates are illustrative for demonstration purposes.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Plain JavaScript Files (No Framework, No Build Step Required) -->
+    <script src="/data.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
