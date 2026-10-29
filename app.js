@@ -75,11 +75,11 @@
 
   // ========================================================================
   // Weather API Configuration — reads from gitignored config.js
-  // Falls back to keyless Open-Meteo if no key is provided
+  // Supports Weatherstack, OpenWeatherMap, WeatherAPI, and Open-Meteo
   // ========================================================================
   const WEATHER_CONFIG = {
     apiKey: (window.APP_CONFIG && window.APP_CONFIG.weatherApiKey) ? String(window.APP_CONFIG.weatherApiKey).trim() : "",
-    provider: (window.APP_CONFIG && window.APP_CONFIG.weatherProvider) ? String(window.APP_CONFIG.weatherProvider) : "openmeteo"
+    provider: (window.APP_CONFIG && window.APP_CONFIG.weatherProvider) ? String(window.APP_CONFIG.weatherProvider).toLowerCase().trim() : "openmeteo"
   };
 
   // Application State
@@ -849,8 +849,8 @@
   }
 
   // ========================================================================
-  // Mausam-X Live Weather Radar Engine (OpenWeatherMap / WeatherAPI / Open-Meteo)
-  // Supports dynamic API key insertion with zero-crash keyless fallback
+  // Mausam-X Live Weather Radar Engine
+  // Supports Weatherstack / OpenWeatherMap / WeatherAPI / Open-Meteo
   // ========================================================================
 
   function updateMausamRadar(monument) {
@@ -868,72 +868,143 @@
       return;
     }
 
-    // 1. Check OpenWeatherMap
-    if (WEATHER_CONFIG.apiKey && WEATHER_CONFIG.apiKey.trim().length > 0 && WEATHER_CONFIG.provider === 'openweathermap') {
-      const owmUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${encodeURIComponent(WEATHER_CONFIG.apiKey.trim())}&units=metric`;
-      fetch(owmUrl)
-        .then(res => {
-          if (!res.ok) throw new Error(`OpenWeather status ${res.status}`);
-          return res.json();
-        })
-        .then(data => {
-          if (data && data.main) {
-            const parsed = {
-              current: {
-                temperature_2m: data.main.temp,
-                apparent_temperature: data.main.feels_like,
-                relative_humidity_2m: data.main.humidity,
-                wind_speed_10m: Math.round((data.wind?.speed || 0) * 3.6),
-                condition_text: data.weather && data.weather[0] ? data.weather[0].main : "Clear"
-              },
-              source: "OpenWeatherMap"
-            };
-            state.weatherCache[cacheKey] = parsed;
-            renderRadarMetrics(parsed);
-            if (radarUpdatedTag) radarUpdatedTag.textContent = 'Live OpenWeather';
-          }
-        })
-        .catch(err => {
-          console.warn('OpenWeatherMap fallback to Open-Meteo:', err.message);
-          fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
-        });
+    // 1. Weatherstack
+    if (WEATHER_CONFIG.apiKey && WEATHER_CONFIG.provider === 'weatherstack') {
+      fetchWeatherstack(coords, cacheKey, monument, radarUpdatedTag);
       return;
     }
 
-    // 2. Check WeatherAPI.com
-    if (WEATHER_CONFIG.apiKey && WEATHER_CONFIG.apiKey.trim().length > 0 && WEATHER_CONFIG.provider === 'weatherapi') {
-      const wapiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${encodeURIComponent(WEATHER_CONFIG.apiKey.trim())}&q=${coords.lat},${coords.lon}&days=1&aqi=no`;
-      fetch(wapiUrl)
-        .then(res => {
-          if (!res.ok) throw new Error(`WeatherAPI status ${res.status}`);
-          return res.json();
-        })
-        .then(data => {
-          if (data && data.current) {
-            const parsed = {
-              current: {
-                temperature_2m: data.current.temp_c,
-                apparent_temperature: data.current.feelslike_c,
-                relative_humidity_2m: data.current.humidity,
-                wind_speed_10m: Math.round(data.current.wind_kph || 0),
-                condition_text: data.current.condition ? data.current.condition.text : "Pleasant"
-              },
-              source: "WeatherAPI"
-            };
-            state.weatherCache[cacheKey] = parsed;
-            renderRadarMetrics(parsed);
-            if (radarUpdatedTag) radarUpdatedTag.textContent = 'Live WeatherAPI';
-          }
-        })
-        .catch(err => {
-          console.warn('WeatherAPI fallback to Open-Meteo:', err.message);
-          fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
-        });
+    // 2. OpenWeatherMap
+    if (WEATHER_CONFIG.apiKey && (WEATHER_CONFIG.provider === 'openweathermap' || WEATHER_CONFIG.provider === 'openweather')) {
+      fetchOpenWeather(coords, cacheKey, monument, radarUpdatedTag);
       return;
     }
 
-    // 3. Default Keyless Satellite Engine: Open-Meteo
+    // 3. WeatherAPI.com
+    if (WEATHER_CONFIG.apiKey && (WEATHER_CONFIG.provider === 'weatherapi' || WEATHER_CONFIG.provider === 'weather-api')) {
+      fetchWeatherAPI(coords, cacheKey, monument, radarUpdatedTag);
+      return;
+    }
+
+    // 4. Default Keyless Satellite Engine: Open-Meteo
     fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
+  }
+
+  function fetchWeatherstack(coords, cacheKey, monument, radarUpdatedTag) {
+    const wsKey = encodeURIComponent(WEATHER_CONFIG.apiKey);
+    const wsUrlHttps = `https://api.weatherstack.com/current?access_key=${wsKey}&query=${coords.lat},${coords.lon}`;
+    const wsUrlHttp = `http://api.weatherstack.com/current?access_key=${wsKey}&query=${coords.lat},${coords.lon}`;
+
+    const handlePayload = (data) => {
+      if (data && data.success === false && data.error) {
+        throw new Error(data.error.info || `Weatherstack error ${data.error.code}`);
+      }
+      if (data && data.current) {
+        const cur = data.current;
+        const parsed = {
+          current: {
+            temperature_2m: cur.temperature,
+            apparent_temperature: cur.feelslike !== undefined ? cur.feelslike : cur.temperature + 2,
+            relative_humidity_2m: cur.humidity,
+            wind_speed_10m: Math.round(cur.wind_speed || 0),
+            uv_index: cur.uv_index !== undefined ? cur.uv_index : 6,
+            condition_text: (cur.weather_descriptions && cur.weather_descriptions[0]) ? cur.weather_descriptions[0] : "Clear"
+          },
+          source: "Weatherstack"
+        };
+        state.weatherCache[cacheKey] = parsed;
+        renderRadarMetrics(parsed);
+        if (radarUpdatedTag) radarUpdatedTag.textContent = 'Live Weatherstack';
+        return true;
+      }
+      throw new Error('Weatherstack returned unexpected payload structure');
+    };
+
+    fetch(wsUrlHttps)
+      .then(res => res.json())
+      .then(data => {
+        // Free tier accounts on Weatherstack restrict HTTPS with code 105
+        if (data && data.error && (data.error.code === 105 || data.error.type === 'https_access_restricted')) {
+          if (window.location.protocol !== 'https:') {
+            return fetch(wsUrlHttp).then(r => r.json()).then(handlePayload);
+          }
+        }
+        return handlePayload(data);
+      })
+      .catch(err => {
+        console.warn('Weatherstack notice, attempting resilient fallback:', err.message);
+        // Smart fallback: try OpenWeatherMap in case key belongs to OWM, or fall back to Open-Meteo
+        fetchOpenWeather(coords, cacheKey, monument, radarUpdatedTag, true);
+      });
+  }
+
+  function fetchOpenWeather(coords, cacheKey, monument, radarUpdatedTag, isFallback = false) {
+    if (!WEATHER_CONFIG.apiKey) {
+      fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
+      return;
+    }
+    const owmUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${encodeURIComponent(WEATHER_CONFIG.apiKey)}&units=metric`;
+    fetch(owmUrl)
+      .then(res => {
+        if (!res.ok) throw new Error(`OpenWeather status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        if (data && data.main) {
+          const parsed = {
+            current: {
+              temperature_2m: data.main.temp,
+              apparent_temperature: data.main.feels_like,
+              relative_humidity_2m: data.main.humidity,
+              wind_speed_10m: Math.round((data.wind?.speed || 0) * 3.6),
+              condition_text: (data.weather && data.weather[0]) ? data.weather[0].main : "Clear"
+            },
+            source: "OpenWeatherMap"
+          };
+          state.weatherCache[cacheKey] = parsed;
+          renderRadarMetrics(parsed);
+          if (radarUpdatedTag) radarUpdatedTag.textContent = 'Live OpenWeather';
+        }
+      })
+      .catch(err => {
+        if (!isFallback) console.warn('OpenWeatherMap fallback to Open-Meteo:', err.message);
+        fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
+      });
+  }
+
+  function fetchWeatherAPI(coords, cacheKey, monument, radarUpdatedTag) {
+    if (!WEATHER_CONFIG.apiKey) {
+      fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
+      return;
+    }
+    const wapiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${encodeURIComponent(WEATHER_CONFIG.apiKey)}&q=${coords.lat},${coords.lon}&days=1&aqi=no`;
+    fetch(wapiUrl)
+      .then(res => {
+        if (!res.ok) throw new Error(`WeatherAPI status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        if (data && data.current) {
+          const parsed = {
+            current: {
+              temperature_2m: data.current.temp_c,
+              apparent_temperature: data.current.feelslike_c,
+              relative_humidity_2m: data.current.humidity,
+              wind_speed_10m: Math.round(data.current.wind_kph || 0),
+              uv_index: data.current.uv,
+              condition_text: data.current.condition ? data.current.condition.text : "Pleasant"
+            },
+            source: "WeatherAPI"
+          };
+          state.weatherCache[cacheKey] = parsed;
+          renderRadarMetrics(parsed);
+          if (radarUpdatedTag) radarUpdatedTag.textContent = 'Live WeatherAPI';
+        }
+      })
+      .catch(err => {
+        console.warn('WeatherAPI fallback to Open-Meteo:', err.message);
+        fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag);
+      });
   }
 
   function fetchOpenMeteo(coords, cacheKey, monument, radarUpdatedTag) {
@@ -974,23 +1045,50 @@
 
   function renderRadarMetrics(data) {
     const cur = data.current || {};
-    const temp = Math.round(cur.temperature_2m || 28);
-    const feels = Math.round(cur.apparent_temperature || temp + 2);
-    const hum = Math.round(cur.relative_humidity_2m || 42);
-    const wind = Math.round(cur.wind_speed_10m || 12);
+    const temp = Math.round(cur.temperature_2m !== undefined ? cur.temperature_2m : 28);
+    const feels = Math.round(cur.apparent_temperature !== undefined ? cur.apparent_temperature : temp + 2);
+    const hum = Math.round(cur.relative_humidity_2m !== undefined ? cur.relative_humidity_2m : 42);
+    const wind = Math.round(cur.wind_speed_10m !== undefined ? cur.wind_speed_10m : 12);
+    const uvVal = cur.uv_index !== undefined ? Number(cur.uv_index) : (data.hourly && data.hourly.uv_index ? Number(data.hourly.uv_index[2] || 6) : 6);
+    const uv = Math.round(uvVal);
 
     const radarTemp = document.getElementById('radar-temp');
     const radarHeatIndex = document.getElementById('radar-heat-index');
     const radarHumidity = document.getElementById('radar-humidity');
     const radarWind = document.getElementById('radar-wind');
     const radarCondition = document.getElementById('radar-condition');
+    const radarUv = document.getElementById('radar-uv');
+    const radarWeatherIconWrap = document.getElementById('radar-weather-icon-wrap');
 
     if (radarTemp) radarTemp.textContent = temp;
     if (radarHeatIndex) radarHeatIndex.textContent = `${feels}°C`;
     if (radarHumidity) radarHumidity.textContent = `${hum}%`;
     if (radarWind) radarWind.innerHTML = `${wind} <span class="font-ui text-caption font-normal">km/h</span>`;
     if (radarCondition && cur.condition_text) {
-      radarCondition.textContent = `${cur.condition_text} · Clear Air`;
+      radarCondition.textContent = `${cur.condition_text} · Microclimate`;
+    }
+
+    if (radarUv) {
+      let uvLabel = 'Moderate';
+      if (uv <= 2) uvLabel = 'Low';
+      else if (uv <= 5) uvLabel = 'Moderate';
+      else if (uv <= 7) uvLabel = 'High';
+      else if (uv <= 10) uvLabel = 'Very High';
+      else uvLabel = 'Extreme';
+      radarUv.innerHTML = `${uv} <span class="font-ui text-caption font-normal">(${uvLabel})</span>`;
+    }
+
+    if (radarWeatherIconWrap && cur.condition_text) {
+      const cond = String(cur.condition_text).toLowerCase();
+      let icon = 'wb_sunny';
+      if (cond.includes('rain') || cond.includes('drizzle')) icon = 'rainy';
+      else if (cond.includes('thunder') || cond.includes('storm')) icon = 'thunderstorm';
+      else if (cond.includes('cloud') || cond.includes('overcast')) icon = 'cloud';
+      else if (cond.includes('haze') || cond.includes('fog') || cond.includes('mist') || cond.includes('smoke')) icon = 'foggy';
+      else if (cond.includes('snow')) icon = 'ac_unit';
+      else if (cond.includes('sunny') || cond.includes('clear')) icon = 'wb_sunny';
+      else icon = 'filter_drama';
+      radarWeatherIconWrap.innerHTML = `<span class="material-symbols-outlined text-[32px]">${icon}</span>`;
     }
   }
 

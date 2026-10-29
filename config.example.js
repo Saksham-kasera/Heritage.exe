@@ -6,7 +6,8 @@
 //   2. Fill in your API key and provider
 //   3. config.js is gitignored — your key stays private
 //
-// Providers:
+// Supported Providers:
+//   "weatherstack"    →  https://weatherstack.com/       (free tier: 100 calls/month)
 //   "openweathermap"  →  https://openweathermap.org/api  (free tier: 1000 calls/day)
 //   "weatherapi"      →  https://www.weatherapi.com/     (free tier: 1M calls/month)
 //   "openmeteo"       →  No key needed, always free (default fallback)
@@ -14,5 +15,5 @@
 
 window.APP_CONFIG = {
   weatherApiKey: "",           // ← Replace with your real key in config.js (not here)
-  weatherProvider: "openmeteo" // ← "openweathermap" | "weatherapi" | "openmeteo"
+  weatherProvider: "openmeteo" // ← "weatherstack" | "openweathermap" | "weatherapi" | "openmeteo"
 };
