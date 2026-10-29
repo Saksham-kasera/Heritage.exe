@@ -91,6 +91,7 @@
     kidsMode: false,
     voiceGender: 'female',         // 'female' | 'male'
     theme: 'light',                // 'light' | 'dark'
+    viewportMode: 'mobile',        // 'mobile' | 'desktop'
     isSurgeActive: false,          // ⚡ Live Demo Surge Mode
     selectedHour: '10 AM',
     isPlayingAudio: false,
@@ -246,6 +247,9 @@
   const voiceGenderIcon = document.getElementById('voice-gender-icon');
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const themeToggleIcon = document.getElementById('theme-toggle-icon');
+  const viewportToggleBtn = document.getElementById('viewport-toggle-btn');
+  const viewportToggleIcon = document.getElementById('viewport-toggle-icon');
+  const viewportToggleLabel = document.getElementById('viewport-toggle-label');
   const globalSearchInput = document.getElementById('global-search-input');
   const searchDropdown = document.getElementById('search-dropdown');
   const clearSearchBtn = document.getElementById('clear-search-btn');
@@ -1573,6 +1577,48 @@
     const saved = localStorage.getItem('safarsaarthi_theme');
     if (saved === 'dark') toggleTheme();
   } catch (_) {}
+
+  // ========================================================================
+  // Viewport Switcher: Mobile Phone vs Desktop Broadsheet Mode
+  // ========================================================================
+  function setViewportMode(mode) {
+    state.viewportMode = mode;
+    if (mode === 'desktop') {
+      document.body.classList.add('desktop-mode');
+      if (viewportToggleIcon) viewportToggleIcon.textContent = 'smartphone';
+      if (viewportToggleLabel) viewportToggleLabel.textContent = 'Mobile';
+      if (viewportToggleBtn) viewportToggleBtn.setAttribute('title', 'Switch to Mobile View');
+    } else {
+      document.body.classList.remove('desktop-mode');
+      if (viewportToggleIcon) viewportToggleIcon.textContent = 'desktop_windows';
+      if (viewportToggleLabel) viewportToggleLabel.textContent = 'Desktop';
+      if (viewportToggleBtn) viewportToggleBtn.setAttribute('title', 'Switch to Desktop View');
+    }
+    try {
+      localStorage.setItem('safarsaarthi_viewport_mode', mode);
+    } catch (_) {}
+  }
+
+  function toggleViewportMode() {
+    const nextMode = state.viewportMode === 'mobile' ? 'desktop' : 'mobile';
+    setViewportMode(nextMode);
+  }
+
+  if (viewportToggleBtn) {
+    viewportToggleBtn.addEventListener('click', toggleViewportMode);
+  }
+
+  // Restore Viewport Mode from localStorage
+  try {
+    const savedViewport = localStorage.getItem('safarsaarthi_viewport_mode');
+    if (savedViewport === 'desktop') {
+      setViewportMode('desktop');
+    } else {
+      setViewportMode('mobile');
+    }
+  } catch (_) {
+    setViewportMode('mobile');
+  }
 
   // ========================================================================
   // Monument Selection Handler

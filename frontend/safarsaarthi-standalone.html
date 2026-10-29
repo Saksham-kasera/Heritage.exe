@@ -106,7 +106,339 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="style.css"/>
+  <style>
+/* ==========================================================================
+   Safar Saarthi (सफ़र सारथी) — Warm Editorial Heritage Stylesheet (style.css)
+   Aesthetic: Oura Warm-Paper & Archival Broadsheet
+   Canvas: #f7f1e8 | Surface: #ffffff | Hairline: #e1dcd3 | Ink: #1c1b1a
+   ========================================================================== */
+
+@layer base {
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f1e8;
+    color: #1c1b1a;
+    -webkit-tap-highlight-color: transparent;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    overscroll-behavior-y: none;
+    min-height: 100vh;
+  }
+
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Broadsheet fine hairline borders */
+  .border-hairline {
+    border-color: #e1dcd3;
+  }
+}
+
+/* Hide scrollbar for clean horizontal carousels */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Equalizer soundwave bar transitions */
+.eq-bar {
+  transition: height 0.15s ease-in-out;
+  border-radius: 9999px;
+}
+
+/* Smooth tab transitions */
+.tab-view {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for active radar nodes */
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 66, 40, 0.6);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(34, 66, 40, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 66, 40, 0);
+  }
+}
+
+.radar-live-dot {
+  animation: radarPulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Dark Mode overrides for warm editorial night theme */
+.dark {
+  background-color: #151413 !important;
+  color: #f4f0ee !important;
+}
+
+.dark body {
+  background-color: #151413 !important;
+  color: #f4f0ee !important;
+}
+
+.dark .bg-canvas {
+  background-color: #151413 !important;
+}
+
+.dark .bg-canvas\/90,
+.dark .bg-canvas\/95 {
+  background-color: rgba(21, 20, 19, 0.94) !important;
+}
+
+.dark .bg-surface {
+  background-color: #242220 !important;
+  color: #f4f0ee !important;
+}
+
+.dark .bg-surface-container {
+  background-color: #2e2b28 !important;
+}
+
+.dark .bg-surface-container-low {
+  background-color: #1e1d1b !important;
+}
+
+.dark .bg-surface-container-high {
+  background-color: #383531 !important;
+}
+
+.dark .bg-surface-container-highest {
+  background-color: #423f3a !important;
+}
+
+.dark .text-on-surface {
+  color: #f4f0ee !important;
+}
+
+.dark .text-secondary {
+  color: #a8a49c !important;
+}
+
+.dark .text-on-surface-variant {
+  color: #c9c5bd !important;
+}
+
+.dark .border-hairline {
+  border-color: #3b3834 !important;
+}
+
+.dark .shadow-sm {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Tap feedback */
+button:active {
+  transform: scale(0.97);
+}
+
+/* Range input styling for fare calculator */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #e8e2d9;
+  border-radius: 9999px;
+}
+
+.dark input[type=range]::-webkit-slider-runnable-track {
+  background: #3d3a35;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #2a72de;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+}
+
+/* ==========================================================================
+   Viewport Mode: Mobile Frame vs Desktop Broadsheet
+   Toggled dynamically via #viewport-toggle-btn
+   ========================================================================== */
+
+/* --- Desktop Mode Styles (Widescreen 1152px) --- */
+body.desktop-mode header > div {
+  max-width: 72rem !important; /* 1152px */
+  transition: max-width 0.25s ease-in-out;
+}
+
+body.desktop-mode header input#global-search-input {
+  max-width: 240px;
+}
+
+body.desktop-mode main {
+  max-width: 72rem !important; /* 1152px */
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  transition: max-width 0.25s ease-in-out;
+}
+
+body.desktop-mode nav > div {
+  max-width: 38rem !important; /* Elegant floating dock */
+  border-radius: 9999px;
+  border: 1px solid rgba(225, 220, 211, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease-in-out;
+}
+
+.dark body.desktop-mode nav > div {
+  border-color: rgba(59, 56, 52, 0.8);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Desktop Home Tab 2-Column Grid */
+body.desktop-mode #view-home {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2.25rem;
+  row-gap: 1.5rem;
+  align-items: start;
+}
+
+/* Home Left Column */
+body.desktop-mode #view-home > div:nth-child(1),
+body.desktop-mode #view-home > div:nth-child(2),
+body.desktop-mode #view-home > div:nth-child(4),
+body.desktop-mode #view-home > div:nth-child(5) {
+  grid-column: 1;
+}
+
+/* Home Right Column */
+body.desktop-mode #view-home > section:nth-child(3),
+body.desktop-mode #view-home > section:nth-child(6),
+body.desktop-mode #view-home > div:nth-child(7) {
+  grid-column: 2;
+}
+
+/* Desktop Monuments Tab 2-Column Grid */
+body.desktop-mode #view-monuments {
+  display: grid !important;
+  grid-template-columns: 460px 1fr;
+  column-gap: 2.5rem;
+  row-gap: 1.5rem;
+  align-items: start;
+}
+
+body.desktop-mode #view-monuments > div:first-child {
+  grid-column: 1 / -1; /* Header & Carousel spanning full width */
+}
+
+/* Monuments Left Column: Showcase, Voice Narrator, Sister Gem */
+body.desktop-mode #view-monuments > div:nth-child(2),
+body.desktop-mode #view-monuments > section:nth-child(3),
+body.desktop-mode #view-monuments > section:nth-child(5) {
+  grid-column: 1;
+}
+
+/* Monuments Right Column: Lore & Kids Mode, Footfall & Surge, Fare Benchmark, Support */
+body.desktop-mode #view-monuments > section:nth-child(4),
+body.desktop-mode #view-monuments > section:nth-child(6),
+body.desktop-mode #view-monuments > section:nth-child(7),
+body.desktop-mode #view-monuments > section:nth-child(8) {
+  grid-column: 2;
+}
+
+/* Desktop Emergency Tab 2-Column Grid */
+body.desktop-mode #view-emergency {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2.25rem;
+  row-gap: 1.5rem;
+  align-items: start;
+}
+
+body.desktop-mode #view-emergency > div:first-child {
+  grid-column: 1 / -1;
+}
+
+/* Desktop Feedback Tab Centered Broadsheet */
+body.desktop-mode #view-feedback {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Mobile Simulation Mode (Desktop screens >= 768px when in Mobile Mode) --- */
+@media (min-width: 768px) {
+  body:not(.desktop-mode) {
+    background-color: #ede7de !important;
+  }
+  .dark body:not(.desktop-mode) {
+    background-color: #0d0c0b !important;
+  }
+  body:not(.desktop-mode) header > div {
+    max-width: 440px !important;
+    transition: max-width 0.25s ease-in-out;
+  }
+  body:not(.desktop-mode) main {
+    max-width: 440px !important;
+    box-shadow: 0 0 32px rgba(0, 0, 0, 0.08);
+    border-left: 1px solid #e1dcd3;
+    border-right: 1px solid #e1dcd3;
+    min-height: 100vh;
+    transition: max-width 0.25s ease-in-out;
+  }
+  .dark body:not(.desktop-mode) main {
+    border-left: 1px solid #312e2b;
+    border-right: 1px solid #312e2b;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.45);
+  }
+  body:not(.desktop-mode) nav > div {
+    max-width: 440px !important;
+    transition: max-width 0.25s ease-in-out;
+  }
+}
+
+
+</style>
 </head>
 
 <body class="bg-canvas text-on-surface font-body min-h-screen flex flex-col selection:bg-gold-pale selection:text-ink-band antialiased">
@@ -151,7 +483,7 @@
         </div>
       </div>
 
-      <!-- Controls: EN/HI Switcher, Voice Narrator Gender, Dark/Light Mode -->
+      <!-- Controls: EN/HI Switcher, Voice Narrator Gender, Viewport Mode, Dark/Light Mode -->
       <div class="flex items-center gap-1.5 shrink-0">
         <!-- Language Switcher -->
         <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-hairline/60">
@@ -163,6 +495,12 @@
         <!-- Voice Narrator Switcher -->
         <button id="voice-gender-btn" type="button" title="Switch Narrator Voice: Sunita / Vikram" aria-label="Toggle narrator voice" class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container text-on-surface text-[14px] hover:bg-surface-container-high transition-colors">
           <span id="voice-gender-icon">👩</span>
+        </button>
+
+        <!-- Viewport Switcher: Mobile / Desktop Mode -->
+        <button id="viewport-toggle-btn" type="button" title="Switch between Mobile & Desktop layout" aria-label="Toggle viewport layout" class="flex items-center gap-1 px-2.5 h-8 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-all border border-hairline/60 text-[11px] font-ui font-medium active:scale-95">
+          <span id="viewport-toggle-icon" class="material-symbols-outlined text-[16px]">desktop_windows</span>
+          <span id="viewport-toggle-label" class="hidden sm:inline">Desktop</span>
         </button>
 
         <!-- Theme Mode Switcher -->
@@ -3885,6 +4223,7 @@ if (typeof module !== 'undefined' && module.exports) {
     kidsMode: false,
     voiceGender: 'female',         // 'female' | 'male'
     theme: 'light',                // 'light' | 'dark'
+    viewportMode: 'mobile',        // 'mobile' | 'desktop'
     isSurgeActive: false,          // ⚡ Live Demo Surge Mode
     selectedHour: '10 AM',
     isPlayingAudio: false,
@@ -4040,6 +4379,9 @@ if (typeof module !== 'undefined' && module.exports) {
   const voiceGenderIcon = document.getElementById('voice-gender-icon');
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const themeToggleIcon = document.getElementById('theme-toggle-icon');
+  const viewportToggleBtn = document.getElementById('viewport-toggle-btn');
+  const viewportToggleIcon = document.getElementById('viewport-toggle-icon');
+  const viewportToggleLabel = document.getElementById('viewport-toggle-label');
   const globalSearchInput = document.getElementById('global-search-input');
   const searchDropdown = document.getElementById('search-dropdown');
   const clearSearchBtn = document.getElementById('clear-search-btn');
@@ -5367,6 +5709,48 @@ if (typeof module !== 'undefined' && module.exports) {
     const saved = localStorage.getItem('safarsaarthi_theme');
     if (saved === 'dark') toggleTheme();
   } catch (_) {}
+
+  // ========================================================================
+  // Viewport Switcher: Mobile Phone vs Desktop Broadsheet Mode
+  // ========================================================================
+  function setViewportMode(mode) {
+    state.viewportMode = mode;
+    if (mode === 'desktop') {
+      document.body.classList.add('desktop-mode');
+      if (viewportToggleIcon) viewportToggleIcon.textContent = 'smartphone';
+      if (viewportToggleLabel) viewportToggleLabel.textContent = 'Mobile';
+      if (viewportToggleBtn) viewportToggleBtn.setAttribute('title', 'Switch to Mobile View');
+    } else {
+      document.body.classList.remove('desktop-mode');
+      if (viewportToggleIcon) viewportToggleIcon.textContent = 'desktop_windows';
+      if (viewportToggleLabel) viewportToggleLabel.textContent = 'Desktop';
+      if (viewportToggleBtn) viewportToggleBtn.setAttribute('title', 'Switch to Desktop View');
+    }
+    try {
+      localStorage.setItem('safarsaarthi_viewport_mode', mode);
+    } catch (_) {}
+  }
+
+  function toggleViewportMode() {
+    const nextMode = state.viewportMode === 'mobile' ? 'desktop' : 'mobile';
+    setViewportMode(nextMode);
+  }
+
+  if (viewportToggleBtn) {
+    viewportToggleBtn.addEventListener('click', toggleViewportMode);
+  }
+
+  // Restore Viewport Mode from localStorage
+  try {
+    const savedViewport = localStorage.getItem('safarsaarthi_viewport_mode');
+    if (savedViewport === 'desktop') {
+      setViewportMode('desktop');
+    } else {
+      setViewportMode('mobile');
+    }
+  } catch (_) {
+    setViewportMode('mobile');
+  }
 
   // ========================================================================
   // Monument Selection Handler

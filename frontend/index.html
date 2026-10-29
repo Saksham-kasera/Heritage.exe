@@ -151,7 +151,7 @@
         </div>
       </div>
 
-      <!-- Controls: EN/HI Switcher, Voice Narrator Gender, Dark/Light Mode -->
+      <!-- Controls: EN/HI Switcher, Voice Narrator Gender, Viewport Mode, Dark/Light Mode -->
       <div class="flex items-center gap-1.5 shrink-0">
         <!-- Language Switcher -->
         <div class="flex items-center bg-surface-container rounded-full p-0.5 border border-hairline/60">
@@ -163,6 +163,12 @@
         <!-- Voice Narrator Switcher -->
         <button id="voice-gender-btn" type="button" title="Switch Narrator Voice: Sunita / Vikram" aria-label="Toggle narrator voice" class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container text-on-surface text-[14px] hover:bg-surface-container-high transition-colors">
           <span id="voice-gender-icon">👩</span>
+        </button>
+
+        <!-- Viewport Switcher: Mobile / Desktop Mode -->
+        <button id="viewport-toggle-btn" type="button" title="Switch between Mobile & Desktop layout" aria-label="Toggle viewport layout" class="flex items-center gap-1 px-2.5 h-8 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-all border border-hairline/60 text-[11px] font-ui font-medium active:scale-95">
+          <span id="viewport-toggle-icon" class="material-symbols-outlined text-[16px]">desktop_windows</span>
+          <span id="viewport-toggle-label" class="hidden sm:inline">Desktop</span>
         </button>
 
         <!-- Theme Mode Switcher -->

@@ -190,3 +190,141 @@ input[type=range]::-webkit-slider-thumb:active {
   transform: scale(1.15);
 }
 
+/* ==========================================================================
+   Viewport Mode: Mobile Frame vs Desktop Broadsheet
+   Toggled dynamically via #viewport-toggle-btn
+   ========================================================================== */
+
+/* --- Desktop Mode Styles (Widescreen 1152px) --- */
+body.desktop-mode header > div {
+  max-width: 72rem !important; /* 1152px */
+  transition: max-width 0.25s ease-in-out;
+}
+
+body.desktop-mode header input#global-search-input {
+  max-width: 240px;
+}
+
+body.desktop-mode main {
+  max-width: 72rem !important; /* 1152px */
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  transition: max-width 0.25s ease-in-out;
+}
+
+body.desktop-mode nav > div {
+  max-width: 38rem !important; /* Elegant floating dock */
+  border-radius: 9999px;
+  border: 1px solid rgba(225, 220, 211, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease-in-out;
+}
+
+.dark body.desktop-mode nav > div {
+  border-color: rgba(59, 56, 52, 0.8);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Desktop Home Tab 2-Column Grid */
+body.desktop-mode #view-home {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2.25rem;
+  row-gap: 1.5rem;
+  align-items: start;
+}
+
+/* Home Left Column */
+body.desktop-mode #view-home > div:nth-child(1),
+body.desktop-mode #view-home > div:nth-child(2),
+body.desktop-mode #view-home > div:nth-child(4),
+body.desktop-mode #view-home > div:nth-child(5) {
+  grid-column: 1;
+}
+
+/* Home Right Column */
+body.desktop-mode #view-home > section:nth-child(3),
+body.desktop-mode #view-home > section:nth-child(6),
+body.desktop-mode #view-home > div:nth-child(7) {
+  grid-column: 2;
+}
+
+/* Desktop Monuments Tab 2-Column Grid */
+body.desktop-mode #view-monuments {
+  display: grid !important;
+  grid-template-columns: 460px 1fr;
+  column-gap: 2.5rem;
+  row-gap: 1.5rem;
+  align-items: start;
+}
+
+body.desktop-mode #view-monuments > div:first-child {
+  grid-column: 1 / -1; /* Header & Carousel spanning full width */
+}
+
+/* Monuments Left Column: Showcase, Voice Narrator, Sister Gem */
+body.desktop-mode #view-monuments > div:nth-child(2),
+body.desktop-mode #view-monuments > section:nth-child(3),
+body.desktop-mode #view-monuments > section:nth-child(5) {
+  grid-column: 1;
+}
+
+/* Monuments Right Column: Lore & Kids Mode, Footfall & Surge, Fare Benchmark, Support */
+body.desktop-mode #view-monuments > section:nth-child(4),
+body.desktop-mode #view-monuments > section:nth-child(6),
+body.desktop-mode #view-monuments > section:nth-child(7),
+body.desktop-mode #view-monuments > section:nth-child(8) {
+  grid-column: 2;
+}
+
+/* Desktop Emergency Tab 2-Column Grid */
+body.desktop-mode #view-emergency {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2.25rem;
+  row-gap: 1.5rem;
+  align-items: start;
+}
+
+body.desktop-mode #view-emergency > div:first-child {
+  grid-column: 1 / -1;
+}
+
+/* Desktop Feedback Tab Centered Broadsheet */
+body.desktop-mode #view-feedback {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Mobile Simulation Mode (Desktop screens >= 768px when in Mobile Mode) --- */
+@media (min-width: 768px) {
+  body:not(.desktop-mode) {
+    background-color: #ede7de !important;
+  }
+  .dark body:not(.desktop-mode) {
+    background-color: #0d0c0b !important;
+  }
+  body:not(.desktop-mode) header > div {
+    max-width: 440px !important;
+    transition: max-width 0.25s ease-in-out;
+  }
+  body:not(.desktop-mode) main {
+    max-width: 440px !important;
+    box-shadow: 0 0 32px rgba(0, 0, 0, 0.08);
+    border-left: 1px solid #e1dcd3;
+    border-right: 1px solid #e1dcd3;
+    min-height: 100vh;
+    transition: max-width 0.25s ease-in-out;
+  }
+  .dark body:not(.desktop-mode) main {
+    border-left: 1px solid #312e2b;
+    border-right: 1px solid #312e2b;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.45);
+  }
+  body:not(.desktop-mode) nav > div {
+    max-width: 440px !important;
+    transition: max-width 0.25s ease-in-out;
+  }
+}
+
