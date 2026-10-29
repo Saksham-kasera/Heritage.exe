@@ -381,6 +381,19 @@
       }
     });
 
+    // Update desktop header navigation active styles (Stitch Desktop)
+    const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
+    desktopNavLinks.forEach(link => {
+      const lTab = link.getAttribute('data-tab');
+      if (lTab === tabName) {
+        link.className = 'desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] transition-all bg-secondary-fixed text-on-secondary-fixed font-button shadow-sm';
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.className = 'desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all';
+        link.removeAttribute('aria-current');
+      }
+    });
+
     // Stop audio if navigating away from monuments
     if (tabName !== 'monuments' && state.isPlayingAudio) {
       pauseAudio();
@@ -395,6 +408,15 @@
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const targetTab = btn.getAttribute('data-tab');
+      switchTab(targetTab);
+    });
+  });
+
+  // Bind Desktop Header Nav Tabs (Stitch Desktop)
+  document.querySelectorAll('.desktop-nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetTab = link.getAttribute('data-tab');
       switchTab(targetTab);
     });
   });
@@ -465,6 +487,12 @@
 
     // 10. Update Home Radar Context
     updateMausamRadar(monument);
+
+    // 11. Update Desktop Scrim Bar Precinct Tag (Stitch Desktop)
+    const desktopPrecinctTag = document.getElementById('desktop-precinct-tag');
+    if (desktopPrecinctTag) {
+      desktopPrecinctTag.textContent = `Telemetry Grid Sync: National Precinct #${monument.id.toUpperCase()} • ${monument.city[state.lang]}`;
+    }
   }
 
   // Toggle Photo vs SVG Art Mode

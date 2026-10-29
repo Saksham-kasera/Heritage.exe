@@ -304,106 +304,150 @@ input[type=range]::-webkit-slider-thumb:active {
    Toggled dynamically via #viewport-toggle-btn
    ========================================================================== */
 
-/* --- Desktop Mode Styles (Widescreen 1152px) --- */
+/* --- Desktop Mode Styles (Stitch 12-Column Bento Grid · 1280px Max-W-7XL) --- */
 body.desktop-mode header > div {
-  max-width: 72rem !important; /* 1152px */
-  transition: max-width 0.25s ease-in-out;
-}
-
-body.desktop-mode header input#global-search-input {
-  max-width: 240px;
-}
-
-body.desktop-mode main {
-  max-width: 72rem !important; /* 1152px */
-  padding-left: 2rem !important;
-  padding-right: 2rem !important;
-  transition: max-width 0.25s ease-in-out;
-}
-
-body.desktop-mode nav > div {
-  max-width: 38rem !important; /* Elegant floating dock */
-  border-radius: 9999px;
-  border: 1px solid rgba(225, 220, 211, 0.8);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 80rem !important; /* 1280px (max-w-7xl) */
+  height: 5rem !important;     /* 80px (h-20) */
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important;
   transition: all 0.25s ease-in-out;
 }
 
-.dark body.desktop-mode nav > div {
-  border-color: rgba(59, 56, 52, 0.8);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+body.desktop-mode #desktop-header-nav {
+  display: flex !important;
 }
 
-/* Desktop Home Tab 2-Column Grid */
+body.desktop-mode #desktop-scrim-bar {
+  display: block !important;
+  margin-top: 5rem !important; /* Clear 80px fixed header */
+}
+
+body.desktop-mode header input#global-search-input {
+  max-width: 220px;
+}
+
+body.desktop-mode main {
+  max-width: 80rem !important; /* 1280px */
+  padding-top: 1.5rem !important;
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important;
+  padding-bottom: 5rem !important;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Hide mobile bottom navigation dock in desktop mode */
+body.desktop-mode nav.fixed.bottom-0 {
+  display: none !important;
+}
+
+/* --- Stitch Desktop: Home Tab 12-Column Bento Grid --- */
 body.desktop-mode #view-home {
   display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2.25rem;
-  row-gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  column-gap: 2rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
 }
 
-/* Home Left Column */
+/* Home Left 7 Columns (Cinematic Hero + Optimal Window + Tour CTA) */
 body.desktop-mode #view-home > div:nth-child(1),
 body.desktop-mode #view-home > div:nth-child(2),
 body.desktop-mode #view-home > div:nth-child(4),
 body.desktop-mode #view-home > div:nth-child(5) {
-  grid-column: 1;
+  grid-column: span 7 / span 7 !important;
 }
 
-/* Home Right Column */
+body.desktop-mode #view-home > div:nth-child(2) {
+  height: 380px !important;
+}
+
+/* Home Right 5 Columns (Mausam-X Radar + Verified Utilities + Craft Dossier) */
 body.desktop-mode #view-home > section:nth-child(3),
 body.desktop-mode #view-home > section:nth-child(6),
 body.desktop-mode #view-home > div:nth-child(7) {
-  grid-column: 2;
+  grid-column: span 5 / span 5 !important;
 }
 
-/* Desktop Monuments Tab 2-Column Grid */
+/* --- Stitch Desktop: Monuments Tab 12-Column Grid --- */
 body.desktop-mode #view-monuments {
   display: grid !important;
-  grid-template-columns: 460px 1fr;
-  column-gap: 2.5rem;
-  row-gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  column-gap: 2rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
 }
 
 body.desktop-mode #view-monuments > div:first-child {
-  grid-column: 1 / -1; /* Header & Carousel spanning full width */
+  grid-column: span 12 / span 12 !important; /* Header & Monument Carousel */
 }
 
-/* Monuments Left Column: Showcase, Voice Narrator, Sister Gem */
+/* Monuments Left 7 Columns: Showcase, Audio Player, Stories Lore & Kids Mode, Sister Gem */
+body.desktop-mode #view-monuments > article:nth-child(2),
 body.desktop-mode #view-monuments > div:nth-child(2),
 body.desktop-mode #view-monuments > section:nth-child(3),
-body.desktop-mode #view-monuments > section:nth-child(5) {
-  grid-column: 1;
-}
-
-/* Monuments Right Column: Lore & Kids Mode, Footfall & Surge, Fare Benchmark, Support */
 body.desktop-mode #view-monuments > section:nth-child(4),
-body.desktop-mode #view-monuments > section:nth-child(6),
-body.desktop-mode #view-monuments > section:nth-child(7),
-body.desktop-mode #view-monuments > section:nth-child(8) {
-  grid-column: 2;
+body.desktop-mode #view-monuments > article:nth-child(6),
+body.desktop-mode #view-monuments > section:nth-child(6) {
+  grid-column: span 7 / span 7 !important;
 }
 
-/* Desktop Emergency Tab 2-Column Grid */
+/* Monuments Right 5 Columns (Sticky): Footfall Density Chart & Live Surge Mode */
+body.desktop-mode #view-monuments > section:nth-child(5) {
+  grid-column: span 5 / span 5 !important;
+  position: sticky !important;
+  top: 6.5rem !important;
+}
+
+/* --- Stitch Desktop: Emergency & Transit Tab 12-Column Grid --- */
 body.desktop-mode #view-emergency {
   display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2.25rem;
-  row-gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  column-gap: 2rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
 }
 
 body.desktop-mode #view-emergency > div:first-child {
-  grid-column: 1 / -1;
+  grid-column: span 12 / span 12 !important; /* Emergency Header */
 }
 
-/* Desktop Feedback Tab Centered Broadsheet */
+/* 2 SOS Banners side-by-side in desktop */
+body.desktop-mode #view-emergency > div:nth-child(2) {
+  grid-column: span 12 / span 12 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1.5rem !important;
+}
+
+/* Left 7 Columns: Scam Shield Fare Benchmark & Interactive Fair-Fare Calculator */
+body.desktop-mode #view-emergency > div:nth-child(3) {
+  grid-column: span 7 / span 7 !important;
+}
+
+/* Right 5 Columns (Sticky): Nearby Verified Support (Police & Hospital) */
+body.desktop-mode #view-emergency > div:nth-child(4) {
+  grid-column: span 5 / span 5 !important;
+  position: sticky !important;
+  top: 6.5rem !important;
+}
+
+/* --- Stitch Desktop: Feedback & Safety Tab 12-Column Grid --- */
 body.desktop-mode #view-feedback {
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 80rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.desktop-mode #view-feedback form {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  column-gap: 2.5rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
+}
+
+body.desktop-mode #view-feedback form > div:last-child {
+  grid-column: span 2 / span 2 !important;
 }
 
 /* --- Mobile Simulation Mode (Desktop screens >= 768px when in Mobile Mode) --- */
@@ -448,7 +492,7 @@ body.desktop-mode #view-feedback {
        Emblem, Wordmark, Search Bar, EN/HI Toggle, Voice Toggle, Theme Mode
        ======================================================================== -->
   <header class="fixed top-0 inset-x-0 z-50 bg-canvas/90 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-hairline/60">
-    <div class="h-16 max-w-xl mx-auto px-margin-mobile flex items-center justify-between gap-space-xs">
+    <div class="h-16 max-w-xl mx-auto px-margin-mobile flex items-center justify-between gap-space-xs transition-all duration-300">
       
       <!-- Brand Identity -->
       <a href="#home" id="brand-link" class="flex items-center gap-space-xs shrink-0 select-none group">
@@ -460,6 +504,14 @@ body.desktop-mode #view-feedback {
           <span class="font-caption text-secondary text-[10px] leading-tight">सफ़र सारथी</span>
         </div>
       </a>
+
+      <!-- Desktop Navigation Bar (Stitch Desktop Design) -->
+      <nav id="desktop-header-nav" class="hidden items-center gap-1.5 p-1 bg-surface-container rounded-full mx-2">
+        <a href="#home" data-tab="home" class="desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] transition-all bg-secondary-fixed text-on-secondary-fixed font-button shadow-sm" aria-current="page">Home</a>
+        <a href="#monuments" data-tab="monuments" class="desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">Monuments</a>
+        <a href="#emergency" data-tab="emergency" class="desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">Emergency &amp; Transit</a>
+        <a href="#feedback" data-tab="feedback" class="desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">Feedback &amp; Safety</a>
+      </nav>
 
       <!-- Search Trigger / Quick Search Bar -->
       <div class="relative flex-1 max-w-[160px] sm:max-w-[200px]">
@@ -511,6 +563,31 @@ body.desktop-mode #view-feedback {
 
     </div>
   </header>
+
+  <!-- ========================================================================
+       DESKTOP TOP NOTICE & TELEMETRY SCRIM BAR (From Stitch Desktop Design)
+       ======================================================================== -->
+  <aside id="desktop-scrim-bar" class="hidden w-full bg-ink-band-soft text-inverse-on-surface py-2.5 px-6 lg:px-12 shadow-sm border-b border-hairline/20 z-40 relative">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 font-caption text-caption">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-forest text-on-primary font-eyebrow text-eyebrow uppercase tracking-widest text-[10px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold-pale animate-ping"></span> Live ASI Radar
+        </span>
+        <span class="text-mute hidden sm:inline" id="desktop-precinct-tag">Telemetry Grid Sync: National Precinct #09 • Agra Heritage Belt</span>
+      </div>
+      <div class="flex items-center gap-6 text-mute text-[12px]">
+        <span class="flex items-center gap-1.5 hover:text-gold-pale transition-colors">
+          <span class="material-symbols-outlined text-[16px] text-gold-pale">wb_twilight</span>
+          <span id="desktop-golden-hour-tag">Golden Hour: 17:42 IST</span>
+        </span>
+        <span class="hidden md:inline text-hairline/20">•</span>
+        <span class="hidden md:flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px] text-sage">verified_user</span>
+          <span>Tourist Safety Index: 98.4% (Clear)</span>
+        </span>
+      </div>
+    </div>
+  </aside>
 
   <!-- ========================================================================
        MAIN APP CONTAINER (Max-w-xl Centered Broadsheet)
@@ -4513,6 +4590,19 @@ if (typeof module !== 'undefined' && module.exports) {
       }
     });
 
+    // Update desktop header navigation active styles (Stitch Desktop)
+    const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
+    desktopNavLinks.forEach(link => {
+      const lTab = link.getAttribute('data-tab');
+      if (lTab === tabName) {
+        link.className = 'desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] transition-all bg-secondary-fixed text-on-secondary-fixed font-button shadow-sm';
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.className = 'desktop-nav-link px-4 py-1.5 rounded-full font-ui text-[13px] text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all';
+        link.removeAttribute('aria-current');
+      }
+    });
+
     // Stop audio if navigating away from monuments
     if (tabName !== 'monuments' && state.isPlayingAudio) {
       pauseAudio();
@@ -4527,6 +4617,15 @@ if (typeof module !== 'undefined' && module.exports) {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const targetTab = btn.getAttribute('data-tab');
+      switchTab(targetTab);
+    });
+  });
+
+  // Bind Desktop Header Nav Tabs (Stitch Desktop)
+  document.querySelectorAll('.desktop-nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetTab = link.getAttribute('data-tab');
       switchTab(targetTab);
     });
   });
@@ -4597,6 +4696,12 @@ if (typeof module !== 'undefined' && module.exports) {
 
     // 10. Update Home Radar Context
     updateMausamRadar(monument);
+
+    // 11. Update Desktop Scrim Bar Precinct Tag (Stitch Desktop)
+    const desktopPrecinctTag = document.getElementById('desktop-precinct-tag');
+    if (desktopPrecinctTag) {
+      desktopPrecinctTag.textContent = `Telemetry Grid Sync: National Precinct #${monument.id.toUpperCase()} • ${monument.city[state.lang]}`;
+    }
   }
 
   // Toggle Photo vs SVG Art Mode

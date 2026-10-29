@@ -195,106 +195,150 @@ input[type=range]::-webkit-slider-thumb:active {
    Toggled dynamically via #viewport-toggle-btn
    ========================================================================== */
 
-/* --- Desktop Mode Styles (Widescreen 1152px) --- */
+/* --- Desktop Mode Styles (Stitch 12-Column Bento Grid · 1280px Max-W-7XL) --- */
 body.desktop-mode header > div {
-  max-width: 72rem !important; /* 1152px */
-  transition: max-width 0.25s ease-in-out;
-}
-
-body.desktop-mode header input#global-search-input {
-  max-width: 240px;
-}
-
-body.desktop-mode main {
-  max-width: 72rem !important; /* 1152px */
-  padding-left: 2rem !important;
-  padding-right: 2rem !important;
-  transition: max-width 0.25s ease-in-out;
-}
-
-body.desktop-mode nav > div {
-  max-width: 38rem !important; /* Elegant floating dock */
-  border-radius: 9999px;
-  border: 1px solid rgba(225, 220, 211, 0.8);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 80rem !important; /* 1280px (max-w-7xl) */
+  height: 5rem !important;     /* 80px (h-20) */
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important;
   transition: all 0.25s ease-in-out;
 }
 
-.dark body.desktop-mode nav > div {
-  border-color: rgba(59, 56, 52, 0.8);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+body.desktop-mode #desktop-header-nav {
+  display: flex !important;
 }
 
-/* Desktop Home Tab 2-Column Grid */
+body.desktop-mode #desktop-scrim-bar {
+  display: block !important;
+  margin-top: 5rem !important; /* Clear 80px fixed header */
+}
+
+body.desktop-mode header input#global-search-input {
+  max-width: 220px;
+}
+
+body.desktop-mode main {
+  max-width: 80rem !important; /* 1280px */
+  padding-top: 1.5rem !important;
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important;
+  padding-bottom: 5rem !important;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Hide mobile bottom navigation dock in desktop mode */
+body.desktop-mode nav.fixed.bottom-0 {
+  display: none !important;
+}
+
+/* --- Stitch Desktop: Home Tab 12-Column Bento Grid --- */
 body.desktop-mode #view-home {
   display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2.25rem;
-  row-gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  column-gap: 2rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
 }
 
-/* Home Left Column */
+/* Home Left 7 Columns (Cinematic Hero + Optimal Window + Tour CTA) */
 body.desktop-mode #view-home > div:nth-child(1),
 body.desktop-mode #view-home > div:nth-child(2),
 body.desktop-mode #view-home > div:nth-child(4),
 body.desktop-mode #view-home > div:nth-child(5) {
-  grid-column: 1;
+  grid-column: span 7 / span 7 !important;
 }
 
-/* Home Right Column */
+body.desktop-mode #view-home > div:nth-child(2) {
+  height: 380px !important;
+}
+
+/* Home Right 5 Columns (Mausam-X Radar + Verified Utilities + Craft Dossier) */
 body.desktop-mode #view-home > section:nth-child(3),
 body.desktop-mode #view-home > section:nth-child(6),
 body.desktop-mode #view-home > div:nth-child(7) {
-  grid-column: 2;
+  grid-column: span 5 / span 5 !important;
 }
 
-/* Desktop Monuments Tab 2-Column Grid */
+/* --- Stitch Desktop: Monuments Tab 12-Column Grid --- */
 body.desktop-mode #view-monuments {
   display: grid !important;
-  grid-template-columns: 460px 1fr;
-  column-gap: 2.5rem;
-  row-gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  column-gap: 2rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
 }
 
 body.desktop-mode #view-monuments > div:first-child {
-  grid-column: 1 / -1; /* Header & Carousel spanning full width */
+  grid-column: span 12 / span 12 !important; /* Header & Monument Carousel */
 }
 
-/* Monuments Left Column: Showcase, Voice Narrator, Sister Gem */
+/* Monuments Left 7 Columns: Showcase, Audio Player, Stories Lore & Kids Mode, Sister Gem */
+body.desktop-mode #view-monuments > article:nth-child(2),
 body.desktop-mode #view-monuments > div:nth-child(2),
 body.desktop-mode #view-monuments > section:nth-child(3),
-body.desktop-mode #view-monuments > section:nth-child(5) {
-  grid-column: 1;
-}
-
-/* Monuments Right Column: Lore & Kids Mode, Footfall & Surge, Fare Benchmark, Support */
 body.desktop-mode #view-monuments > section:nth-child(4),
-body.desktop-mode #view-monuments > section:nth-child(6),
-body.desktop-mode #view-monuments > section:nth-child(7),
-body.desktop-mode #view-monuments > section:nth-child(8) {
-  grid-column: 2;
+body.desktop-mode #view-monuments > article:nth-child(6),
+body.desktop-mode #view-monuments > section:nth-child(6) {
+  grid-column: span 7 / span 7 !important;
 }
 
-/* Desktop Emergency Tab 2-Column Grid */
+/* Monuments Right 5 Columns (Sticky): Footfall Density Chart & Live Surge Mode */
+body.desktop-mode #view-monuments > section:nth-child(5) {
+  grid-column: span 5 / span 5 !important;
+  position: sticky !important;
+  top: 6.5rem !important;
+}
+
+/* --- Stitch Desktop: Emergency & Transit Tab 12-Column Grid --- */
 body.desktop-mode #view-emergency {
   display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2.25rem;
-  row-gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  column-gap: 2rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
 }
 
 body.desktop-mode #view-emergency > div:first-child {
-  grid-column: 1 / -1;
+  grid-column: span 12 / span 12 !important; /* Emergency Header */
 }
 
-/* Desktop Feedback Tab Centered Broadsheet */
+/* 2 SOS Banners side-by-side in desktop */
+body.desktop-mode #view-emergency > div:nth-child(2) {
+  grid-column: span 12 / span 12 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1.5rem !important;
+}
+
+/* Left 7 Columns: Scam Shield Fare Benchmark & Interactive Fair-Fare Calculator */
+body.desktop-mode #view-emergency > div:nth-child(3) {
+  grid-column: span 7 / span 7 !important;
+}
+
+/* Right 5 Columns (Sticky): Nearby Verified Support (Police & Hospital) */
+body.desktop-mode #view-emergency > div:nth-child(4) {
+  grid-column: span 5 / span 5 !important;
+  position: sticky !important;
+  top: 6.5rem !important;
+}
+
+/* --- Stitch Desktop: Feedback & Safety Tab 12-Column Grid --- */
 body.desktop-mode #view-feedback {
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 80rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.desktop-mode #view-feedback form {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  column-gap: 2.5rem !important;
+  row-gap: 1.5rem !important;
+  align-items: start !important;
+}
+
+body.desktop-mode #view-feedback form > div:last-child {
+  grid-column: span 2 / span 2 !important;
 }
 
 /* --- Mobile Simulation Mode (Desktop screens >= 768px when in Mobile Mode) --- */
