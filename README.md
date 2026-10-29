@@ -144,20 +144,26 @@ Designed to run smoothly on any mobile browser, school laptop, or static CDN wit
 ## 🚀 Quick Start & Live Preview
 
 ### Option 1: Instant Local Preview (Zero Install)
-Simply double-click `index.html` in your file explorer, or launch with any static server:
+Launch the lightweight decoupled preview server:
 
 ```bash
 # Clone the repository
 git clone https://github.com/Saksham-kasera/Heritage.exe.git
 cd Heritage.exe
 
-# Start lightweight preview server (Node.js built-in)
+# Start the preview server (Node.js built-in, zero npm install)
 node server.js
+# Or run from the backend directory:
+cd backend && npm start
 ```
-Open **[http://localhost:3000/](http://localhost:3000/)** in your browser.
+Open **[http://localhost:3000/](http://localhost:3000/)** in your browser.  
+REST Health Check: **[http://localhost:3000/api/health](http://localhost:3000/api/health)**
 
-### Option 2: All-in-One Standalone File
-Open [`safarsaarthi-standalone.html`](safarsaarthi-standalone.html) directly in any web browser. All HTML, CSS, JavaScript, and datasets are bundled into a single file for zero-latency distribution.
+### Option 2: Direct Browser Launch (No Server Needed)
+Simply double-click `frontend/index.html` (or root `index.html`) in your file explorer. All styling, audio engines, and monuments render 100% offline.
+
+### Option 3: All-in-One Standalone File
+Open [`frontend/safarsaarthi-standalone.html`](frontend/safarsaarthi-standalone.html) directly in any web browser. All HTML, CSS, JavaScript, and datasets are bundled into a single file for zero-latency distribution.
 
 ---
 
@@ -177,17 +183,32 @@ When demonstrating the project during a 3-minute hackathon pitch:
 
 ## 📂 Repository Structure
 
+Clean decoupled architecture separating presentation and server infrastructure:
+
 ```
-├── index.html                   # Main application entry point (Warm Editorial UI)
-├── app.js                       # Core controller, voice engine, dispersal logic
-├── data.js                      # 10 UNESCO monument datasets & hourly telemetry
-├── style.css                    # Warm paper styling, broadsheet borders, dark mode
-├── server.js                    # Zero-dependency local Node.js static server
-├── safarsaarthi-standalone.html # Self-contained single-file bundled edition
-├── DESIGN-oura.md               # Complete design system tokens & movement analysis
-├── prd.md                       # Product Requirements Document & rubric matrix
-├── rule.md                      # Safety protocol & zero-regression guidelines
-└── stitch_safarsaarthi.../      # High-fidelity Stitch UI prototypes & screens
+Heritage.exe/
+├── frontend/                        # Client-Side Application Module
+│   ├── index.html                   # Warm Editorial UI (Tailwind CSS CDN)
+│   ├── app.js                       # Controller: Speech synthesis, dispersal radar
+│   ├── data.js                      # 10 UNESCO flagship datasets & microclimates
+│   ├── style.css                    # Warm paper styling, broadsheet borders, tokens
+│   ├── config.example.js            # Weather API key configuration template
+│   ├── config.js                    # Local API key config (gitignored for privacy)
+│   ├── safarsaarthi-standalone.html # Self-contained single-file offline bundle
+│   └── README.md                    # Frontend architecture guide
+│
+├── backend/                         # Server & Micro-API Module
+│   ├── server.js                    # Zero-dependency Node.js HTTP server & REST API
+│   ├── package.json                 # Backend scripts & manifest
+│   └── README.md                    # Backend documentation & endpoint list
+│
+├── index.html                       # Root router (redirects to frontend/index.html)
+├── server.js                        # Root server shim (forwards to backend/server.js)
+├── .gitignore                       # Excludes *.zip, logs, and config.js
+├── README.md                        # Project documentation & pitch guide
+├── DESIGN-oura.md                   # Complete design system tokens & movement analysis
+├── prd.md                           # Product Requirements Document & rubric matrix
+└── rule.md                          # Non-coder safety protocol & invariants
 ```
 
 ---

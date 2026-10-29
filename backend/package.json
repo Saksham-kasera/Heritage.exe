@@ -1,0 +1,17 @@
+{
+  "name": "safar-saarthi-backend",
+  "version": "2.0.0",
+  "description": "Zero-dependency Node.js HTTP server and API companion for Safar Saarthi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "heritage",
+    "unesco",
+    "safar-saarthi",
+    "companion"
+  ],
+  "author": "Safar Saarthi Team",
+  "license": "MIT"
+}
